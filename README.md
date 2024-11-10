@@ -5,7 +5,7 @@ A wrapper for Hashcat: it can perform cracking operations by giving a user-frien
 This program is provided without warranties of any kind. The author assumes no responsibility for any damages resulting from the use of this software. We recommend that you use it only for lawful purposes and in accordance with local laws.
 
 ## Description
-This Bash script provides a simple interface to perform cracking operations using Hashcat. It offers various options such as cracking with wordlists, rules, brute-force, and hybrid wordlist + mask attacks. The program is enriched with comments in order to make it as usable and minimal as possible. To download it just go to the [Releases page](https://github.com/ente0v1/Crack_Master/releases).
+This Python script provides a simple interface to perform cracking operations using Hashcat. It offers various options such as cracking with wordlists, rules, brute-force, and hybrid wordlist + mask attacks. The program is enriched with comments in order to make it as usable and minimal as possible. To download it just go to the [Releases page](https://github.com/ente0v1/Crack_Master/releases).
 
 ## Features
 - Crack passwords using wordlists, rules, or brute-force methods.
