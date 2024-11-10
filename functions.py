@@ -109,7 +109,7 @@ def handle_option(option, default_os):
     }
     
     # Determine script path based on OS
-    script_type = "windows" if default_os == "Windows" else "linux"
+    script_type = "windows" if default_os == "Windows" else "Linux"
     script_name = script_map.get(option, None)
 
     if script_name:
