@@ -86,7 +86,10 @@ mv * ../hashCrack
 ```
 - To populate hashCrack with wordlists and such, clone [hashcat-defaults repository](https://github.com/ente0v1/hashcat-defaults) into hashCrack.
 
-With these steps completed, you're now ready to run the script by executing `python hashcrack.py`.
+With these steps completed, you're now ready to run the script by executing:
+```
+python hashcrack.py
+```
 
 If you want to download new wordlists see [wordlists.txt](./wordlists.txt).
 
