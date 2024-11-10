@@ -2,7 +2,7 @@ import os
 import time
 import sys
 from functions import (
-    define_default_parameters, define_windows_parameters, clear_screen, show_title, show_menu_based_on_os, handle_option
+    define_default_parameters, define_windows_parameters, clear_screen, show_title, show_menu, handle_option
 )
 
 define_windows_parameters()
@@ -14,7 +14,7 @@ counter = 1
 while True:
     clear_screen()
     show_title()
-    show_menu_based_on_os(default_os)
+    show_menu(default_os)
     
     user_option = input("Select an option: ").strip()
     counter += 1
