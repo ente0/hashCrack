@@ -78,14 +78,13 @@ cd hashCrack
 
 - To begin, clone the repository using `git clone https://github.com/ente0v1/hashCrack.git` in your $HOME directory, then navigate into the hashCrack folder by typing `cd hashCrack`. Proceed to move `hash.txt` in your directory.
 
-
-- To populate hashCrack with wordlists and such, just execute:
 ```
 cd hashCrack
 git clone https://github.com/ente0v1/hashcat-defaults
 cd hashcat-defaults/
 mv * ../hashCrack
 ```
+- To populate hashCrack with wordlists and such, just execute:
 
 With these steps completed, you're now ready to run the script by executing `./hashcrack.py`.
 
