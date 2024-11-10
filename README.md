@@ -129,7 +129,6 @@ Creating a Python virtual environment is optional but recommended if you run int
     ```
 
 ## Installation
-**Command to clone the repository**
 ```
 git clone --depth 1 https://github.com/ente0v1/hashCrack.git
 cd hashCrack
