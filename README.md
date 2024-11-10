@@ -59,7 +59,6 @@ This Python script provides a simple interface to perform cracking operations us
 - **OS**: Windows 10 or later
 - **Programs**:
   - [Hashcat](https://hashcat.net/hashcat/) – Password cracking tool. You can download the Windows version from the official site.
-  - [Git Bash](https://git-scm.com/download/win) – To run Bash scripts on Windows.
   - **Python**: Required for `haschcrack.py`. Download and install Python from [python.org](https://www.python.org/downloads/), or install it via the Windows package manager.
   - **Wordlists & Rules**: You can download default wordlists and rules by cloning the [hashcat-defaults repository](https://github.com/ente0v1/hashcat-defaults).
   
