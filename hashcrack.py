@@ -28,7 +28,7 @@ while True:
         print("Exiting program...")
         break
 
-    handle_option(user_option)
+    handle_option(user_option, default_os)
 
     if user_option == "hashcat_option_identifier":
         input("Hashcat has finished. Press any key to continue...")
