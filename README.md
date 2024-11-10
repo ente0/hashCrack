@@ -42,8 +42,8 @@ This Python script provides a simple interface to perform cracking operations us
   - **Optional**: Install **Python** for `haschcrack.py`. If not installed, use the following command:
     ```bash
     sudo apt-get install python3 python3-pip   # Debian/Ubuntu
-    sudo dnf install python3 python3-pip      # Fedora
-    sudo pacman -S python python-pip          # Arch Linux
+    sudo dnf install python3 python3-pip       # Fedora
+    sudo pacman -S python python-pip           # Arch Linux
     ```
 
   - **Git** (if not installed, required for cloning the repository and dependencies):
