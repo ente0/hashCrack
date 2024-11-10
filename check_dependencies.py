@@ -11,13 +11,6 @@ def check_dependency(command, tool_name):
     except FileNotFoundError:
         print(f"{tool_name} is NOT installed. Please install {tool_name}.")
 
-def create_requirements_file():
-    with open("requirements.txt", "w") as req_file:
-        req_file.write("psutil\n")
-
-    print("\nrequirements.txt has been created. You can install dependencies using:\n")
-    print("pip install -r requirements.txt")
-
 def main():
     print("Checking system dependencies...\n")
     
@@ -26,7 +19,6 @@ def main():
     check_dependency("hcxtools", "hcxtools")
     check_dependency("hcxdumptool", "hcxdumptool")
     
-    create_requirements_file()
 
 if __name__ == "__main__":
     main()
