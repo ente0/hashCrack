@@ -4,8 +4,8 @@ import random
 from datetime import datetime
 from termcolor import colored
 
-default_scripts = os.path.expanduser("~/Crack_Master")
-default_windows_scripts = f"/c/Users/{os.getenv('USER')}/source/repos/ente0v1/Crack_Master/scripts/windows"
+default_scripts = os.path.expanduser("~/hashCrack")
+default_windows_scripts = f"/c/Users/{os.getenv('USER')}/source/repos/ente0v1/hashCrack/scripts/windows"
 
 def define_default_parameters():
     return {
@@ -121,7 +121,7 @@ def handle_option(option, default_os):
             os.system(f"python3 {script_path}")
         else:
             os.system(f"python {script_path}")
-            
+
         input("Press Enter to return to the menu...")
 
     elif option.lower() == "q":
