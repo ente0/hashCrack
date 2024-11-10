@@ -89,7 +89,7 @@ cd hashcat-defaults/
 mv * ../hashCrack
 ```
 
-With these steps completed, you're now ready to run the script by executing `./crackmaster.sh`.
+With these steps completed, you're now ready to run the script by executing `./hashcrack.py`.
 
 If you want to download new wordlists see [wordlists.txt](./wordlists.txt).
 
