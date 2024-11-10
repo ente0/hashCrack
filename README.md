@@ -76,7 +76,7 @@ git clone --depth 1 https://github.com/ente0v1/hashCrack.git
 cd hashCrack
 ```
 
-- To begin, clone the repository using `git clone https://github.com/ente0v1/hashCrack.git` in your $HOME directory, then navigate into the hashCrack folder by typing `cd hashCrack`. Proceed to move `hash.txt` in your directory.
+- To begin, clone the repository and cd in hashCrack directory. Proceed to move `hash.txt` in your directory.
 
 ```
 cd hashCrack
