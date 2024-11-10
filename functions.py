@@ -80,7 +80,7 @@ def clear_screen():
     os.system("cls" if os.name == "nt" else "clear")
 
 def show_title():
-    print(colored("Welcome to Crack_Master!", 'blue'))
+    print(colored("Welcome to hashCrack!", 'blue'))
 
 def show_menu(default_os):
     print(colored(f"   Menu Options for {default_os}:", 'cyan'))
@@ -92,7 +92,6 @@ def show_menu(default_os):
     ]
     print("\n".join(options))
     print(f"\n   {colored('Press Enter to switch to Windows' if default_os == 'Linux' else 'Linux', 'magenta')}.")
-    return input("Enter option (1-4, or Q to quit): ")
 
 def animate_text(text, delay):
     for i in range(len(text) + 1):
