@@ -68,33 +68,6 @@ This Python script provides a simple interface to perform cracking operations us
 ### Additional Resources:
 - Wordlists, rules, and masks should be available in the specified paths. You can either use the default ones provided in the repository or download additional lists from repositories like [SecLists](https://github.com/danielmiessler/SecLists), [WPA2-Wordlists](https://github.com/kennyn510/wpa2-wordlists.git), or others.
 
-
-## Installation
-**Command to clone the repository**
-```
-git clone --depth 1 https://github.com/ente0v1/hashCrack.git
-cd hashCrack
-```
-
-- To begin, clone the repository and cd in hashCrack directory. Proceed to move `hash.txt` in your directory.
-
-```
-cd hashCrack
-git clone https://github.com/ente0v1/hashcat-defaults
-cd hashcat-defaults/
-mv * ../hashCrack
-```
-- To populate hashCrack with wordlists and such, clone [hashcat-defaults repository](https://github.com/ente0v1/hashcat-defaults) into hashCrack.
-
-With these steps completed, you're now ready to run the script by executing:
-```
-python hashcrack.py
-```
-
-If you want to download new wordlists see [wordlists.txt](./wordlists.txt).
-
-To implement Hashcat for Windows see [Hashcat Build Documentation](https://github.com/hashcat/hashcat/blob/master/BUILD.md) and refer to the [Official Homepage](https://hashcat.net/hashcat/).
-
 ### Installing Dependencies
 
 To install the required dependencies, run the following command:
@@ -157,6 +130,33 @@ Creating a Python virtual environment is optional but recommended if you run int
     pip install -r requirements.txt
     ```
 
+## Installation
+**Command to clone the repository**
+```
+git clone --depth 1 https://github.com/ente0v1/hashCrack.git
+cd hashCrack
+```
+
+- To begin, clone the repository and cd in hashCrack directory. Proceed to move `hash.txt` in your directory.
+
+```
+cd hashCrack
+git clone https://github.com/ente0v1/hashcat-defaults
+cd hashcat-defaults/
+mv * ../hashCrack
+```
+- To populate hashCrack with wordlists and such, clone [hashcat-defaults repository](https://github.com/ente0v1/hashcat-defaults) into hashCrack.
+
+With these steps completed, you're now ready to run the script by executing:
+```
+python hashcrack.py
+```
+
+If you want to download new wordlists see [wordlists.txt](./wordlists.txt).
+
+To implement Hashcat for Windows see [Hashcat Build Documentation](https://github.com/hashcat/hashcat/blob/master/BUILD.md) and refer to the [Official Homepage](https://hashcat.net/hashcat/).
+
+
 ## Usage
 
 **Capturing a WPA2 hash**
@@ -164,7 +164,7 @@ Creating a Python virtual environment is optional but recommended if you run int
 In order to sniff EAPOL packets in the [4-way-handshake](https://notes.networklessons.com/security-wpa-4-way-handshake) see this [video](https://www.youtube.com/watch?v=WfYxrLaqlN8).
 The commands shown in the video has been put in the folder `scripts`.
 
-**Cracking the password**
+**Cracking the hash**
 
 To start the script log in as non-root user and rename your hash in `hash.txt`, move your hash into `hashCrack` directory and execute: `python haschcrack.py`.
 
