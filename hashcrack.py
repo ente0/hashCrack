@@ -16,7 +16,7 @@ while True:
     show_title()
     show_menu(default_os)
     
-    user_option = input("Select an option: ").strip()
+    user_option = input("Enter option (1-4, or Q to quit): ").strip()
     counter += 1
 
     if user_option.lower() != 'x':
