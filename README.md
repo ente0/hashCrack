@@ -26,7 +26,7 @@ This Bash script provides a simple interface to perform cracking operations usin
   - **Debian and derivatives (like Ubuntu)**:
     ```bash
     sudo apt update
-    sudo apt install hashcat aircrack-ng hcxtools hcxdumptool
+    sudo apt install hashcat aircrack-ng hcxtools hcxdumptool 
     ```
 
   - **Fedora**:
@@ -41,9 +41,9 @@ This Bash script provides a simple interface to perform cracking operations usin
 
   - **Optional**: Install **Python** for `haschcrack.py`. If not installed, use the following command:
     ```bash
-    sudo apt-get install python3   # Debian/Ubuntu
-    sudo dnf install python3       # Fedora
-    sudo pacman -S python          # Arch Linux
+    sudo apt-get install python3 python3-pip   # Debian/Ubuntu
+    sudo dnf install python3 python3-pip      # Fedora
+    sudo pacman -S python python-pip          # Arch Linux
     ```
 
   - **Git** (if not installed, required for cloning the repository and dependencies):
