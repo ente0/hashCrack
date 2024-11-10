@@ -74,7 +74,7 @@ To install the required dependencies, run the following command:
 ```
 pip install -r requirements.txt
 ```
-To verify and check for any missing dependencies, execute the `check_dependencies.py` script.Run the following command:
+To verify and check for any missing dependencies, execute the `check_dependencies.py` script. Run the following command:
 ```
 python check_dependencies.py
 ```
