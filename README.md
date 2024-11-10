@@ -1,5 +1,5 @@
 # hashCrack
-A wrapper for Hashcat: it can perform cracking operations by giving a user-friendly menu. ![GitHub](https://img.shields.io/github/license/ente0v1/CrackMaster)
+A wrapper for Hashcat: it can perform cracking operations by giving a user-friendly menu. ![GitHub](https://img.shields.io/github/license/ente0v1/hashCrack)
 
 ## Disclaimer
 This program is provided without warranties of any kind. The author assumes no responsibility for any damages resulting from the use of this software. We recommend that you use it only for lawful purposes and in accordance with local laws.
