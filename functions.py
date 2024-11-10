@@ -101,6 +101,7 @@ def animate_text(text, delay):
 
 def handle_option(option, default_os):
     animate_text("...", 0.1)
+    
     script_map = {
         "1": "wordlist.py",
         "2": "rule.py",
@@ -109,19 +110,27 @@ def handle_option(option, default_os):
     }
     
     # Determine script path based on OS
-    script_type = "windows" if default_os == "Windows" else "Linux"
+    script_type = "windows" if default_os == "Windows" else "linux"
     script_name = script_map.get(option, None)
 
     if script_name:
         script_path = f"scripts/{script_type}/{script_name}"
         print(f"{colored(f'{script_path} is Executing', 'green')}")
-        os.system(f"python3 {script_path}" if default_os == "Linux" else f"python {script_path}")
+        
+        if default_os == "Linux":
+            os.system(f"python3 {script_path}")
+        else:
+            os.system(f"python {script_path}")
+            
+        input("Press Enter to return to the menu...")
+
     elif option.lower() == "q":
         animate_text("Exiting...", 0.1)
         print(colored("Done! Exiting...", 'yellow'))
         exit(0)
     else:
         print(colored("Invalid option. Please try again.", 'red'))
+
 
 def execute_windows_scripts():
     windows_scripts_dir = "scripts/windows"
