@@ -77,8 +77,7 @@ git clone --depth 1 https://github.com/ente0v1/hashCrack.git
 cd hashCrack
 ```
 
-- If you are on Windows, in order to execute Bash, simply download [Git Bash](https://git-scm.com/download/win) or [Kali Linux](https://apps.microsoft.com/detail/9pkr34tncv07?hl=en-us&gl=US) from Microsoft Store.
-To begin, clone the repository using `git clone https://github.com/ente0v1/hashCrack.git` in your $HOME directory, then navigate into the hashCrack folder by typing `cd hashCrack`. Proceed to move `hash.txt` in your repo root directory.
+- To begin, clone the repository using `git clone https://github.com/ente0v1/hashCrack.git` in your $HOME directory, then navigate into the hashCrack folder by typing `cd hashCrack`. Proceed to move `hash.txt` in your directory.
 
 
 - To populate hashCrack with wordlists and such, just execute:
@@ -94,6 +93,68 @@ With these steps completed, you're now ready to run the script by executing `./h
 If you want to download new wordlists see [wordlists.txt](./wordlists.txt).
 
 To implement Hashcat for Windows see [Hashcat Build Documentation](https://github.com/hashcat/hashcat/blob/master/BUILD.md) and refer to the [Official Homepage](https://hashcat.net/hashcat/).
+
+### Installing Dependencies
+
+To install the required dependencies, run the following command:
+```
+pip install -r requirements.txt
+```
+To verify and check for any missing dependencies, execute the `check_dependencies.py` script. This will help identify any required packages or dependencies that are not yet installed in your environment.
+
+Run the following command:
+```
+python check_dependencies.py
+```
+If you encounter any issues with installing dependencies, such as permission errors or system-wide installation restrictions, you can either create a virtual environment or install the dependencies as root.
+
+---
+
+### If `pip install -r requirements.txt` fails
+
+Creating a Python virtual environment is optional but recommended if you run into issues with installing dependencies system-wide. Here's how you can set up a virtual environment:
+
+1. **Install Python and pip** (if you haven't already):
+
+   - On Arch Linux:
+     ```
+     sudo pacman -S python python-pip
+     ```
+
+   - On Debian/Ubuntu-based distributions:
+     ```
+     sudo apt install python3 python3-pip
+     ```
+
+   - On Fedora:
+     ```
+     sudo dnf install python3 python3-pip
+     ```
+
+   - On Windows, Python and pip can be installed from the official [Python website](https://www.python.org/downloads/).
+
+2. **Create and activate a virtual environment**:
+   - Run the following commands to create a virtual environment named `venv`:
+     ```
+     python -m venv venv
+     ```
+
+   - **Activate the virtual environment**:
+     - On Linux/macOS:
+       ```
+       source venv/bin/activate
+       ```
+
+     - On Windows:
+       ```
+       .\venv\Scripts\activate
+       ```
+
+3. **Install dependencies**:
+   After activating the virtual environment, install the required Python packages using `pip`:
+    ```
+    pip install -r requirements.txt
+    ```
 
 ## Usage
 
