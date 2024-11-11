@@ -59,18 +59,18 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, wor
 def main():
     list_sessions(parameters["default_restorepath"])
     
-    restore_file_input = input(colored("[+]","green") + f"Restore? (Enter restore file name or leave empty): ")
+    restore_file_input = input(colored("[+] ","green") + f"Restore? (Enter restore file name or leave empty): ")
     restore_file = restore_file_input or parameters["default_restorepath"]
     
     restore_session(restore_file, parameters["default_restorepath"])
 
-    session_input = input(colored("[+]","green") + f"Enter session name (default '{parameters['default_session']}'): ", "maggreenenta")
+    session_input = input(colored("[+] ","green") + f"Enter session name (default '{parameters['default_session']}'): ", "maggreenenta")
     session = session_input or parameters["default_session"]
 
-    wordlist_path_input = input(colored("[+]","green") + f"Enter Wordlists Path (default '{parameters['default_wordlists']}'): ")
+    wordlist_path_input = input(colored("[+] ","green") + f"Enter Wordlists Path (default '{parameters['default_wordlists']}'): ")
     wordlist_path = wordlist_path_input or parameters["default_wordlists"]
 
-    print(colored(("[+]","green") + f"Available Rules in {rule_path}: "))
+    print(colored(("[+] ","green") + f"Available Rules in {rule_path}: "))
     try:
         rule_files = os.listdir(rule_path)
         if not rule_files:
@@ -83,13 +83,13 @@ def main():
         return
 
 
-    wordlist_input = input(colored("[+]","green") + f"Enter Wordlist (default '{parameters['default_wordlist']}'): ")
+    wordlist_input = input(colored("[+] ","green") + f"Enter Wordlist (default '{parameters['default_wordlist']}'): ")
     wordlist = wordlist_input or parameters["default_wordlist"]
 
-    rule_path_input = input(colored("[+]","green") + f"Enter Rules Path (default '{parameters['default_rules']}'): ")
+    rule_path_input = input(colored("[+] ","green") + f"Enter Rules Path (default '{parameters['default_rules']}'): ")
     rule_path = rule_path_input or parameters["default_rules"]
 
-    print(colored(("[+]","green") + f"Available Rules in {rule_path}: "))
+    print(colored(("[+] ","green") + f"Available Rules in {rule_path}: "))
     try:
         rule_files = os.listdir(rule_path)
         if not rule_files:
@@ -101,16 +101,16 @@ def main():
         print(colored(f"[!] Error: The directory {rule_path} does not exist.", "red"))
         return
 
-    rule_input = input(colored("[+]","green") + f"Enter Rule (default '{parameters['default_rule']}'): ")
+    rule_input = input(colored("[+] ","green") + f"Enter Rule (default '{parameters['default_rule']}'): ")
     rule = rule_input or parameters["default_rule"]
 
-    status_timer_input = input(colored("[+]","green") + f"Use status timer? (default '{parameters['default_status_timer']}') [y/n]: ")
+    status_timer_input = input(colored("[+] ","green") + f"Use status timer? (default '{parameters['default_status_timer']}') [y/n]: ")
     status_timer = status_timer_input or parameters["default_status_timer"]
 
-    hashmode_input = input(colored("[+]","green") + f"Enter hash attack mode (default '{parameters['default_hashmode']}'): ")
+    hashmode_input = input(colored("[+] ","green") + f"Enter hash attack mode (default '{parameters['default_hashmode']}'): ")
     hashmode = hashmode_input or parameters["default_hashmode"]
 
-    workload_input = input(colored("[+]","green") + f"Enter workload (default '{parameters['default_workload']}') [1-4]: ")
+    workload_input = input(colored("[+] ","green") + f"Enter workload (default '{parameters['default_workload']}') [1-4]: ")
     workload = workload_input or parameters["default_workload"]
 
     print(colored("[+] Running Hashcat command...", "blue"))

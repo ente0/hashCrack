@@ -63,18 +63,18 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, mask, workload, stat
 def main():
     list_sessions(parameters["default_restorepath"])
     
-    restore_file_input = input(colored("[+]","green") + f"Restore? (Enter restore file name or leave empty): ")
+    restore_file_input = input(colored("[+] ","green") + f"Restore? (Enter restore file name or leave empty): ")
     restore_file = restore_file_input or parameters["default_restorepath"]
     
     restore_session(restore_file, parameters["default_restorepath"])
 
-    session_input = input(colored("[+]","green") + f"Enter session name (default '{parameters['default_session']}'): ")
+    session_input = input(colored("[+] ","green") + f"Enter session name (default '{parameters['default_session']}'): ")
     session = session_input or parameters["default_session"]
     
-    wordlist_path_input = input(colored("[+]","green") + f"Enter Wordlists Path (default '{parameters['default_wordlists']}'): ")
+    wordlist_path_input = input(colored("[+] ","green") + f"Enter Wordlists Path (default '{parameters['default_wordlists']}'): ")
     wordlist_path = wordlist_path_input or parameters["default_wordlists"]
 
-    print(colored("[+]","green") + f"Available Wordlists in {wordlist_path}: ")
+    print(colored("[+] ","green") + f"Available Wordlists in {wordlist_path}: ")
     try:
         wordlist_files = os.listdir(wordlist_path)
         if not wordlist_files:
@@ -86,13 +86,13 @@ def main():
         print(colored(f"[!] Error: The directory {wordlist_path} does not exist.", "red"))
         return
 
-    wordlist_input = input(colored("[+]","green") + f"Enter Wordlist (default '{parameters['default_wordlist']}'): ")
+    wordlist_input = input(colored("[+] ","green") + f"Enter Wordlist (default '{parameters['default_wordlist']}'): ")
     wordlist = wordlist_input or parameters["default_wordlist"]
     
-    mask_path_input = input(colored("[+]","green") + f"Enter Masks Path (default '{parameters['default_masks']}'): ")
+    mask_path_input = input(colored("[+] ","green") + f"Enter Masks Path (default '{parameters['default_masks']}'): ")
     mask_path = mask_path_input or parameters["default_masks"]
 
-    print(colored("[+]","green") + f"Available Masks in {mask_path}: ")
+    print(colored("[+] ","green") + f"Available Masks in {mask_path}: ")
     try:
         mask_files = os.listdir(mask_path)
         if not mask_files:
@@ -104,22 +104,22 @@ def main():
         print(colored(f"[!] Error: The directory {mask_path} does not exist.", "red"))
         return
     
-    mask_input = input(colored("[+]","green") + f"Enter Mask (default '{parameters['default_mask']}'): ")
+    mask_input = input(colored("[+] ","green") + f"Enter Mask (default '{parameters['default_mask']}'): ")
     mask = mask_input or parameters["default_mask"]
 
-    status_timer_input = input(colored("[+]","green") + f"Use status timer? (default '{parameters['default_status_timer']}') [y/n]: ")
+    status_timer_input = input(colored("[+] ","green") + f"Use status timer? (default '{parameters['default_status_timer']}') [y/n]: ")
     status_timer = status_timer_input or parameters["default_status_timer"]
 
-    min_length_input = input(colored("[+]","green") + f"Enter Minimum Length (default '{parameters['default_min_length']}'): ")
+    min_length_input = input(colored("[+] ","green") + f"Enter Minimum Length (default '{parameters['default_min_length']}'): ")
     min_length = min_length_input or parameters["default_min_length"]
     
-    max_length_input = input(colored("[+]","green") + f"Enter Maximum Length (default '{parameters['default_max_length']}'): ")
+    max_length_input = input(colored("[+] ","green") + f"Enter Maximum Length (default '{parameters['default_max_length']}'): ")
     max_length = max_length_input or parameters["default_max_length"]
     
-    hashmode_input = input(colored("[+]","green") + f"Enter hash attack mode (default '{parameters['default_hashmode']}'): ")
+    hashmode_input = input(colored("[+] ","green") + f"Enter hash attack mode (default '{parameters['default_hashmode']}'): ")
     hashmode = hashmode_input or parameters["default_hashmode"]
     
-    workload_input = input(colored("[+]","green") + f"Enter workload (default '{parameters['default_workload']}') [1-4]: ")
+    workload_input = input(colored("[+] ","green") + f"Enter workload (default '{parameters['default_workload']}') [1-4]: ")
     workload = workload_input or parameters["default_workload"]
 
     print(colored("[+] Running Hashcat command...", "blue"))

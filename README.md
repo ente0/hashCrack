@@ -1,4 +1,4 @@
-# HashCrack: A Hashcat Wrapper for Password Cracking
+# hashCrack: A Hashcat Wrapper for Password Cracking
 
 A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a simplified, user-friendly interface for password cracking tasks. hashCrack enables you to use different attack methods—wordlists, rules, brute-force, and hybrid attacks—through a guided menu interface. The script is well-commented for ease of use and maintenance.
 

@@ -1,0 +1,28 @@
+
+sheez - http://download1568.mediafire.com/yuh4jmehecwg/8oazhwqzexid771/WordlistBySheez_v8.7z (166.17 GB)
+b0n3z - https://download.g0tmi1k.com/wordlists/large/b0n3z-wordlist-sorted-something.tar.gz (165 GB)
+18_in_1 - https://download.g0tmi1k.com/wordlists/large/36.4GB-18_in_1.lst.7z (48.4 GB)
+10_million_combos - https://download.g0tmi1k.com/wordlists/large/10-million-combos.zip (8.8 GB)
+crackstation_main - https://download.g0tmi1k.com/wordlists/large/crackstation.txt.gz (4.5 GB)
+crackstation_human - https://crackstation.net/files/crackstation-human-only.txt.gz (4.2 GB)
+sp00ks_merged_file_uniq - https://download.g0tmi1k.com/wordlists/large/sp00ks_merged_file_uniq.7z (2.7 GB - Compressed)
+PsycOPacKv2 - http://storage.aircrack-ng.org/users/PsycO/PsycOPacKv2.rar (1.4GB)
+dictionary_words - https://github.com/dwyl/english-words/blob/master/words.txt (~466,000 words)
+rocktastic12a - http://www.mediafire.com/file/9tf3n2d45tgktq1/Rocktastic12a.7z/file (1.37GB - Compressed)
+rockyou - https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt (~14,300,000 words)
+
+FROM https://sp00ks-git.github.io/posts/HAT-Overview/
+--------------------------------------------------------------------------------------------------
+
+http://cyberwarzone.com/cyberwarfare/pas...word-lists
+http://hashcrack.blogspot.de/p/wordlist-...ds_29.html
+http://www.skullsecurity.org/wiki/index.php/Passwords
+http://packetstormsecurity.org/Crackers/wordlists/
+http://www.isdpodcast.com/resources/62k-...-passwords
+http://g0tmi1k.blogspot.com/2011/06/dict...lists.html
+http://www.md5this.com/tools/wordlists.html
+http://www.md5decrypter.co.uk/downloads.aspx
+http://hashkiller.io/downloads/hashkiller-dict-2020-01-26.7z
+
+FROM https://hashcat.net/forum/thread-1236.html
+--------------------------------------------------------------------------------------------------
