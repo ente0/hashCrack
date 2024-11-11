@@ -41,7 +41,7 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, mask, workload, stat
         try:
             subprocess.run(hashcat_command, check=True, stdout=output_file, stderr=subprocess.STDOUT)
         except subprocess.CalledProcessError:
-            print(colored("Error while executing hashcat.", "red"))
+            print(colored("[!] Error while executing hashcat.", "red"))
             return
 
     with open(temp_output, 'r') as file:
@@ -50,20 +50,23 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, mask, workload, stat
     print(hashcat_output)
 
     if "Cracked" in hashcat_output:
-        print(colored("Hashcat found the plaintext! Saving logs...", "green"))
+        print(colored("[+] Hashcat found the plaintext! Saving logs...", "green"))
         time.sleep(2)
         save_logs(session)
         save_settings(session)
     else:
-        print(colored("Hashcat did not find the plaintext.", "red"))
+        print(colored("[!] Hashcat did not find the plaintext.", "red"))
         time.sleep(2)
 
     os.remove(temp_output)
 
 def main():
     list_sessions(parameters["default_restorepath"])
+    
     restore_file_input = input(colored(f"[+] Restore? (Enter restore file name or leave empty, default '{parameters['restore_file_input']}'): ", "green"))
-    restore_session(restore_file_input, parameters["default_restorepath"])
+    restore_file = restore_file_input or parameters["default_restorepath"]
+    
+    restore_session(restore_file, parameters["default_restorepath"])
 
     session_input = input(colored(f"[+] Enter session name (default '{parameters['default_session']}'): ", "green"))
     session = session_input or parameters["default_session"]
@@ -71,39 +74,58 @@ def main():
     wordlist_path_input = input(colored(f"[+] Enter Wordlists Path (default '{parameters['default_wordlists']}'): ", "green"))
     wordlist_path = wordlist_path_input or parameters["default_wordlists"]
 
-    print(colored(f"[-] Available Wordlists in {wordlist_path}: ", "yellow"))
-    for wordlist_file in os.listdir(wordlist_path):
-        print(colored(f"[-] {wordlist_file}", "yellow"))
-    
+    print(colored(f"[+] Available Wordlists in {wordlist_path}: ", "green"))
+    try:
+        wordlist_files = os.listdir(wordlist_path)
+        if not wordlist_files:
+            print(colored("[!] Error: No wordlists found.", "red"))
+        else:
+            for wordlist_file in wordlist_files:
+                print(colored("[-]", "yellow") + f" {wordlist_file}") 
+    except FileNotFoundError:
+        print(colored(f"[!] Error: The directory {wordlist_path} does not exist.", "red"))
+        return
+
     wordlist_input = input(colored(f"[+] Enter Wordlist (default '{parameters['default_wordlist']}'): ", "green"))
     wordlist = wordlist_input or parameters["default_wordlist"]
     
     mask_path_input = input(colored(f"[+] Enter Masks Path (default '{parameters['default_masks']}'): ", "green"))
-    masks_path = mask_path_input or parameters["default_masks"]
+    mask_path = mask_path_input or parameters["default_masks"]
 
-    print(colored(f"[-] Available Masks in {masks_path}: ", "yellow"))
-    for mask_file in os.listdir(masks_path):
-        print(colored(f"[-] {mask_file}", "yellow"))
+    print(colored(f"[+] Available Masks in {mask_path}: ", "green"))
+    try:
+        mask_files = os.listdir(mask_path)
+        if not mask_files:
+            print(colored("[!] Error: No masks found.", "red"))
+        else:
+            for mask_file in mask_files:
+                print(colored("[-]", "yellow") + f" {mask_file}") 
+    except FileNotFoundError:
+        print(colored(f"[!] Error: The directory {mask_path} does not exist.", "red"))
+        return
     
     mask_input = input(colored(f"[+] Enter Mask (default '{parameters['default_mask']}'): ", "green"))
     mask = mask_input or parameters["default_mask"]
+
+    status_timer_input = input(colored(f"[+] Use status timer? (default '{parameters['default_status_timer']}') [y/n]: ", "magenta"))
+    status_timer = status_timer_input or parameters["default_status_timer"]
 
     min_length_input = input(colored(f"[+] Enter Minimum Length (default '{parameters['default_min_length']}'): ", "green"))
     min_length = min_length_input or parameters["default_min_length"]
     
     max_length_input = input(colored(f"[+] Enter Maximum Length (default '{parameters['default_max_length']}'): ", "green"))
     max_length = max_length_input or parameters["default_max_length"]
-
-    status_timer_input = input(colored(f"[+] Use status timer? (default '{parameters['default_status_timer']}') [y/n]: ", "green"))
-    status_timer = status_timer_input or parameters["default_status_timer"]
-
+    
     hashmode_input = input(colored(f"[+] Enter hash attack mode (default '{parameters['default_hashmode']}'): ", "green"))
     hashmode = hashmode_input or parameters["default_hashmode"]
     
     workload_input = input(colored(f"[+] Enter workload (default '{parameters['default_workload']}') [1-4]: ", "green"))
     workload = workload_input or parameters["default_workload"]
 
-    print(colored("[+] Running Hashcat command...", "green"))
+    print(colored("[+] Running Hashcat command...", "blue"))
+    print(colored(f"[*] Restore >>", "magenta") + f" {parameters['default_restorepath']}/{session}")
+    print(colored(f"[*] Command >>", "magenta") + f" hashcat --session={session} --increment --increment-min={min_length} --increment-max={max_length} -m {hashmode} hash.txt -a 6 -w {workload} --outfile-format=2 -o plaintext.txt {wordlist_path}/{wordlist} {mask_path}/{mask}")
+    
     run_hashcat(session, hashmode, wordlist_path, wordlist, mask, workload, status_timer, min_length, max_length)
 
 if __name__ == "__main__":
