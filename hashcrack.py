@@ -16,6 +16,7 @@ while True:
     show_menu(default_os)
     
     user_option = input("Enter option (1-4, or Q to quit): ").strip()
+    counter += 1
 
     if user_option.lower() != 'x':
         default_os = "Windows" if counter % 2 == 0 else "Linux"
