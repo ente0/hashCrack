@@ -63,9 +63,7 @@ This tool is provided without warranties, and the author is not liable for any d
 2. **Download default wordlists and rules**:
    ```bash
    git clone https://github.com/ente0v1/hashcat-defaults
-   cd hashcat-defaults
-   mv * ../hashCrack
-   cd ..
+   mv hashcat-defaults/* .
    ```
 3. **Install Python dependencies**:
    ```bash
@@ -167,9 +165,9 @@ The main menu provides easy access to various cracking methods:
 ### Example Commands
 ```bash
 hashcat -a 0 -m 400 example400.hash example.dict              # Wordlist
-hashcat -a 0 -m 0 example0.hash example.dict -r best64.rule   # Wordlist + Rules (MD5)
-hashcat -a 3 -m 0 example0.hash ?a?a?a?a?a?a                  # Brute-Force (MD5)
-hashcat -a 1 -m 0 example0.hash example.dict example.dict     # Combination (MD5)
+hashcat -a 0 -m 0 example0.hash example.dict -r best64.rule   # Wordlist + Rules
+hashcat -a 3 -m 0 example0.hash ?a?a?a?a?a?a                  # Brute-Force
+hashcat -a 1 -m 0 example0.hash example.dict example.dict     # Combination
 hashcat -a 9 -m 500 example500.hash 1word.dict -r best64.rule # Association
 ```
 
