@@ -8,7 +8,8 @@ from functions import (
     list_sessions, save_logs, save_settings, restore_session, define_default_parameters
 )
 
-define_default_parameters()
+# Inizializza i parametri globali da un dizionario
+parameters = define_default_parameters()
 
 def run_hashcat(session, hashmode, wordlist_path, wordlist, workload, status_timer):
     temp_output = tempfile.mktemp()
@@ -57,29 +58,29 @@ def main():
     restore_file_input = input(colored("Restore? (Enter restore file name or leave empty): ", "red"))
     restore_session(restore_file_input)
 
-    session_input = input(colored(f"Enter session name (default '{default_session}'): ", "magenta"))
-    session = session_input or default_session
+    session_input = input(colored(f"Enter session name (default '{parameters['default_session']}'): ", "magenta"))
+    session = session_input or parameters["default_session"]
 
-    wordlist_path_input = input(colored(f"Enter Wordlists Path (default '{default_wordlists}'): ", "red"))
-    wordlist_path = wordlist_path_input or default_wordlists
+    wordlist_path_input = input(colored(f"Enter Wordlists Path (default '{parameters['default_wordlists']}'): ", "red"))
+    wordlist_path = wordlist_path_input or parameters["default_wordlists"]
 
     print(colored(f"Available Wordlists in {wordlist_path}: ", "magenta"))
     for wordlist_file in os.listdir(wordlist_path):
         print(wordlist_file)
 
-    wordlist_input = input(colored(f"Enter Wordlist (default '{default_wordlist}'): ", "magenta"))
-    wordlist = wordlist_input or default_wordlist
+    wordlist_input = input(colored(f"Enter Wordlist (default '{parameters['default_wordlist']}'): ", "magenta"))
+    wordlist = wordlist_input or parameters["default_wordlist"]
 
-    hashmode_input = input(colored(f"Enter hash attack mode (default '{default_hashmode}'): ", "magenta"))
-    hashmode = hashmode_input or default_hashmode
+    hashmode_input = input(colored(f"Enter hash attack mode (default '{parameters['default_hashmode']}'): ", "magenta"))
+    hashmode = hashmode_input or parameters["default_hashmode"]
 
-    workload_input = input(colored(f"Enter workload (default '{default_workload}') [1-4]: ", "magenta"))
-    workload = workload_input or default_workload
+    workload_input = input(colored(f"Enter workload (default '{parameters['default_workload']}') [1-4]: ", "magenta"))
+    workload = workload_input or parameters["default_workload"]
 
-    status_timer_input = input(colored(f"Use status timer? (default '{default_status_timer}') [y/n]: ", "magenta"))
-    status_timer = status_timer_input or default_status_timer
+    status_timer_input = input(colored(f"Use status timer? (default '{parameters['default_status_timer']}') [y/n]: ", "magenta"))
+    status_timer = status_timer_input or parameters["default_status_timer"]
 
-    print(colored(f"Restore >> {default_restorepath}/{session}", "green"))
+    print(colored(f"Restore >> {parameters['default_restorepath']}/{session}", "green"))
     print(colored(f"Command >> hashcat --session={session} -m {hashmode} hash.txt -a 0 -w {workload} --outfile-format=2 -o plaintext.txt {wordlist_path}/{wordlist}", "green"))
 
     run_hashcat(session, hashmode, wordlist_path, wordlist, workload, status_timer)
