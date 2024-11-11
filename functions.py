@@ -65,18 +65,6 @@ def define_my_parameters():
         "default_hashmode": "22000"
     }
 
-def list_sessions(default_restorepath):
-    print(colored("Available sessions:", 'green'))
-    restore_files = [
-        f.replace(".restore", "")
-        for f in os.listdir(default_restorepath)
-        if f.endswith(".restore")
-    ]
-    if not restore_files:
-        print("No restore files found...")
-    else:
-        print("\n".join(restore_files))
-
 def clear_screen():
     os.system("cls" if os.name == "nt" else "clear")
 
@@ -169,16 +157,35 @@ def save_settings(session, path_wordlists, default_wordlist, mask, rule):
         f.write(f"\nHash: {open('hash.txt').read()}")
         f.write(f"\nPlaintext: {open('plaintext.txt').read()}")
 
+def list_sessions(default_restorepath):
+    try:
+        restore_files = [f for f in os.listdir(default_restorepath) if f.endswith('.restore')]
+        if restore_files:
+            print(colored("[+] Available sessions:", "green"))
+            for restore_file in restore_files:
+                print(colored("[-]", "yellow") + f" {restore_file}")
+        else:
+            print(colored("[!] No restore files found...", "red"))
+    except FileNotFoundError:
+        print(colored(f"[!] Error: The directory {default_restorepath} does not exist.", "red"))
+
 def restore_session(restore_file_input, default_restorepath):
-    if restore_file_input:
-        restore_file = os.path.join(default_restorepath, f"{restore_file_input}.restore")
-        if not os.path.isfile(restore_file):
-            print(colored(f"Error: Restore file '{restore_file}' not found.", 'red'))
-            exit(1)
-        session = os.path.basename(restore_file).replace(".restore", "")
-        print(colored(f"Restore >> {restore_file}", 'green'))
-        cmd = f"hashcat --session={session} --restore"
-        os.system(cmd)
+    if not restore_file_input:
+        list_sessions(default_restorepath)
+        restore_file_input = input(colored(f"[+] Restore? (Enter restore file name or leave empty): ", "green"))
+    
+    restore_file = os.path.join(default_restorepath, f"{restore_file_input}.restore")
+     
+    if not os.path.isfile(restore_file):
+        print(colored(f"[!] Error: Restore file '{restore_file}' not found.", 'red'))
+        return
+
+    session = os.path.basename(restore_file).replace(".restore", "")
+    print(colored(f"Restoring session >> {restore_file}", 'green'))
+
+    cmd = f"hashcat --session={session} --restore"
+    print(colored(f"Executing: {cmd}", "blue"))
+    os.system(cmd)
 
 def save_logs(session):
     os.makedirs(f"logs/{session}", exist_ok=True)
