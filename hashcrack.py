@@ -7,7 +7,7 @@ from functions import (
 define_windows_parameters()
 define_default_parameters()
 
-default_os = "Linux"
+default_os = "Windows"
 counter = 1
 
 while True:
