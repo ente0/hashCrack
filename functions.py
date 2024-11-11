@@ -82,16 +82,17 @@ def clear_screen():
 
 def show_menu(default_os):
     ascii_art = """
-    
-                                        .s5SSSs.                                         
-.s    s.  .s5SSSs.  .s5SSSs.  .s    s.        SS. .s5SSSs.  .s5SSSs.  .s5SSSs.  .s    s. 
-      SS.       SS.       SS.       SS. sS    `:;       SS.       SS.       SS.       SS.
-sS    S%S sS    S%S sS    `:; sS    S%S SS        sS    S%S sS    S%S sS    `:; sS    S%S
-SSSs. S%S SSSs. S%S `:;;;;.   SSSs. S%S SS        SS .sS;:' SSSs. S%S SS        SSSSs.S:'
-SS    S%S SS    S%S       ;;. SS    S%S SS        SS    ;,  SS    S%S SS        SS  "SS. 
-SS    `:; SS    `:;       `:; SS    `:; SS        SS    `:; SS    `:; SS        SS    `:;
-SS    ;,. SS    ;,. .,;   ;,. SS    ;,. SS    ;,. SS    ;,. SS    ;,. SS    ;,. SS    ;,.
-:;    ;:' :;    ;:' `:;;;;;:' :;    ;:' `:;;;;;:' `:    ;:' :;    ;:' `:;;;;;:' :;    ;:'
+
+
+888                        888       .d8888b.                           888     
+888                        888      d88P  Y88b                          888     
+888                        888      888    888                          888     
+88888b.   8888b.  .d8888b  88888b.  888        888d888 8888b.   .d8888b 888  888
+888 "88b     "88b 88K      888 "88b 888        888P"      "88b d88P"    888 .88P
+888  888 .d888888 "Y8888b. 888  888 888    888 888    .d888888 888      888888K 
+888  888 888  888      X88 888  888 Y88b  d88P 888    888  888 Y88b.    888 "88b
+888  888 "Y888888  88888P' 888  888  "Y8888P"  888    "Y888888  "Y8888P 888  888
+
 
     """
     print(colored(ascii_art, 'cyan'))
