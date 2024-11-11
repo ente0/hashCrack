@@ -58,18 +58,18 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, workload, status_tim
 def main():
     list_sessions(parameters["default_restorepath"])
     
-    restore_file_input = input(colored(f"[+] Restore? (Enter restore file name or leave empty): ", "green"))
+    restore_file_input = input(colored(("[+]","green") + f"Restore? (Enter restore file name or leave empty): "))
     restore_file = restore_file_input or parameters["default_restorepath"]
     
     restore_session(restore_file, parameters["default_restorepath"])
 
-    session_input = input(colored(f"[+] Enter session name (default '{parameters['default_session']}'): ", "green"))
+    session_input = input(colored(("[+]","green") + f"Enter session name (default '{parameters['default_session']}'): "))
     session = session_input or parameters["default_session"]
 
-    wordlist_path_input = input(colored(f"[+] Enter Wordlists Path (default '{parameters['default_wordlists']}'): ", "green"))
+    wordlist_path_input = input(colored(("[+]","green") + f"Enter Wordlists Path (default '{parameters['default_wordlists']}'): "))
     wordlist_path = wordlist_path_input or parameters["default_wordlists"]
 
-    print(colored(f"[+] Available Wordlists in {wordlist_path}: ", "green"))
+    print(colored(("[+]","green") + f"Available Wordlists in {wordlist_path}: "))
     try:
         wordlist_files = os.listdir(wordlist_path)
         if not wordlist_files:
@@ -81,16 +81,16 @@ def main():
         print(colored(f"[!] Error: The directory {wordlist_path} does not exist.", "red"))
         return
 
-    wordlist_input = input(colored(f"[+] Enter Wordlist (default '{parameters['default_wordlist']}'): ", "green"))
+    wordlist_input = input(colored(("[+]","green") + f"Enter Wordlist (default '{parameters['default_wordlist']}'): "))
     wordlist = wordlist_input or parameters["default_wordlist"]
 
-    status_timer_input = input(colored(f"Use status timer? (default '{parameters['default_status_timer']}') [y/n]: ", "green"))
+    status_timer_input = input(colored(("[+]","green") + f"Use status timer? (default '{parameters['default_status_timer']}') [y/n]: "))
     status_timer = status_timer_input or parameters["default_status_timer"]
 
-    hashmode_input = input(colored(f"[+] Enter hash attack mode (default '{parameters['default_hashmode']}'): ", "green"))
+    hashmode_input = input(colored(("[+]","green") + f"Enter hash attack mode (default '{parameters['default_hashmode']}'): "))
     hashmode = hashmode_input or parameters["default_hashmode"]
 
-    workload_input = input(colored(f"[+] Enter workload (default '{parameters['default_workload']}') [1-4]: ", "green"))
+    workload_input = input(colored(("[+]","green") + f"Enter workload (default '{parameters['default_workload']}') [1-4]: "))
     workload = workload_input or parameters["default_workload"]
 
 
