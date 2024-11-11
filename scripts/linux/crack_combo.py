@@ -62,55 +62,48 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, mask, workload, stat
 
 def main():
     list_sessions(parameters["default_restorepath"])
-    restore_file_input = input(colored("Restore? (Enter restore file name or leave empty): ", "red"))
-    restore_session(
-        parameters["restore_file_input"], 
-        parameters["default_restorepath"], 
-        parameters["default_hashmode"], 
-        parameters["workload"], 
-        parameters["default_wordlists"],    
-        parameters["default_wordlist"]
-    )
+    restore_file_input = input(colored(f"[+] Restore? (Enter restore file name or leave empty, default '{parameters['restore_file_input']}'): ", "green"))
+    restore_session(parameters["restore_file_input"], parameters["default_restorepath"])
 
-    session_input = input(colored("Enter session name (default '{}'): ".format(parameters["default_session"]), "magenta"))
+    session_input = input(colored(f"[+] Enter session name (default '{parameters['default_session']}'): ", "green"))
     session = session_input or parameters["default_session"]
     
-    wordlist_path_input = input(colored("Enter Wordlists Path (default '{}'): ".format(parameters["default_wordlists"]), "red"))
+    wordlist_path_input = input(colored(f"[+] Enter Wordlists Path (default '{parameters['default_wordlists']}'): ", "green"))
     wordlist_path = wordlist_path_input or parameters["default_wordlists"]
 
-    print(colored("Available Wordlists in {}: ".format(wordlist_path), "magenta"))
+    print(colored(f"[-] Available Wordlists in {wordlist_path}: ", "yellow"))
     for wordlist_file in os.listdir(wordlist_path):
-        print(wordlist_file)
+        print(colored(f"[-] {wordlist_file}", "yellow"))
     
-    wordlist_input = input(colored("Enter Wordlist (default '{}'): ".format(parameters["default_wordlist"]), "magenta"))
+    wordlist_input = input(colored(f"[+] Enter Wordlist (default '{parameters['default_wordlist']}'): ", "green"))
     wordlist = wordlist_input or parameters["default_wordlist"]
     
-    mask_path_input = input(colored("Enter Masks Path (default '{}'): ".format(parameters["default_masks"]), "red"))
+    mask_path_input = input(colored(f"[+] Enter Masks Path (default '{parameters['default_masks']}'): ", "green"))
     masks_path = mask_path_input or parameters["default_masks"]
 
-    print(colored("Available Masks in {}: ".format(masks_path), "magenta"))
+    print(colored(f"[-] Available Masks in {masks_path}: ", "yellow"))
     for mask_file in os.listdir(masks_path):
-        print(mask_file)
+        print(colored(f"[-] {mask_file}", "yellow"))
     
-    mask_input = input(colored("Enter Mask (default '{}'): ".format(parameters["default_mask"]), "magenta"))
+    mask_input = input(colored(f"[+] Enter Mask (default '{parameters['default_mask']}'): ", "green"))
     mask = mask_input or parameters["default_mask"]
 
-    min_length_input = input(colored("Enter Minimum Length (default '{}'): ".format(parameters["default_min_length"]), "magenta"))
+    min_length_input = input(colored(f"[+] Enter Minimum Length (default '{parameters['default_min_length']}'): ", "green"))
     min_length = min_length_input or parameters["default_min_length"]
     
-    max_length_input = input(colored("Enter Maximum Length (default '{}'): ".format(parameters["default_max_length"]), "magenta"))
+    max_length_input = input(colored(f"[+] Enter Maximum Length (default '{parameters['default_max_length']}'): ", "green"))
     max_length = max_length_input or parameters["default_max_length"]
 
-    status_timer_input = input(colored("Use status timer? (default '{}') [y/n]: ".format(parameters["default_status_timer"]), "magenta"))
+    status_timer_input = input(colored(f"[+] Use status timer? (default '{parameters['default_status_timer']}') [y/n]: ", "green"))
     status_timer = status_timer_input or parameters["default_status_timer"]
 
-    hashmode_input = input(colored("Enter hash attack mode (default '{}'): ".format(parameters["default_hashmode"]), "magenta"))
+    hashmode_input = input(colored(f"[+] Enter hash attack mode (default '{parameters['default_hashmode']}'): ", "green"))
     hashmode = hashmode_input or parameters["default_hashmode"]
     
-    workload_input = input(colored("Enter workload (default '{}') [1-4]: ".format(parameters["default_workload"]), "magenta"))
+    workload_input = input(colored(f"[+] Enter workload (default '{parameters['default_workload']}') [1-4]: ", "green"))
     workload = workload_input or parameters["default_workload"]
 
-    print(colored("Running Hashcat command...", "green"))
+    print(colored("[+] Running Hashcat command...", "green"))
     run_hashcat(session, hashmode, wordlist_path, wordlist, mask, workload, status_timer, min_length, max_length)
 
 if __name__ == "__main__":

@@ -57,41 +57,34 @@ def run_hashcat(session, hashmode, mask, workload, status_timer):
 
 def main():
     list_sessions(parameters["default_restorepath"])
-    restore_file_input = input(colored("\nRestore? (Enter restore file name or leave empty): ", "red"))
-    restore_session(
-        parameters["restore_file_input"], 
-        parameters["default_restorepath"], 
-        parameters["default_hashmode"], 
-        parameters["workload"], 
-        parameters["default_wordlists"],    
-        parameters["default_wordlist"]
-    )
+    restore_file_input = input(colored(f"\nRestore? (Enter restore file name or leave empty, default '{parameters['restore_file_input']}'): ", "red"))
+    restore_session(parameters["restore_file_input"], parameters["default_restorepath"])
 
-    session_input = input(colored("Enter session name (default '{}'): ".format(parameters["default_session"]), "magenta"))
+    session_input = input(colored(f"Enter session name (default '{parameters['default_session']}'): ", "magenta"))
     session = session_input or parameters["default_session"]
     
-    mask_path_input = input(colored("Enter Masks Path (default '{}'): ".format(parameters["default_masks"]), "red"))
+    mask_path_input = input(colored(f"Enter Masks Path (default '{parameters['default_masks']}'): ", "red"))
     masks_path = mask_path_input or parameters["default_masks"]
     
-    print(colored("Available Masks in {}: ".format(masks_path), "magenta"))
+    print(colored(f"Available Masks in {masks_path}: ", "magenta"))
     for mask_file in os.listdir(masks_path):
         print(mask_file)
     
-    mask_input = input(colored("Enter Mask (default '{}'): ".format(parameters["default_mask"]), "magenta"))
+    mask_input = input(colored(f"Enter Mask (default '{parameters['default_mask']}'): ", "magenta"))
     mask = mask_input or parameters["default_mask"]
     
-    status_timer_input = input(colored("Use status timer? (y/n): ", "magenta"))
+    status_timer_input = input(colored(f"Use status timer? (y/n, default '{parameters['default_status_timer']}'): ", "magenta"))
 
-    min_length_input = input(colored("Enter Minimum Length (default '{}'): ".format(parameters["default_min_length"]), "magenta"))
+    min_length_input = input(colored(f"Enter Minimum Length (default '{parameters['default_min_length']}'): ", "magenta"))
     min_length = min_length_input or parameters["default_min_length"]
     
-    max_length_input = input(colored("Enter Maximum Length (default '{}'): ".format(parameters["default_max_length"]), "magenta"))
+    max_length_input = input(colored(f"Enter Maximum Length (default '{parameters['default_max_length']}'): ", "magenta"))
     max_length = max_length_input or parameters["default_max_length"]
     
-    hashmode_input = input(colored("Enter hash attack mode (default '{}'): ".format(parameters["default_hashmode"]), "magenta"))
+    hashmode_input = input(colored(f"Enter hash attack mode (default '{parameters['default_hashmode']}'): ", "magenta"))
     hashmode = hashmode_input or parameters["default_hashmode"]
     
-    workload_input = input(colored("Enter workload (default '{}') [1-4]: ".format(parameters["default_workload"]), "magenta"))
+    workload_input = input(colored(f"Enter workload (default '{parameters['default_workload']}') [1-4]: ", "magenta"))
     workload = workload_input or parameters["default_workload"]
 
     print(colored("Running Hashcat command...", "green"))

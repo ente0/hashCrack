@@ -1,6 +1,7 @@
 import os
 import time
 import random
+import subprocess
 from datetime import datetime
 from termcolor import colored
 
@@ -82,16 +83,52 @@ def clear_screen():
 def show_title():
     print(colored("Welcome to hashCrack!", 'blue'))
 
+def detect_os_and_run_script(option, default_os):
+    if default_os == "Linux":
+        if option == '1':
+            print("Running Linux script for Crack with Wordlist...")
+            subprocess.run(["python3", "scripts/linux/crack_wordlist.py"]) 
+        elif option == '2':
+            print("Running Linux script for Crack with Association...")
+            subprocess.run(["python3", "scripts/linux/crack_association.py"])  
+        elif option == '3':
+            print("Running Linux script for Crack with Brute-Force...")
+            subprocess.run(["python3", "scripts/linux/crack_bruteforce.py"])  
+        elif option == '4':
+            print("Running Linux script for Crack with Combinator...")
+            subprocess.run(["python3", "scripts/linux/crack_combinator.py"])  
+        else:
+            print("Invalid option selected. Returning to menu.")
+    elif default_os == "Windows":
+        if option == '1':
+            print("Running Windows script for Crack with Wordlist...")
+            subprocess.run(["python", "scripts/windows/crack_wordlist.py"])  
+        elif option == '2':
+            print("Running Windows script for Crack with Association...")
+            subprocess.run(["python", "scripts/windows/crack_association.py"]) 
+        elif option == '3':
+            print("Running Windows script for Crack with Brute-Force...")
+            subprocess.run(["python", "scripts/windows/crack_bruteforce.py"])  
+        elif option == '4':
+            print("Running Windows script for Crack with Combinator...")
+            subprocess.run(["python", "scripts/windows/crack_combinator.py"])  
+        else:
+            print("Invalid option selected. Returning to menu.")
+    else:
+        print("Unsupported OS detected. Exiting...")
+
 def show_menu(default_os):
     print(colored(f"   Menu Options for {default_os}:", 'cyan'))
     options = [
-        f"{colored('[1]', 'green')}. Crack with Wordlist          {colored('[EASY]', 'cyan')}",
-        f"{colored('[1]', 'green')}. Crack with Association       {colored('[MEDIUM]', 'green')}",
-        f"{colored('[1]', 'green')}. Crack with Brute-Force       {colored('[HARD]', 'yellow')}",
-        f"{colored('[1]', 'green')}. Crack with Combinator        {colored('[ADVANCED]', 'red')}",
+        f"{colored('[1]', 'cyan')}. Crack with Wordlist          {colored('[EASY]', 'cyan')}",
+        f"{colored('[2]', 'green')}. Crack with Association       {colored('[MEDIUM]', 'green')}",
+        f"{colored('[3]', 'yellow')}. Crack with Brute-Force       {colored('[HARD]', 'yellow')}",
+        f"{colored('[4]', 'red')}. Crack with Combinator        {colored('[ADVANCED]', 'red')}",
     ]
     print("\n".join(options))
     print(f"\n   {colored('Press Enter to switch to Windows' if default_os == 'Linux' else 'Linux', 'magenta')}.")
+    
+    detect_os_and_run_script()
 
 def animate_text(text, delay):
     for i in range(len(text) + 1):
