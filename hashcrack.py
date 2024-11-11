@@ -7,28 +7,27 @@ from functions import (
 define_windows_parameters()
 define_default_parameters()
 
+# Imposta inizialmente il sistema operativo su Windows
 default_os = "Windows"
-counter = 1
 
 while True:
-    counter += 1
     clear_screen()
     show_title()
     show_menu(default_os)
     
     user_option = input("Enter option (1-4, or Q to quit): ").strip()
 
-    if user_option.lower() != 'x':
-        default_os = "Windows" if counter % 2 == 0 else "Linux"
-    else:
-        counter -= 1
-
-    if user_option.lower() == 'q':
+    if user_option.lower() == 'x':
+        default_os = "Linux" if default_os == "Windows" else "Windows"
+        print(f"System switched to {default_os}")
+    
+    elif user_option.lower() == 'q':
         print("Exiting program...")
         break
 
-    handle_option(user_option, default_os)
-
+    else:
+        handle_option(user_option, default_os)
+    
     if user_option == "hashcat_option_identifier":
         input("Hashcat has finished. Press any key to continue...")
 
