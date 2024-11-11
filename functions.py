@@ -102,7 +102,7 @@ def show_menu(default_os):
     print("\n   " + "\n   ".join(options))
     print(colored("\n" + "="*50, 'magenta'))
     print(f"   {colored('Press X to switch to Windows' if default_os == 'Linux' else 'Press Enter to switch to Linux', 'magenta', attrs=['bold'])}.")
-    print(colored("="*50, ',magenta'))
+    print(colored("="*50, 'magenta'))
 
 
 def animate_text(text, delay):
