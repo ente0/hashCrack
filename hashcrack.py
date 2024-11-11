@@ -7,7 +7,7 @@ from functions import (
 define_windows_parameters()
 define_default_parameters()
 
-default_os = "Windows"
+default_os = "Linux"
 
 while True:
     clear_screen()

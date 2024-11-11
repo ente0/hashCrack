@@ -96,9 +96,9 @@ def show_menu(default_os):
 
     """
     print(colored(ascii_art, 'cyan'))
-    print(colored("="*50, 'cyan'))
+    print(colored("="*90, 'cyan'))
     print(colored(f"   Welcome to hashCrack! - Menu Options for {default_os}", 'cyan', attrs=['bold']))
-    print(colored("="*50, 'cyan'))
+    print(colored("="*90, 'cyan'))
     options = [
         f"{colored('[1]', 'blue', attrs=['bold'])} Crack with Wordlist          {colored('[EASY]', 'blue', attrs=['bold'])}",
         f"{colored('[2]', 'green', attrs=['bold'])} Crack with Association       {colored('[MEDIUM]', 'green', attrs=['bold'])}",
@@ -106,9 +106,9 @@ def show_menu(default_os):
         f"{colored('[4]', 'red', attrs=['bold'])} Crack with Combinator        {colored('[ADVANCED]', 'red', attrs=['bold'])}",
     ]
     print("\n   " + "\n   ".join(options))
-    print(colored("\n" + "="*50, 'magenta'))
+    print(colored("\n" + "="*90, 'magenta'))
     print(f"   {colored('Press X to switch to Windows' if default_os == 'Linux' else 'Press X to switch to Linux', 'magenta', attrs=['bold'])}.")
-    print(colored("="*50, 'magenta'))
+    print(colored("="*90, 'magenta'))
 
 
 def animate_text(text, delay):
