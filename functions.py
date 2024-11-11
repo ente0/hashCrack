@@ -82,12 +82,17 @@ def clear_screen():
 
 def show_menu(default_os):
     ascii_art = """
-  _    _           _____                _____        _
- | |  | |         / ____|              / ____|      | |
- | |__| | ___ ___| |     ___   ___ ___| |__ __ _ ___| |_ ___
- |  __  |/ _ Y __| |    / _ \ / __/ _ \  __/ _` / __| __/ _ \
- | |  | |  __/ |_ | |___| (_) | (_|  __/ | | (_| \__ \ ||  __/
- |_|  |_|\___|\__| \_____\___/ \___\___|_|  \__,_|___/\__\___|
+    
+                                        .s5SSSs.                                         
+.s    s.  .s5SSSs.  .s5SSSs.  .s    s.        SS. .s5SSSs.  .s5SSSs.  .s5SSSs.  .s    s. 
+      SS.       SS.       SS.       SS. sS    `:;       SS.       SS.       SS.       SS.
+sS    S%S sS    S%S sS    `:; sS    S%S SS        sS    S%S sS    S%S sS    `:; sS    S%S
+SSSs. S%S SSSs. S%S `:;;;;.   SSSs. S%S SS        SS .sS;:' SSSs. S%S SS        SSSSs.S:'
+SS    S%S SS    S%S       ;;. SS    S%S SS        SS    ;,  SS    S%S SS        SS  "SS. 
+SS    `:; SS    `:;       `:; SS    `:; SS        SS    `:; SS    `:; SS        SS    `:;
+SS    ;,. SS    ;,. .,;   ;,. SS    ;,. SS    ;,. SS    ;,. SS    ;,. SS    ;,. SS    ;,.
+:;    ;:' :;    ;:' `:;;;;;:' :;    ;:' `:;;;;;:' `:    ;:' :;    ;:' `:;;;;;:' :;    ;:'
+
     """
     print(colored(ascii_art, 'cyan'))
     print(colored("="*50, 'cyan'))
@@ -101,7 +106,7 @@ def show_menu(default_os):
     ]
     print("\n   " + "\n   ".join(options))
     print(colored("\n" + "="*50, 'magenta'))
-    print(f"   {colored('Press X to switch to Windows' if default_os == 'Linux' else 'Press Enter to switch to Linux', 'magenta', attrs=['bold'])}.")
+    print(f"   {colored('Press X to switch to Windows' if default_os == 'Linux' else 'Press X to switch to Linux', 'magenta', attrs=['bold'])}.")
     print(colored("="*50, 'magenta'))
 
 
