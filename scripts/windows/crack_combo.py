@@ -34,7 +34,7 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, mask_path, mask, min
         try:
             subprocess.run(hashcat_command, check=True, stdout=output_file, stderr=subprocess.STDOUT)
         except subprocess.CalledProcessError:
-            print(colored("[-] Error while executing hashcat.", "red"))
+            print(colored("[!] Error while executing hashcat.", "red"))
             return
 
     with open(temp_output, 'r') as file:

@@ -32,7 +32,7 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, wor
         try:
             subprocess.run(hashcat_command, check=True, stdout=output_file, stderr=subprocess.STDOUT)
         except subprocess.CalledProcessError:
-            print(colored("Error while executing hashcat.", "red"))
+            print(colored("[!] Error while executing hashcat.", "red"))
             return
 
     with open(temp_output, 'r') as file:
@@ -41,12 +41,12 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, wor
     print(hashcat_output)
 
     if "Cracked" in hashcat_output:
-        print(colored("Hashcat found the plaintext! Saving logs...", "green"))
+        print(colored("[+] Hashcat found the plaintext! Saving logs...", "green"))
         time.sleep(2)
         save_logs(session)
         save_settings(session, wordlist_path, wordlist, rule_path, rule)
     else:
-        print(colored("Hashcat did not find the plaintext.", "red"))
+        print(colored("[!] Hashcat did not find the plaintext.", "red"))
         time.sleep(2)
 
     os.remove(temp_output)
@@ -62,7 +62,7 @@ def main():
     session_input = input(colored(f"[+] Enter session name (default '{parameters['default_session']}'): ", "green"))
     session = session_input or parameters["default_session"]
 
-    wordlist_path_input = input(colored(f"[+] Enter Wordlists Path (default '{parameters['default_wordlists']}'): ", "red"))
+    wordlist_path_input = input(colored(f"[+] Enter Wordlists Path (default '{parameters['default_wordlists']}'): ", "green"))
     wordlist_path = wordlist_path_input or parameters["default_wordlists"]
 
     print(colored(f"[+] Available Wordlists in {wordlist_path}: ", "green"))
@@ -80,7 +80,7 @@ def main():
     wordlist_input = input(colored(f"[+] Enter Wordlist (default '{parameters['default_wordlist']}'): ", "green"))
     wordlist = wordlist_input or parameters["default_wordlist"]
 
-    rule_path_input = input(colored(f"[+] Enter Rules Path (default '{parameters['default_rules']}'): ", "red"))
+    rule_path_input = input(colored(f"[+] Enter Rules Path (default '{parameters['default_rules']}'): ", "green"))
     rule_path = rule_path_input or parameters["default_rules"]
 
     print(colored(f"[+] Available Rules in {rule_path}: ", "green"))

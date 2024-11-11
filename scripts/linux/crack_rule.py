@@ -37,7 +37,7 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, wor
         try:
             subprocess.run(hashcat_command, check=True, stdout=output_file, stderr=subprocess.STDOUT)
         except subprocess.CalledProcessError:
-            print(colored("Error while executing hashcat.", "red"))
+            print(colored("[!] Error while executing hashcat.", "red"))
             return
 
     with open(temp_output, 'r') as file:
@@ -64,10 +64,10 @@ def main():
     
     restore_session(restore_file, parameters["default_restorepath"])
 
-    session_input = input(colored(f"[+] Enter session name (default '{parameters['default_session']}'): ", "magenta"))
+    session_input = input(colored(f"[+] Enter session name (default '{parameters['default_session']}'): ", "maggreenenta"))
     session = session_input or parameters["default_session"]
 
-    wordlist_path_input = input(colored(f"[+] Enter Wordlists Path (default '{parameters['default_wordlists']}'): ", "red"))
+    wordlist_path_input = input(colored(f"[+] Enter Wordlists Path (default '{parameters['default_wordlists']}'): ", "green"))
     wordlist_path = wordlist_path_input or parameters["default_wordlists"]
 
     print(colored(f"[+] Available Rules in {rule_path}: ", "green"))
@@ -83,7 +83,7 @@ def main():
         return
 
 
-    wordlist_input = input(colored(f"[+] Enter Wordlist (default '{parameters['default_wordlist']}'): ", "magenta"))
+    wordlist_input = input(colored(f"[+] Enter Wordlist (default '{parameters['default_wordlist']}'): ", "green"))
     wordlist = wordlist_input or parameters["default_wordlist"]
 
     rule_path_input = input(colored(f"[+] Enter Rules Path (default '{parameters['default_rules']}'): ", "red"))
@@ -101,16 +101,16 @@ def main():
         print(colored(f"[!] Error: The directory {rule_path} does not exist.", "red"))
         return
 
-    rule_input = input(colored(f"[+] Enter Rule (default '{parameters['default_rule']}'): ", "magenta"))
+    rule_input = input(colored(f"[+] Enter Rule (default '{parameters['default_rule']}'): ", "green"))
     rule = rule_input or parameters["default_rule"]
 
-    status_timer_input = input(colored(f"[+] Use status timer? (default '{parameters['default_status_timer']}') [y/n]: ", "magenta"))
+    status_timer_input = input(colored(f"[+] Use status timer? (default '{parameters['default_status_timer']}') [y/n]: ", "green"))
     status_timer = status_timer_input or parameters["default_status_timer"]
 
-    hashmode_input = input(colored(f"[+] Enter hash attack mode (default '{parameters['default_hashmode']}'): ", "magenta"))
+    hashmode_input = input(colored(f"[+] Enter hash attack mode (default '{parameters['default_hashmode']}'): ", "green"))
     hashmode = hashmode_input or parameters["default_hashmode"]
 
-    workload_input = input(colored(f"[+] Enter workload (default '{parameters['default_workload']}') [1-4]: ", "magenta"))
+    workload_input = input(colored(f"[+] Enter workload (default '{parameters['default_workload']}') [1-4]: ", "green"))
     workload = workload_input or parameters["default_workload"]
 
     print(colored("[+] Running Hashcat command...", "blue"))
