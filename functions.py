@@ -120,13 +120,13 @@ def detect_os_and_run_script(option, default_os):
 def show_menu(default_os):
     print(colored(f"   Menu Options for {default_os}:", 'cyan'))
     options = [
-        f"{colored('[1]', 'cyan')}. Crack with Wordlist          {colored('[EASY]', 'cyan')}",
+        f"{colored('[1]', 'blue')}. Crack with Wordlist          {colored('[EASY]', 'blue')}",
         f"{colored('[2]', 'green')}. Crack with Association       {colored('[MEDIUM]', 'green')}",
         f"{colored('[3]', 'yellow')}. Crack with Brute-Force       {colored('[HARD]', 'yellow')}",
         f"{colored('[4]', 'red')}. Crack with Combinator        {colored('[ADVANCED]', 'red')}",
     ]
     print("\n".join(options))
-    print(f"\n   {colored('Press Enter to switch to Windows' if default_os == 'Linux' else 'Linux', 'magenta')}.")
+    print(f"\n   {colored('Press Enter to switch to Windows' if default_os == 'Linux' else 'Press Enter to switch to Linux', 'magenta')}.")
 
 def animate_text(text, delay):
     for i in range(len(text) + 1):
