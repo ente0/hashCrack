@@ -58,15 +58,15 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, workload, status_tim
 def main():
     list_sessions(parameters["default_restorepath"])
     
-    restore_file_input = input(colored("[+] ","green") + f" Restore? (Enter restore file name or leave empty): ")
+    restore_file_input = input(colored("[+] ","green") + f"Restore? (Enter restore file name or leave empty): ")
     restore_file = restore_file_input or parameters["default_restorepath"]
     
     restore_session(restore_file, parameters["default_restorepath"])
 
-    session_input = input(colored("[+] ","green") + f" Enter session name (default '{parameters['default_session']}'): ")
+    session_input = input(colored("[+] ","green") + f"Enter session name (default '{parameters['default_session']}'): ")
     session = session_input or parameters["default_session"]
 
-    wordlist_path_input = input(colored("[+] ","green") + f" Enter Wordlists Path (default '{parameters['default_wordlists']}'): ")
+    wordlist_path_input = input(colored("[+] ","green") + f"Enter Wordlists Path (default '{parameters['default_wordlists']}'): ")
     wordlist_path = wordlist_path_input or parameters["default_wordlists"]
 
     print(colored("[+] ","green") + f"Available Wordlists in {wordlist_path}: ")
