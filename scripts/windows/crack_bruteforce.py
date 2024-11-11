@@ -90,7 +90,7 @@ def main():
     max_length_input = input(colored("[+] ","green") + f"Enter Maximum Length (default '{parameters['default_max_length']}'): ")
     max_length = max_length_input or parameters["default_max_length"]
 
-    hashcat_path_input = input(colored(("[+] ","green") + f"Enter Hashcat Path (default '{parameters['default_hashcat']}'): "))
+    hashcat_path_input = input(colored("[+] ","green") + f"Enter Hashcat Path (default '{parameters['default_hashcat']}'): ")
     hashcat_path = hashcat_path_input or parameters["default_hashcat"]
 
     hashmode_input = input(colored("[+] ","green") + f"Enter hash attack mode (default '{parameters['default_hashmode']}'): ")

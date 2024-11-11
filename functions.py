@@ -46,25 +46,6 @@ def define_windows_parameters():
         "default_hashmode": "22000"
     }
 
-def define_my_parameters():
-    return {
-        "default_hashcat": ".",
-        "default_status_timer": "y",
-        "default_workload": "2",
-        "default_os": "Linux",
-        "default_restorepath": os.path.expanduser("~/.local/share/hashcat/sessions"),
-        "default_session": datetime.now().strftime("%Y-%m-%d"),
-        "default_wordlists": os.path.expanduser("~/cracking/wordlists"),
-        "default_masks": os.path.expanduser("~/cracking/masks"),
-        "default_rules": os.path.expanduser("~/cracking/rules"),
-        "default_wordlist": "paroleitaliane/bruteforce.txt",
-        "default_mask": "?d?d?d?d",
-        "default_rule": "T0XlCv2.rule",
-        "default_min_length": "4",
-        "default_max_length": "16",
-        "default_hashmode": "22000"
-    }
-
 def clear_screen():
     os.system("cls" if os.name == "nt" else "clear")
 
