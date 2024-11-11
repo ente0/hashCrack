@@ -62,7 +62,7 @@ def main():
     session_input = input(colored("[+] ","green") + f"Enter session name (default '{parameters['default_session']}'): ")
     session = session_input or parameters["default_session"]
 
-    wordlist_path_input = input(colored(("[+] ","green") + f"Enter Wordlist Path (default '{parameters['default_wordlists']}'): "))
+    wordlist_path_input = input(colored("[+] ","green") + f"Enter Wordlist Path (default '{parameters['default_wordlists']}'): ")
     wordlist_path = wordlist_path_input or parameters["default_wordlists"]
 
     print(colored("[+] ","green") + f"Available Wordlists in {wordlist_path}: ")
