@@ -55,7 +55,7 @@ def run_hashcat(session, hashmode, mask, workload, status_timer, hashcat_path):
 def main():
     list_sessions(parameters["default_restorepath"])
     restore_file_input = input(colored("\nRestore? (Enter restore file name or leave empty): ", "red"))
-    restore_session(parameters["restore_file_input"],parameters["default_restorepath"])
+    restore_session(restore_file_input,parameters["default_restorepath"])
 
     session_input = input(colored(f"Enter session name (default '{parameters['default_session']}'): ", "magenta"))
     session = session_input or parameters["default_session"]
