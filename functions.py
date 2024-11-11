@@ -85,10 +85,10 @@ def show_title():
 def show_menu(default_os):
     print(colored(f"   Menu Options for {default_os}:", 'cyan'))
     options = [
-        f"1. Crack with Wordlist          {colored('[EASY]', 'cyan')}",
-        f"2. Crack with Association       {colored('[MEDIUM]', 'green')}",
-        f"3. Crack with Brute-Force       {colored('[HARD]', 'yellow')}",
-        f"4. Crack with Combinator        {colored('[ADVANCED]', 'red')}",
+        f"{colored('[1]', 'green')}. Crack with Wordlist          {colored('[EASY]', 'cyan')}",
+        f"{colored('[1]', 'green')}. Crack with Association       {colored('[MEDIUM]', 'green')}",
+        f"{colored('[1]', 'green')}. Crack with Brute-Force       {colored('[HARD]', 'yellow')}",
+        f"{colored('[1]', 'green')}. Crack with Combinator        {colored('[ADVANCED]', 'red')}",
     ]
     print("\n".join(options))
     print(f"\n   {colored('Press Enter to switch to Windows' if default_os == 'Linux' else 'Linux', 'magenta')}.")
@@ -103,10 +103,10 @@ def handle_option(option, default_os):
     animate_text("...", 0.1)
     
     script_map = {
-        "1": "wordlist.py",
-        "2": "rule.py",
-        "3": "bruteforce.py",
-        "4": "combo.py"
+        "1": "crack_wordlist.py",
+        "2": "crack_rule.py",
+        "3": "crack_bruteforce.py",
+        "4": "crack_combo.py"
     }
     
     script_type = "windows" if default_os == "Windows" else "linux"
@@ -151,7 +151,7 @@ def save_settings(session, path_wordlists, default_wordlist, mask, rule):
         f.write(f"\nHash: {open('hash.txt').read()}")
         f.write(f"\nPlaintext: {open('plaintext.txt').read()}")
 
-def restore_session(restore_file_input, default_restorepath, default_hashmode, workload, default_wordlists, default_wordlist):
+def restore_session(restore_file_input, default_restorepath):
     if restore_file_input:
         restore_file = os.path.join(default_restorepath, f"{restore_file_input}.restore")
         if not os.path.isfile(restore_file):

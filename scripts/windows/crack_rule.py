@@ -8,30 +8,25 @@ from termcolor import colored
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 from functions import (
-    list_sessions, save_logs, save_settings, restore_session, define_default_parameters
+    list_sessions, save_logs, save_settings, restore_session, define_windows_parameters
 )
+parameters = define_windows_parameters()
 
-parameters = define_default_parameters()
-
-def run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, workload, status_timer):
+def run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, workload, status_timer, hashcat_path):
     temp_output = tempfile.mktemp()
 
     hashcat_command = [
-        "hashcat", 
-        f"--session={session}", 
-        f"-m {hashmode}", 
-        "hash.txt", 
-        "-a 0", 
-        f"-w {workload}", 
-        "--outfile-format=2", 
-        "-o", "plaintext.txt", 
-        f"{wordlist_path}/{wordlist}", 
-        f"-r {rule_path}/{rule}"
+        f"{hashcat_path}/hashcat.exe",
+        f"--session={session}",
+        "-m", hashmode,
+        "hash.txt", "-a", "0",
+        f"-w {workload}",
+        "--outfile-format=2", "-o", "plaintext.txt",
+        f"{wordlist_path}/{wordlist}", "-r", f"{rule_path}/{rule}"
     ]
 
     if status_timer.lower() == "y":
-        hashcat_command.append("--status")
-        hashcat_command.append("--status-timer=2")
+        hashcat_command.extend(["--status", "--status-timer=2"])
 
     with open(temp_output, 'w') as output_file:
         try:
@@ -49,7 +44,7 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, wor
         print(colored("Hashcat found the plaintext! Saving logs...", "green"))
         time.sleep(2)
         save_logs(session)
-        save_settings(session)
+        save_settings(session, wordlist_path, wordlist, rule_path, rule)
     else:
         print(colored("Hashcat did not find the plaintext.", "red"))
         time.sleep(2)
@@ -58,8 +53,15 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, wor
 
 def main():
     list_sessions(parameters["default_restorepath"])
-    restore_file_input = input(colored("Restore? (Enter restore file name or leave empty): ", "red"))
-    restore_session(restore_file_input)
+    restore_file_input = input(colored("\nRestore? (Enter restore file name or leave empty): ", "red"))
+    restore_session(
+        parameters["restore_file_input"], 
+        parameters["default_restorepath"], 
+        parameters["default_hashmode"], 
+        parameters["workload"], 
+        parameters["default_wordlists"],    
+        parameters["default_wordlist"]
+    )
 
     session_input = input(colored(f"Enter session name (default '{parameters['default_session']}'): ", "magenta"))
     session = session_input or parameters["default_session"]
@@ -67,9 +69,9 @@ def main():
     wordlist_path_input = input(colored(f"Enter Wordlists Path (default '{parameters['default_wordlists']}'): ", "red"))
     wordlist_path = wordlist_path_input or parameters["default_wordlists"]
 
-    print(colored(f"Available Wordlists in {wordlist_path}: ", "magenta"))
-    for wordlist_file in os.listdir(wordlist_path):
-        print(wordlist_file)
+    print(colored(f"Available Wordlists in {wordlist_path}:", "magenta"))
+    for f in os.listdir(wordlist_path):
+        print(f)
 
     wordlist_input = input(colored(f"Enter Wordlist (default '{parameters['default_wordlist']}'): ", "magenta"))
     wordlist = wordlist_input or parameters["default_wordlist"]
@@ -77,12 +79,15 @@ def main():
     rule_path_input = input(colored(f"Enter Rules Path (default '{parameters['default_rules']}'): ", "red"))
     rule_path = rule_path_input or parameters["default_rules"]
 
-    print(colored(f"Available Rules in {rule_path}: ", "magenta"))
-    for rule_file in os.listdir(rule_path):
-        print(rule_file)
+    print(colored(f"Available Rules in {rule_path}:", "magenta"))
+    for f in os.listdir(rule_path):
+        print(f)
 
     rule_input = input(colored(f"Enter Rule (default '{parameters['default_rule']}'): ", "magenta"))
     rule = rule_input or parameters["default_rule"]
+
+    hashcat_path_input = input(colored(f"Enter Hashcat Path (default '{parameters['default_hashcat']}'): ", "red"))
+    hashcat_path = hashcat_path_input or parameters["default_hashcat"]
 
     hashmode_input = input(colored(f"Enter hash attack mode (default '{parameters['default_hashmode']}'): ", "magenta"))
     hashmode = hashmode_input or parameters["default_hashmode"]
@@ -90,13 +95,13 @@ def main():
     workload_input = input(colored(f"Enter workload (default '{parameters['default_workload']}') [1-4]: ", "magenta"))
     workload = workload_input or parameters["default_workload"]
 
-    status_timer_input = input(colored(f"Use status timer? (default '{parameters['default_status_timer']}') [y/n]: ", "magenta"))
+    status_timer_input = input(colored("Use status timer? (y/n): ", "magenta"))
     status_timer = status_timer_input or parameters["default_status_timer"]
 
-    print(colored(f"Restore >> {parameters['default_restorepath']}/{session}", "green"))
-    print(colored(f"Command >> hashcat --session={session} -m {hashmode} hash.txt -a 0 -w {workload} --outfile-format=2 -o plaintext.txt {wordlist_path}/{wordlist} -r {rule_path}/{rule}", "green"))
+    print(colored(f"Restore >> {hashcat_path}/{session}", "green"))
+    print(colored(f"Command >> {hashcat_path}/hashcat.exe --session={session} -m {hashmode} hash.txt -a 0 -w {workload} --outfile-format=2 -o plaintext.txt {wordlist_path}/{wordlist} -r {rule_path}/{rule}", "green"))
 
-    run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, workload, status_timer)
+    run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, workload, status_timer, hashcat_path)
 
 if __name__ == "__main__":
     main()
