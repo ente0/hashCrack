@@ -1,9 +1,12 @@
 import os
+import sys
 import subprocess
 import tempfile
 import time
 from datetime import datetime
 from termcolor import colored
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 from functions import (
     list_sessions, save_logs, save_settings, restore_session, define_default_parameters
 )
@@ -58,7 +61,7 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, mask, workload, stat
     os.remove(temp_output)
 
 def main():
-    list_sessions()
+    list_sessions(parameters["default_restorepath"])
     restore_file_input = input(colored("Restore? (Enter restore file name or leave empty): ", "red"))
     restore_session(restore_file_input)
 

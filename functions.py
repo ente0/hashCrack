@@ -109,7 +109,6 @@ def handle_option(option, default_os):
         "4": "combo.py"
     }
     
-    # Determine script path based on OS
     script_type = "windows" if default_os == "Windows" else "linux"
     script_name = script_map.get(option, None)
 

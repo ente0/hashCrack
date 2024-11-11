@@ -55,8 +55,6 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, workload, status_tim
 
 
 def main():
-    parameters = define_windows_parameters()
-
     list_sessions(parameters["default_restorepath"])
     restore_file_input = input(colored("\nRestore? (Enter restore file name or leave empty): ", "red"))
     restore_session(restore_file_input)

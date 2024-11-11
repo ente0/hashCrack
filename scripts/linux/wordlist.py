@@ -11,7 +11,6 @@ from functions import (
     list_sessions, save_logs, save_settings, restore_session, define_default_parameters
 )
 
-# Inizializza i parametri globali da un dizionario
 parameters = define_default_parameters()
 
 def run_hashcat(session, hashmode, wordlist_path, wordlist, workload, status_timer):
@@ -57,7 +56,7 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, workload, status_tim
     os.remove(temp_output)
 
 def main():
-    list_sessions()
+    list_sessions(parameters["default_restorepath"])
     restore_file_input = input(colored("Restore? (Enter restore file name or leave empty): ", "red"))
     restore_session(restore_file_input)
 
