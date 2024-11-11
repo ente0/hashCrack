@@ -127,8 +127,6 @@ def show_menu(default_os):
     ]
     print("\n".join(options))
     print(f"\n   {colored('Press Enter to switch to Windows' if default_os == 'Linux' else 'Linux', 'magenta')}.")
-    
-    detect_os_and_run_script()
 
 def animate_text(text, delay):
     for i in range(len(text) + 1):
