@@ -117,16 +117,27 @@ def detect_os_and_run_script(option, default_os):
     else:
         print("Unsupported OS detected. Exiting...")
 
+from termcolor import colored
+
 def show_menu(default_os):
-    print(colored(f"   Menu Options for {default_os}:", 'cyan'))
+    print(colored("="*50, 'cyan'))
+    print(colored(f"   Welcome to hashCrack! - Menu Options for {default_os}", 'cyan', attrs=['bold']))
+    print(colored("="*50, 'cyan'))
+
     options = [
-        f"{colored('[1]', 'blue')}. Crack with Wordlist          {colored('[EASY]', 'blue')}",
-        f"{colored('[2]', 'green')}. Crack with Association       {colored('[MEDIUM]', 'green')}",
-        f"{colored('[3]', 'yellow')}. Crack with Brute-Force       {colored('[HARD]', 'yellow')}",
-        f"{colored('[4]', 'red')}. Crack with Combinator        {colored('[ADVANCED]', 'red')}",
+        f"{colored('[1]', 'blue', attrs=['bold'])} Crack with Wordlist          {colored('[EASY]', 'blue', attrs=['bold'])}",
+        f"{colored('[2]', 'green', attrs=['bold'])} Crack with Association       {colored('[MEDIUM]', 'green', attrs=['bold'])}",
+        f"{colored('[3]', 'yellow', attrs=['bold'])} Crack with Brute-Force       {colored('[HARD]', 'yellow', attrs=['bold'])}",
+        f"{colored('[4]', 'red', attrs=['bold'])} Crack with Combinator        {colored('[ADVANCED]', 'red', attrs=['bold'])}",
     ]
-    print("\n".join(options))
-    print(f"\n   {colored('Press Enter to switch to Windows' if default_os == 'Linux' else 'Press Enter to switch to Linux', 'magenta')}.")
+    print("\n   " + "\n   ".join(options))
+
+    print(colored("\n" + "="*50, 'magenta'))
+
+    # Sezione per il cambio OS
+    print(f"   {colored('Press Enter to switch to Windows' if default_os == 'Linux' else 'Press Enter to switch to Linux', 'magenta', attrs=['bold'])}.")
+
+    print(colored("="*50, 'cyan'))
 
 def animate_text(text, delay):
     for i in range(len(text) + 1):
