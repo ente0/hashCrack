@@ -131,7 +131,7 @@ To capture WPA2 hashes, follow [this guide on the 4-way handshake](https://notes
 1. Rename the hash file to `hash.txt` and place it in the `hashCrack` directory.
 2. Start cracking with:
    ```bash
-   python hashcrack.py
+   python hashCrack.py
    ```
 3. The cracking results will be stored in `logs`, specifically in `status.txt`.
 
