@@ -19,7 +19,7 @@ def define_default_parameters():
         "default_wordlists": "wordlists",
         "default_masks": "masks",
         "default_rules": "rules",
-        "default_wordlist": "dnsmap.txt",
+        "default_wordlist": "rockyou.txt",
         "default_mask": "?d?d?d?d",
         "default_rule": "T0XlCv2.rule",
         "default_min_length": "4",
