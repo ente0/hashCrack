@@ -79,7 +79,7 @@ python check_dependencies.py
 ```
 If you encounter any issues with installing dependencies, such as permission errors or system-wide installation restrictions, you can either create a virtual environment or install the dependencies as root.
 
-### If `pip install -r requirements.txt` fails
+### If "pip install -r requirements.txt" fails
 
 Creating a Python virtual environment is optional but recommended if you run into issues with installing dependencies system-wide. Here's how you can set up a virtual environment:
 
