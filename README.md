@@ -60,7 +60,7 @@ This tool is provided without warranties, and the author is not liable for any d
 2. **Download default wordlists and rules**:
    ```bash
    git clone https://github.com/ente0v1/hashcat-defaults
-   mv hashcat-defaults/* .
+   cp -rf hashcat-defaults/* .
    ```
 3. **Install Python dependencies**:
    ```bash
