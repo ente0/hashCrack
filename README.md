@@ -110,7 +110,7 @@ Creating a Python virtual environment is optional but recommended if you run int
      ```
 
    - **Activate the virtual environment**:
-     - On Linux/macOS:
+     - On Linux:
        ```
        source venv/bin/activate
        ```
