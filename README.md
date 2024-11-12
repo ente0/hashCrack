@@ -66,6 +66,10 @@ This tool is provided without warranties, and the author is not liable for any d
    ```bash
    pip install -r requirements.txt
    ```
+4. **Place the hash**:
+   ```bash
+   mv hash.txt hashCrack
+   ```
 4. **Run hashCrack**:
    ```bash
    python hashCrack.py
