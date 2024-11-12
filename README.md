@@ -4,7 +4,7 @@ A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a s
 
 ![GitHub License](https://img.shields.io/github/license/ente0v1/hashCrack)
 
----
+-
 
 ## Disclaimer
 
@@ -71,7 +71,7 @@ This tool is provided without warranties, and the author is not liable for any d
    ```
 4. **Run hashCrack**:
    ```bash
-   python hashcrack.py
+   python hashCrack.py
    ```
 To verify and check for any missing dependencies, execute the `check_dependencies.py` script. Run the following command:
 ```
@@ -79,7 +79,7 @@ python check_dependencies.py
 ```
 If you encounter any issues with installing dependencies, such as permission errors or system-wide installation restrictions, you can either create a virtual environment or install the dependencies as root.
 
-### If "pip install -r requirements.txt" fails
+### If 'pip install -r requirements.txt' fails
 
 Creating a Python virtual environment is optional but recommended if you run into issues with installing dependencies system-wide. Here's how you can set up a virtual environment:
 
@@ -128,7 +128,7 @@ Creating a Python virtual environment is optional but recommended if you run int
 ## Usage Overview
 
 ### Capturing WPA2 Hashes
-To capture WPA2 hashes, follow [this guide on the 4-way handshake](https://notes.networklessons.com/security-wpa-4-way-handshake). Capture scripts are provided in the `scripts` folder.
+To capture WPA2 hashes, follow [this guide on the 4-way handshake](https://notes.networklessons.com/security-wpa-4-way-handshake) and see this [video](https://www.youtube.com/watch?v=WfYxrLaqlN8) to see how the sniffing actually works. Capture scripts are provided in the `scripts` folder.
 
 ### Cracking the Hash
 1. Rename the hash file to `hash.txt` and place it in the `hashCrack` directory.
@@ -139,7 +139,7 @@ To capture WPA2 hashes, follow [this guide on the 4-way handshake](https://notes
 3. The cracking results will be stored in `logs`, specifically in `status.txt`.
 
 ### Attack Modes
-HashCrack supports the following attack modes:
+hashCrack supports the following attack modes:
 | # | Mode                 | Description                                                                                   |
 |---|-----------------------|-----------------------------------------------------------------------------------------------|
 | 0 | Straight             | Uses a wordlist directly to attempt cracks                                                    |
@@ -171,7 +171,7 @@ hashcat -a 1 -m 0 example0.hash example.dict example.dict     # Combination
 hashcat -a 9 -m 500 example500.hash 1word.dict -r best64.rule # Association
 ```
 
----
+-
 
 ## Script Walkthrough
 
