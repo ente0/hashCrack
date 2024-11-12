@@ -61,6 +61,7 @@ This tool is provided without warranties, and the author is not liable for any d
    ```bash
    git clone https://github.com/ente0v1/hashcat-defaults
    cp -rf hashcat-defaults/* .
+   sudo rm -r hashcat-defaults
    ```
 3. **Install Python dependencies**:
    ```bash
