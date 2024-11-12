@@ -76,7 +76,7 @@ python check_dependencies.py
 ```
 If you encounter any issues with installing dependencies, such as permission errors or system-wide installation restrictions, you can either create a virtual environment or install the dependencies as root.
 
-### If 'pip install -r requirements.txt' fails
+### If `pip install -r requirements.txt` fails
 
 Creating a Python virtual environment is optional but recommended if you run into issues with installing dependencies system-wide. Here's how you can set up a virtual environment:
 
@@ -125,7 +125,7 @@ Creating a Python virtual environment is optional but recommended if you run int
 ## Usage Overview
 
 ### Capturing WPA2 Hashes
-To capture WPA2 hashes, follow [this guide on the 4-way handshake](https://notes.networklessons.com/security-wpa-4-way-handshake) and see this [video](https://www.youtube.com/watch?v=WfYxrLaqlN8) to see how the sniffing actually works. Capture scripts are provided in the `scripts` folder.
+To capture WPA2 hashes, follow [this guide on the 4-way handshake](https://notes.networklessons.com/security-wpa-4-way-handshake) and see this [video](https://www.youtube.com/watch?v=WfYxrLaqlN8) to see it actually works. Capture scripts are provided in the `scripts` folder.
 
 ### Cracking the Hash
 1. Rename the hash file to `hash.txt` and place it in the `hashCrack` directory.
@@ -168,11 +168,10 @@ hashcat -a 1 -m 0 example0.hash example.dict example.dict     # Combination
 hashcat -a 9 -m 500 example500.hash 1word.dict -r best64.rule # Association
 ```
 
--
 
 ## Script Walkthrough
 
-The main HashCrack script consists of:
+The main hashCrack script consists of:
 1. **Initialization**: Loads default parameters and reusable functions.
 2. **User Prompts**: Gathers inputs from the user such as wordlist location, session names, and attack type.
 3. **Command Construction**: Constructs the Hashcat command based on user inputs and specified attack mode.
