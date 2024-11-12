@@ -17,17 +17,18 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, workload, status_tim
     temp_output = tempfile.mktemp()
 
     hashcat_command = [
-        "hashcat", 
-        f"--session={session}", 
-        f"-m {hashmode}", 
-        "hash.txt", 
-        "-a 0", 
-        f"-w {workload}", 
-        "--outfile-format=2", 
-        "-o", "plaintext.txt", 
+        "hashcat",
+        f"--session={session}",
+        "-m", hashmode,
+        "hash.txt",
+        "-a", "0",
+        "-w", workload,
+        "--outfile-format=2",
+        "-o", "plaintext.txt",
         f"{wordlist_path}/{wordlist}",
-        "-d", f"{device}"
+        "-d", device
     ]
+
 
     if status_timer.lower() == "y":
         hashcat_command.append("--status")
