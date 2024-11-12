@@ -13,7 +13,7 @@ from functions import (
 
 parameters = define_default_parameters()
 
-def run_hashcat(session, hashmode, wordlist_path, wordlist, mask, workload, status_timer, min_length, max_length):
+def run_hashcat(session, hashmode, mask, workload, status_timer, min_length, max_length, device):
     temp_output = tempfile.mktemp()
 
     hashcat_command = [
@@ -25,8 +25,8 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, mask, workload, stat
         f"-w {workload}", 
         "--outfile-format=2", 
         "-o", "plaintext.txt", 
-        f"{wordlist_path}/{wordlist}", 
-        mask
+        mask,
+        "-d", f"{device}"
     ]
     
     if status_timer.lower() == "y":
@@ -71,21 +71,6 @@ def main():
     session_input = input(colored("[+] ","green") + f"Enter session name (default '{parameters['default_session']}'): ")
     session = session_input or parameters["default_session"]
     
-    mask_path_input = input(colored("[+] ","green") + f"Enter Masks Path (default '{parameters['default_masks']}'): ")
-    mask_path = mask_path_input or parameters["default_masks"]
-
-    print(colored("[+] ","green") + f"Available Masks in {mask_path}: ")
-    try:
-        mask_files = os.listdir(mask_path)
-        if not mask_files:
-            print(colored("[!] Error: No masks found.", "red"))
-        else:
-            for mask_file in mask_files:
-                print(colored("[-]", "yellow") + f" {mask_file}") 
-    except FileNotFoundError:
-        print(colored(f"[!] Error: The directory {mask_path} does not exist.", "red"))
-        return
-    
     mask_input = input(colored("[+] ","green") + f"Enter Mask (default '{parameters['default_mask']}'): ")
     mask = mask_input or parameters["default_mask"]
     
@@ -104,11 +89,14 @@ def main():
     workload_input = input(colored("[+] ","green") + f"Enter workload (default '{parameters['default_workload']}') [1-4]: ")
     workload = workload_input or parameters["default_workload"]
 
+    device_input = input(colored("[+] ", "green") + f"Enter device (default '{parameters['default_device']}'): ")
+    device = device_input or parameters["default_device"]
+
     print(colored("[+] Running Hashcat command...", "blue"))
     print(colored(f"[*] Restore >>", "magenta") + f" {parameters['default_restorepath']}/{session}")
-    print(colored(f"[*] Command >>", "magenta") + f" hashcat --session={session} --increment --increment-min={min_length} --increment-max={max_length} -m {hashmode} hash.txt -a 3 -w {workload} --outfile-format=2 -o plaintext.txt {mask}")
+    print(colored(f"[*] Command >>", "magenta") + f" hashcat --session={session} --increment --increment-min={min_length} --increment-max={max_length} -m {hashmode} hash.txt -a 3 -w {workload} --outfile-format=2 -o plaintext.txt {mask} -d {device}")
     
-    run_hashcat(session, hashmode, mask, workload, status_timer, min_length, max_length)
+    run_hashcat(session, hashmode, mask, workload, status_timer, min_length, max_length, device)
 
 if __name__ == "__main__":
     main()

@@ -13,7 +13,7 @@ from functions import (
 
 parameters = define_default_parameters()
 
-def run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, workload, status_timer):
+def run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, workload, status_timer, device):
     temp_output = tempfile.mktemp()
 
     hashcat_command = [
@@ -26,7 +26,8 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, wor
         "--outfile-format=2", 
         "-o", "plaintext.txt", 
         f"{wordlist_path}/{wordlist}", 
-        f"-r {rule_path}/{rule}"
+        f"-r {rule_path}/{rule}",
+        "-d", f"{device}"
     ]
 
     if status_timer.lower() == "y":
@@ -113,11 +114,14 @@ def main():
     workload_input = input(colored("[+] ","green") + f"Enter workload (default '{parameters['default_workload']}') [1-4]: ")
     workload = workload_input or parameters["default_workload"]
 
+    device_input = input(colored("[+] ", "green") + f"Enter device (default '{parameters['default_device']}'): ")
+    device = device_input or parameters["default_device"]
+
     print(colored("[+] Running Hashcat command...", "blue"))
     print(colored(f"[*] Restore >>", "magenta") + f" {parameters['default_restorepath']}/{session}")
     print(colored(f"[*] Command >>", "magenta") + f" hashcat --session={session} -m {hashmode} hash.txt -a 0 -w {workload} --outfile-format=2 -o plaintext.txt {wordlist_path}/{wordlist} -r {rule_path}/{rule}")
 
-    run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, workload, status_timer)
+    run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, workload, status_timer, device)
 
 if __name__ == "__main__":
     main()

@@ -12,7 +12,7 @@ from functions import (
 )
 parameters = define_windows_parameters()
 
-def run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, workload, status_timer, hashcat_path):
+def run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, workload, status_timer, hashcat_path, device):
     temp_output = tempfile.mktemp()
 
     hashcat_command = [
@@ -22,7 +22,8 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, wor
         "hash.txt", "-a", "0",
         f"-w {workload}",
         "--outfile-format=2", "-o", "plaintext.txt",
-        f"{wordlist_path}/{wordlist}", "-r", f"{rule_path}/{rule}"
+        f"{wordlist_path}/{wordlist}", "-r", f"{rule_path}/{rule}",
+        "-d", f"{device}"
     ]
 
     if status_timer.lower() == "y":
@@ -110,11 +111,14 @@ def main():
     workload_input = input(colored("[+] ","green") + f"Enter workload (default '{parameters['default_workload']}') [1-4]: ")
     workload = workload_input or parameters["default_workload"]
 
+    device_input = input(colored("[+] ", "green") + f"Enter device (default '{parameters['default_device']}'): ")
+    device = device_input or parameters["default_device"]
+
     print(colored("[+] Running Hashcat command...", "blue"))
     print(colored(f"[*] Restore >>", "magenta") + f" {hashcat_path}/{session}")
-    print(colored(f"[*] Command >>", "magenta") + f" {hashcat_path}/hashcat.exe --session={session} -m {hashmode} hash.txt -a 0 -w {workload} --outfile-format=2 -o plaintext.txt {wordlist_path}/{wordlist} -r {rule_path}/{rule}")
+    print(colored(f"[*] Command >>", "magenta") + f" {hashcat_path}/hashcat.exe --session={session} -m {hashmode} hash.txt -a 0 -w {workload} --outfile-format=2 -o plaintext.txt {wordlist_path}/{wordlist} -r {rule_path}/{rule} -d {device}")
 
-    run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, workload, status_timer, hashcat_path)
+    run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, workload, status_timer, hashcat_path, device)
 
 if __name__ == "__main__":
     main()

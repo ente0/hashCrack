@@ -24,7 +24,8 @@ def define_default_parameters():
         "default_rule": "T0XlCv2.rule",
         "default_min_length": "4",
         "default_max_length": "16",
-        "default_hashmode": "22000"
+        "default_hashmode": "22000",
+        "default_device": "2"
     }
 
 def define_windows_parameters():
@@ -43,7 +44,8 @@ def define_windows_parameters():
         "default_rule": "T0XlCv2.rule",
         "default_min_length": "4",
         "default_max_length": "16",
-        "default_hashmode": "22000"
+        "default_hashmode": "22000",
+        "default_device": "2"
     }
 
 def clear_screen():
