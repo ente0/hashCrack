@@ -206,7 +206,7 @@ Here are some bash commands for common wordlist operations:
 
 ---
 
-## Additional Resources
+## Help
 For more resources, consider the following repositories:
 - [wpa2-wordlists](https://github.com/kennyn510/wpa2-wordlists.git)
 - [paroleitaliane](https://github.com/napolux/paroleitaliane)
