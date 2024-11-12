@@ -1,4 +1,5 @@
 import os
+import sys
 import time
 import random
 import subprocess
@@ -71,24 +72,34 @@ def show_menu(default_os):
         f"{colored('[2]', 'green', attrs=['bold'])} Crack with Association       {colored('[MEDIUM]', 'green', attrs=['bold'])}",
         f"{colored('[3]', 'yellow', attrs=['bold'])} Crack with Brute-Force       {colored('[HARD]', 'yellow', attrs=['bold'])}",
         f"{colored('[4]', 'red', attrs=['bold'])} Crack with Combinator        {colored('[ADVANCED]', 'red', attrs=['bold'])}",
-        f"{colored('[5]', 'magenta', attrs=['bold'])} Clear Hashcat Potfile      {colored('[UTILITY]', 'magenta', attrs=['bold'])}"
+        f"\n{colored('[5]', 'magenta', attrs=['bold'])} Clear Hashcat Potfile        {colored('[UTILITY]', 'magenta', attrs=['bold'])}"
     ]
     print("\n   " + "\n   ".join(options))
     print(colored("\n" + "="*80, 'magenta'))
     print(f"   {colored('Press X to switch to Windows' if default_os == 'Linux' else 'Press X to switch to Linux', 'magenta', attrs=['bold'])}.")
     print(colored("="*80, 'magenta'))
 
-    choice = input(colored("\nSelect an option: ", 'cyan', attrs=['bold'])).strip().lower()
+    user_option = input(colored("\nEnter option (1-5, X to switch OS, Q to quit): ", 'cyan', attrs=['bold'])).strip().lower()
 
-    if choice == '5':
+    if user_option == 'x':
+        default_os = "Linux" if default_os == "Windows" else "Windows"
+        print(f"System switched to {default_os}")
+        time.sleep(1)
+
+    elif user_option == 'q':
+        print("Exiting program...")
+        sys.exit(0) 
+
+    elif user_option == '5':
         if default_os == 'Linux':
             os.system("sudo rm ~/.local/share/hashcat/hashcat.potfile")
             print(colored("[+] Hashcat potfile cleared for Linux.", 'green'))
         elif default_os == 'Windows':
             os.system("del %userprofile%\\hashcat\\hashcat.potfile")
             print(colored("[+] Hashcat potfile cleared for Windows.", 'green'))
-        else:
-            print(colored("[!] Error: Unsupported OS.", 'red'))
+        time.sleep(1)
+
+    return user_option, default_os
 
 
 def animate_text(text, delay):

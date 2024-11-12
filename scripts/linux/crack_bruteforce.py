@@ -13,7 +13,7 @@ from functions import (
 
 parameters = define_default_parameters()
 
-def run_hashcat(session, hashmode, mask, workload, status_timer, min_length, max_length, device):
+def run_hashcat(session, hashmode, mask, workload, status_timer, min_length, max_length, device, rule=""):
     temp_output = tempfile.mktemp()
 
     hashcat_command = [

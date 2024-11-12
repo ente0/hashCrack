@@ -11,21 +11,11 @@ default_os = "Linux"
 
 while True:
     clear_screen()
-    show_menu(default_os)
-    
-    user_option = input("Enter option (1-4, or Q to quit): ").strip()
+    user_option, default_os = show_menu(default_os)
 
-    if user_option.lower() == 'x':
-        default_os = "Linux" if default_os == "Windows" else "Windows"
-        print(f"System switched to {default_os}")
-    
-    elif user_option.lower() == 'q':
-        print("Exiting program...")
-        break
-
-    else:
+    if user_option in ['1', '2', '3', '4']:
         handle_option(user_option, default_os)
-    
+
     if user_option == "hashcat_option_identifier":
         input("Hashcat has finished. Press any key to continue...")
 

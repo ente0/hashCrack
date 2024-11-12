@@ -13,7 +13,7 @@ from functions import (
 
 parameters = define_windows_parameters()
 
-def run_hashcat_with_path(session, hashmode, wordlist_path, wordlist, mask_path, mask, min_length, max_length, workload, status_timer, hashcat_path, device):
+def run_hashcat_with_path(session, hashmode, wordlist_path, wordlist, mask_path, mask, min_length, max_length, workload, status_timer, hashcat_path, device, rule=""):
     temp_output = tempfile.mktemp()
 
     hashcat_command = [
@@ -57,7 +57,7 @@ def run_hashcat_with_path(session, hashmode, wordlist_path, wordlist, mask_path,
         print(colored("[!] Hashcat did not find the plaintext.", "red"))
         time.sleep(2)
 
-def run_hashcat(session, hashmode, wordlist_path, wordlist, mask_path, mask, min_length, max_length, workload, status_timer, hashcat_path, device):
+def run_hashcat(session, hashmode, wordlist_path, wordlist, mask_path, mask, min_length, max_length, workload, status_timer, hashcat_path, device, rule=""):
     temp_output = tempfile.mktemp()
 
     hashcat_command = [

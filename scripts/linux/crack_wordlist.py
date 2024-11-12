@@ -13,7 +13,7 @@ from functions import (
 
 parameters = define_default_parameters()
 
-def run_hashcat(session, hashmode, wordlist_path, wordlist, workload, status_timer, device):
+def run_hashcat(session, hashmode, wordlist_path, wordlist, workload, status_timer, device, mask="", rule=""):
     temp_output = tempfile.mktemp()
 
     hashcat_command = [
@@ -26,7 +26,7 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, workload, status_tim
         "--outfile-format=2",
         "-o", "plaintext.txt",
         f"{wordlist_path}/{wordlist}",
-        "-d", device
+        "-d", device,
     ]
 
 
