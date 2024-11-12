@@ -53,8 +53,6 @@ def clear_screen():
 
 def show_menu(default_os):
     ascii_art = """
-
-
 888                        888       .d8888b.                           888     
 888                        888      d88P  Y88b                          888     
 888                        888      888    888                          888     
@@ -63,8 +61,6 @@ def show_menu(default_os):
 888  888 .d888888 "Y8888b. 888  888 888    888 888    .d888888 888      888888K 
 888  888 888  888      X88 888  888 Y88b  d88P 888    888  888 Y88b.    888 "88b
 888  888 "Y888888  88888P' 888  888  "Y8888P"  888    "Y888888  "Y8888P 888  888
-
-
     """
     print(colored(ascii_art, 'cyan'))
     print(colored("="*80, 'cyan'))
@@ -75,11 +71,24 @@ def show_menu(default_os):
         f"{colored('[2]', 'green', attrs=['bold'])} Crack with Association       {colored('[MEDIUM]', 'green', attrs=['bold'])}",
         f"{colored('[3]', 'yellow', attrs=['bold'])} Crack with Brute-Force       {colored('[HARD]', 'yellow', attrs=['bold'])}",
         f"{colored('[4]', 'red', attrs=['bold'])} Crack with Combinator        {colored('[ADVANCED]', 'red', attrs=['bold'])}",
+        f"{colored('[5]', 'magenta', attrs=['bold'])} Clear Hashcat Potfile      {colored('[UTILITY]', 'magenta', attrs=['bold'])}"
     ]
     print("\n   " + "\n   ".join(options))
     print(colored("\n" + "="*80, 'magenta'))
     print(f"   {colored('Press X to switch to Windows' if default_os == 'Linux' else 'Press X to switch to Linux', 'magenta', attrs=['bold'])}.")
     print(colored("="*80, 'magenta'))
+
+    choice = input(colored("\nSelect an option: ", 'cyan', attrs=['bold'])).strip().lower()
+
+    if choice == '5':
+        if default_os == 'Linux':
+            os.system("sudo rm ~/.local/share/hashcat/hashcat.potfile")
+            print(colored("[+] Hashcat potfile cleared for Linux.", 'green'))
+        elif default_os == 'Windows':
+            os.system("del %userprofile%\\hashcat\\hashcat.potfile")
+            print(colored("[+] Hashcat potfile cleared for Windows.", 'green'))
+        else:
+            print(colored("[!] Error: Unsupported OS.", 'red'))
 
 
 def animate_text(text, delay):
@@ -170,8 +179,18 @@ def restore_session(restore_file_input, default_restorepath):
     print(colored(f"[+] Executing: {cmd}", "blue"))
     os.system(cmd)
 
+import os
+
 def save_logs(session):
     os.makedirs(f"logs/{session}", exist_ok=True)
-    os.rename(session, f"logs/{session}")
-    os.rename("status.txt", f"logs/{session}/status.txt")
-    os.rename("plaintext.txt", f"logs/{session}/plaintext.txt")
+
+    if os.path.exists("status.txt"):
+        os.rename("status.txt", f"logs/{session}/status.txt")
+    else:
+        print(colored("[!] Warning: 'status.txt' not found, skipping.", "red"))
+
+    if os.path.exists("plaintext.txt"):
+        os.rename("plaintext.txt", f"logs/{session}/plaintext.txt")
+    else:
+        print(colored("Warning: 'plaintext.txt' not found, skipping.", "red"))
+
