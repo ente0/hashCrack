@@ -140,7 +140,7 @@ Creating a Python virtual environment is optional but recommended if you run int
 ## Usage Overview
 
 ### Capturing WPA2 Hashes
-To capture WPA2 hashes, follow [this guide on the 4-way handshake](https://notes.networklessons.com/security-wpa-4-way-handshake) and see this [video](https://www.youtube.com/watch?v=WfYxrLaqlN8) to see it actually works. Capture scripts are provided in the `scripts` folder.
+To capture WPA2 hashes, follow [this guide on the 4-way handshake](https://notes.networklessons.com/security-wpa-4-way-handshake) and see this [video](https://www.youtube.com/watch?v=WfYxrLaqlN8) to see how it actually works. Capture scripts are provided in the `scripts` folder.
 
 ### Cracking the Hash
 1. Rename the hash file to `hash.txt` and place it in the `hashCrack` directory.
