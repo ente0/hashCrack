@@ -18,5 +18,3 @@ while True:
 
     if user_option == "hashcat_option_identifier":
         input("Hashcat has finished. Press any key to continue...")
-
-    print(f"User option: {user_option}")

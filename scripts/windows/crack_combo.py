@@ -8,24 +8,25 @@ from termcolor import colored
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 from functions import (
-    list_sessions, save_logs, save_settings, restore_session, define_windows_parameters
+    list_sessions, save_logs, restore_session, define_windows_parameters
 )
 
 parameters = define_windows_parameters()
 
-def run_hashcat_with_path(session, hashmode, wordlist_path, wordlist, mask_path, mask, min_length, max_length, workload, status_timer, hashcat_path, device, rule=""):
+def run_hashcat_with_path(session, hashmode, wordlist_path, wordlist, mask_path, mask, min_length, max_length, workload, status_timer, hashcat_path, device):
     temp_output = tempfile.mktemp()
 
     hashcat_command = [
         f"{hashcat_path}/hashcat.exe",
         f"--session={session}",
         "-m", hashmode,
-        "hash.txt", "-a", "6",
-        f"-w {workload}",
+        "hash.txt",
+        "-a", "6",
+        "-w", workload,
         "--outfile-format=2", "-o", "plaintext.txt",
         f"{wordlist_path}/{wordlist}",
         f"{mask_path}/{mask}",
-        "-d", f"{device}"
+        "-d", device
     ]
 
     if status_timer.lower() == "y":
@@ -51,25 +52,26 @@ def run_hashcat_with_path(session, hashmode, wordlist_path, wordlist, mask_path,
     if "Cracked" in hashcat_output:
         print(colored("[+] Hashcat found the plaintext! Saving logs...", "green"))
         time.sleep(2)
-        save_logs(session)
-        save_settings(session)
+        save_logs(session, wordlist_path, wordlist, mask_path, mask)
     else:
         print(colored("[!] Hashcat did not find the plaintext.", "red"))
         time.sleep(2)
 
-def run_hashcat(session, hashmode, wordlist_path, wordlist, mask_path, mask, min_length, max_length, workload, status_timer, hashcat_path, device, rule=""):
+def run_hashcat(session, hashmode, wordlist_path, wordlist, mask_path, mask, min_length, max_length, workload, status_timer, hashcat_path, device):
     temp_output = tempfile.mktemp()
 
     hashcat_command = [
         f"{hashcat_path}/hashcat.exe",
-        f"--session={session}",
-        "-m", hashmode,
-        "hash.txt", "-a", "6",
-        f"-w {workload}",
-        "--outfile-format=2", "-o", "plaintext.txt",
-        f"{wordlist_path}/{wordlist}",
-        mask,
-        "-d", f"{device}"
+        f"--session={session}", 
+        "-m", hashmode, 
+        "hash.txt", 
+        "-a" "6", 
+        "-w", workload, 
+        "--outfile-format=2", 
+        "-o", "plaintext.txt", 
+        f"{wordlist_path}/{wordlist}", 
+        f"\"{mask}\"",
+        "-d", device
     ]
 
     if status_timer.lower() == "y":
@@ -95,11 +97,20 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, mask_path, mask, min
     if "Cracked" in hashcat_output:
         print(colored("[+] Hashcat found the plaintext! Saving logs...", "green"))
         time.sleep(2)
-        save_logs(session)
-        save_settings(session)
+        save_logs(session, wordlist_path, wordlist, mask_path, mask)
     else:
         print(colored("[!] Hashcat did not find the plaintext.", "red"))
         time.sleep(2)
+
+def execute_hashcat(session, hashmode, wordlist_path, wordlist, mask, min_length, max_length, workload, status_timer, hashcat_path, device, use_mask_file, mask_path=None):
+        if use_mask_file:
+            print(colored(f"[*] Restore >>", "magenta") + f" {hashcat_path}//{session}")
+            print(colored(f"[*] Command >>", "magenta") + f" {hashcat_path}/hashcat.exe --session={session} --increment --increment-min={min_length} --increment-max={max_length} -m {hashmode} hash.txt -a 6 -w {workload} --outfile-format=2 -o plaintext.txt {wordlist_path}/{wordlist} {mask_path}/{mask} -d {device}")
+            run_hashcat_with_path(session, hashmode, wordlist_path, wordlist, mask_path, mask, min_length, max_length, workload, status_timer, hashcat_path, device)
+        else:
+            print(colored(f"[*] Restore >>", "magenta") + f" {hashcat_path}/{session}")
+            print(colored(f"[*] Command >>", "magenta") + f" {hashcat_path}/hashcat.exe  --session={session} --increment --increment-min={min_length} --increment-max={max_length} -m {hashmode} hash.txt -a 6 -w {workload} --outfile-format=2 -o plaintext.txt {wordlist_path}/{wordlist} \"{mask}\" -d {device}")
+            run_hashcat(session, hashmode, wordlist_path, wordlist, mask, min_length, max_length, workload, status_timer, hashcat_path, device)
 
 def main():
     list_sessions(parameters["default_restorepath"])
@@ -130,7 +141,7 @@ def main():
     wordlist_input = input(colored("[+] ","green") + f"Enter Wordlist (default '{parameters['default_wordlist']}'): ")
     wordlist = wordlist_input or parameters["default_wordlist"]
 
-    use_mask_file = input(colored("[+] ", "green") + "Do you want to use a mask file? (y/n): ").strip().lower()
+    use_mask_file = input(colored("[+] ", "green") + "Do you want to use a mask file? [y/n]: ").strip().lower()
 
     if use_mask_file == 'y':
         mask_path_input = input(colored("[+] ", "green") + f"Enter Masks Path (default '{parameters['default_masks']}'): ")
@@ -150,9 +161,12 @@ def main():
 
         mask_input = input(colored("[+] ", "green") + f"Enter Mask (default '{parameters['default_mask']}'): ")
         mask = mask_input or parameters["default_mask"]
-
     else:
         mask = input(colored("[+] ", "green") + "Enter manual mask (e.g., '?a?a?a?a?a?a'): ")
+
+        if not mask:
+            print(colored("[!] Error: No mask entered. Using default mask.", "red"))
+            mask = parameters["default_mask"]
 
     status_timer_input = input(colored("[+] ","green") + f"Use status timer? (default '{parameters['default_status_timer']}') [y/n]: ")
     status_timer = status_timer_input or parameters["default_status_timer"]
@@ -177,14 +191,7 @@ def main():
 
     print(colored("[+] Running Hashcat command...", "blue"))
 
-    def execute_hashcat(session, hashmode, wordlist_path, wordlist, mask_path, mask, min_length, max_length, workload, status_timer, hashcat_path, device, use_mask_file):
-        if use_mask_file:
-            print(colored(f"[*] Restore >>", "magenta") + f" {hashcat_path}//{session}")
-            print(colored(f"[*] Command >>", "magenta") + f" {hashcat_path}/hashcat.exe --session={session} --increment --increment-min={min_length} --increment-max={max_length} -m {hashmode} hash.txt -a 6 -w {workload} --outfile-format=2 -o plaintext.txt {wordlist_path}/{wordlist} {mask_path}/{mask} -d {device}")
-            run_hashcat_with_path(session, hashmode, wordlist_path, wordlist, mask_path, mask, min_length, max_length, workload, status_timer, hashcat_path, device)
-        else:
-            print(colored(f"[*] Restore >>", "magenta") + f" {hashcat_path}/{session}")
-            print(colored(f"[*] Command >>", "magenta") + f" {hashcat_path}/hashcat.exe  --session={session} --increment --increment-min={min_length} --increment-max={max_length} -m {hashmode} hash.txt -a 6 -w {workload} --outfile-format=2 -o plaintext.txt {wordlist_path}/{wordlist} {mask} -d {device}")
-            run_hashcat(session, hashmode, wordlist_path, wordlist, mask, min_length, max_length, workload, status_timer, hashcat_path, device)
+    execute_hashcat(session, hashmode, wordlist_path, wordlist, mask_path, mask, min_length, max_length, workload, status_timer, hashcat_path, device, use_mask_file)
+
 if __name__ == "__main__":
     main()

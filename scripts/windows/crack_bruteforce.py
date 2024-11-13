@@ -8,26 +8,26 @@ from termcolor import colored
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 from functions import (
-    list_sessions, save_logs, save_settings, restore_session, define_windows_parameters
+    list_sessions, save_logs, restore_session, define_windows_parameters
 )
 
 parameters = define_windows_parameters()
 
-def run_hashcat(session, hashmode, mask, workload, status_timer, min_length, max_length, hashcat_path, device, rule=""):
+def run_hashcat(session, hashmode, mask, workload, status_timer, min_length, max_length, hashcat_path, device):
     temp_output = tempfile.mktemp()
 
     hashcat_command = [
         f"{hashcat_path}/hashcat.exe",
         "hashcat", 
         f"--session={session}", 
-        f"-m {hashmode}", 
+        "-m", hashmode, 
         "hash.txt", 
-        "-a 3", 
-        f"-w {workload}", 
+        "-a", "3", 
+        "-w", workload, 
         "--outfile-format=2", 
         "-o", "plaintext.txt", 
-        mask,
-        "-d", f"{device}"
+        f"\"{mask}\"",
+        "-d", device
     ]
 
     hashcat_command.append(f"--increment")
@@ -52,8 +52,7 @@ def run_hashcat(session, hashmode, mask, workload, status_timer, min_length, max
     if "Cracked" in hashcat_output:
         print(colored("[+] Hashcat found the plaintext! Saving logs...", "green"))
         time.sleep(2)
-        save_logs(session)
-        save_settings(session)
+        save_logs(session, mask)
     else:
         print(colored("[!] Hashcat did not find the plaintext.", "red"))
         time.sleep(2)
@@ -97,7 +96,7 @@ def main():
 
     print(colored("[+] Running Hashcat command...", "blue"))
     print(colored(f"[*] Restore >>", "magenta") + f" {hashcat_path}/{session}")
-    print(colored(f"[*] Command >>", "magenta") + f" {hashcat_path}/hashcat.exe --session={session} --increment --increment-min={min_length} --increment-max={max_length} -m {hashmode} hash.txt -a 3 -w {workload} --outfile-format=2 -o plaintext.txt {mask} -d {device}")
+    print(colored(f"[*] Command >>", "magenta") + f" {hashcat_path}/hashcat.exe --session={session} --increment --increment-min={min_length} --increment-max={max_length} -m {hashmode} hash.txt -a 3 -w {workload} --outfile-format=2 -o plaintext.txt \"{mask}\" -d {device}")
 
     run_hashcat(session, hashmode, mask, workload, status_timer, min_length, max_length, device)
 

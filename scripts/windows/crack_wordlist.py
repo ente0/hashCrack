@@ -8,23 +8,25 @@ from termcolor import colored
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 from functions import (
-    list_sessions, save_logs, save_settings, restore_session, define_windows_parameters
+    list_sessions, save_logs, restore_session, define_windows_parameters
 )
 
 parameters = define_windows_parameters()
 
-def run_hashcat(session, hashmode, wordlist_path, wordlist, workload, status_timer, hashcat_path, device, mask="", rule=""):
+def run_hashcat(session, hashmode, wordlist_path, wordlist, workload, status_timer, hashcat_path, device):
     temp_output = tempfile.mktemp()
 
     hashcat_command = [
         f"{hashcat_path}/hashcat.exe",
         f"--session={session}",
         "-m", hashmode,
-        "hash.txt", "-a", "0",
-        f"-w {workload}",
-        "--outfile-format=2", "-o", "plaintext.txt", 
+        "hash.txt",
+        "-a", "0",
+        "-w", workload,
+        "--outfile-format=2",
+        "-o", "plaintext.txt",
         f"{wordlist_path}/{wordlist}",
-        "-d", f"{device}"
+        "-d", device,
     ]
 
     if status_timer.lower() == "y":
@@ -45,8 +47,7 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, workload, status_tim
     if "Cracked" in hashcat_output:
         print(colored("[+] Hashcat found the plaintext! Saving logs...", "green"))
         time.sleep(2)
-        save_logs(session)
-        save_settings(session, wordlist_path, wordlist, "")
+        save_logs(session, wordlist_path, wordlist)
     else:
         print(colored("[!] Hashcat did not find the plaintext.", "red"))
         time.sleep(2)

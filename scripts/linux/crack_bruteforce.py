@@ -8,25 +8,25 @@ from termcolor import colored
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 from functions import (
-    list_sessions, save_logs, save_settings, restore_session, define_default_parameters
+    list_sessions, save_logs, restore_session, define_default_parameters
 )
 
 parameters = define_default_parameters()
 
-def run_hashcat(session, hashmode, mask, workload, status_timer, min_length, max_length, device, rule=""):
+def run_hashcat(session, hashmode, mask, workload, status_timer, min_length, max_length, device):
     temp_output = tempfile.mktemp()
 
     hashcat_command = [
         "hashcat", 
         f"--session={session}", 
-        f"-m {hashmode}", 
+        "-m", hashmode, 
         "hash.txt", 
-        "-a 3", 
-        f"-w {workload}", 
+        "-a", "3", 
+        "-w", workload, 
         "--outfile-format=2", 
         "-o", "plaintext.txt", 
-        mask,
-        "-d", f"{device}"
+        f"\"{mask}\"",
+        "-d", device
     ]
     
     if status_timer.lower() == "y":
@@ -52,8 +52,7 @@ def run_hashcat(session, hashmode, mask, workload, status_timer, min_length, max
     if "Cracked" in hashcat_output:
         print(colored("[+] Hashcat found the plaintext! Saving logs...", "green"))
         time.sleep(2)
-        save_logs(session)
-        save_settings(session)
+        save_logs(session, mask)
     else:
         print(colored("[!] Hashcat did not find the plaintext.", "red"))
         time.sleep(2)
@@ -77,7 +76,7 @@ def main():
     status_timer_input = input(colored("[+] ","green") + f"Use status timer? (default '{parameters['default_status_timer']}') [y/n]: ")
     status_timer = status_timer_input or parameters["default_status_timer"]
 
-    min_length_input = input(colored("[+]","g reen") + f"Enter Minimum Length (default '{parameters['default_min_length']}'): ")
+    min_length_input = input(colored("[+] ","green") + f"Enter Minimum Length (default '{parameters['default_min_length']}'): ")
     min_length = min_length_input or parameters["default_min_length"]
     
     max_length_input = input(colored("[+] ","green") + f"Enter Maximum Length (default '{parameters['default_max_length']}'): ")
@@ -94,7 +93,7 @@ def main():
 
     print(colored("[+] Running Hashcat command...", "blue"))
     print(colored(f"[*] Restore >>", "magenta") + f" {parameters['default_restorepath']}/{session}")
-    print(colored(f"[*] Command >>", "magenta") + f" hashcat --session={session} --increment --increment-min={min_length} --increment-max={max_length} -m {hashmode} hash.txt -a 3 -w {workload} --outfile-format=2 -o plaintext.txt {mask} -d {device}")
+    print(colored(f"[*] Command >>", "magenta") + f" hashcat --session={session} --increment --increment-min={min_length} --increment-max={max_length} -m {hashmode} hash.txt -a 3 -w {workload} --outfile-format=2 -o plaintext.txt \"{mask}\" -d {device}")
     
     run_hashcat(session, hashmode, mask, workload, status_timer, min_length, max_length, device)
 

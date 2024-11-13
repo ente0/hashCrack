@@ -8,7 +8,7 @@ from termcolor import colored
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 from functions import (
-    list_sessions, save_logs, save_settings, restore_session, define_default_parameters
+    list_sessions, save_logs, restore_session, define_default_parameters
 )
 
 parameters = define_default_parameters()
@@ -49,8 +49,7 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, workload, status_tim
     if "Cracked" in hashcat_output:
         print(colored("[+] Hashcat found the plaintext! Saving logs...", "green"))
         time.sleep(2)
-        save_logs(session)
-        save_settings(session, wordlist_path, wordlist)
+        save_logs(session, wordlist_path, wordlist)
     else:
         print(colored("[+] Hashcat did not find the plaintext.", "red"))
         time.sleep(2)
