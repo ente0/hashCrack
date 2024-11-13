@@ -83,7 +83,8 @@ A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a s
    ```bash
    python hashCrack.py
    ```
-To verify and check for any missing dependencies, execute the `check_dependencies.py` script. Run the following command:
+> [!IMPORTANT]
+> To verify and check for any missing dependencies, execute the `check_dependencies.py` script. Run the following command:
 ```
 python check_dependencies.py
 ```
