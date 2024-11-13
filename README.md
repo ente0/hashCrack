@@ -60,6 +60,9 @@ This tool is provided without warranties, and the author is not liable for any d
 2. **Download default wordlists and rules**:
    ```bash
    git clone https://github.com/ente0v1/hashcat-defaults
+   git lfs install
+   git pull
+   cd ..
    cp -rf hashcat-defaults/* .
    sudo rm -r hashcat-defaults
    ```
