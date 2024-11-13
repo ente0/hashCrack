@@ -15,6 +15,3 @@ while True:
 
     if user_option in ['1', '2', '3', '4']:
         handle_option(user_option, default_os)
-
-    if user_option == "hashcat_option_identifier":
-        input("Hashcat has finished. Press any key to continue...")
