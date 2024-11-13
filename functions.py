@@ -52,7 +52,7 @@ def define_windows_parameters():
 def clear_screen():
     os.system("cls" if os.name == "nt" else "clear")
 
-def show_menu(default_os):
+def show_menu1(default_os):
     ascii_art = """
 888                        888       .d8888b.                           888     
 888                        888      d88P  Y88b                          888     
@@ -62,6 +62,8 @@ def show_menu(default_os):
 888  888 .d888888 "Y8888b. 888  888 888    888 888    .d888888 888      888888K 
 888  888 888  888      X88 888  888 Y88b  d88P 888    888  888 Y88b.    888 "88b
 888  888 "Y888888  88888P' 888  888  "Y8888P"  888    "Y888888  "Y8888P 888  888
+       
+       For more information, visit: https://github.com/ente0v1/hashCrack
     """
     print(colored(ascii_art, 'cyan'))
     print(colored("="*80, 'cyan'))
@@ -83,7 +85,59 @@ def show_menu(default_os):
     print(f"   {colored('Press X to switch to Windows' if default_os == 'Linux' else 'Press X to switch to Linux', 'magenta', attrs=['bold'])}.")
     print(colored("="*80, 'magenta'))
 
+    user_option = input(colored("\nEnter option (0-4, X to switch OS, Q to quit): ", 'cyan', attrs=['bold'])).strip().lower()
 
+    if user_option == 'x':
+        default_os = "Linux" if default_os == "Windows" else "Windows"
+        print(f"System switched to {default_os}")
+        time.sleep(1)
+
+    elif user_option == 'q':
+        print("Exiting program...")
+        sys.exit(0) 
+
+    elif user_option == '0':
+        if default_os == 'Linux':
+            os.system("sudo rm ~/.local/share/hashcat/hashcat.potfile")
+            print(colored("[+] Hashcat potfile cleared for Linux.", 'green'))
+        elif default_os == 'Windows':
+            os.system("del %userprofile%\\hashcat\\hashcat.potfile")
+            print(colored("[+] Hashcat potfile cleared for Windows.", 'green'))
+        time.sleep(1)
+
+    return user_option, default_os
+
+def show_menu2(default_os):
+    ascii_art = r"""
+dP                         dP       MM"'""'"YMM                            dP      
+88                         88       M' .mmm. `M                            88      
+88d888b. .d8888b. .d8888b. 88d888b. M  MMMMMooM 88d888b. .d8888b. .d8888b. 88  .dP 
+88'  `88 88'  `88 Y8ooooo. 88'  `88 M  MMMMMMMM 88'  `88 88'  `88 88'  `"" 88888"  
+88    88 88.  .88       88 88    88 M. `MMM' .M 88       88.  .88 88.  ... 88  `8b.
+dP    dP `88888P8 `88888P' dP    dP MM.     .dM dP       `88888P8 `88888P' dP   `YP
+                                    MMMMMMMMMMM  
+         
+         For more information, visit: https://github.com/ente0v1/hashCrack
+    """
+    print(colored(ascii_art, 'cyan'))
+    print(colored("="*83, 'cyan'))
+    print(colored(f"   Welcome to hashCrack! - Menu Options for {default_os}", 'cyan', attrs=['bold']))
+    print(colored("="*83, 'cyan'))
+    options = [
+        f"{colored('[1]', 'blue', attrs=['bold'])} Crack with Wordlist          {colored('[EASY]', 'blue', attrs=['bold'])}",
+        f"{colored('[2]', 'green', attrs=['bold'])} Crack with Association       {colored('[MEDIUM]', 'green', attrs=['bold'])}",
+        f"{colored('[3]', 'yellow', attrs=['bold'])} Crack with Brute-Force       {colored('[HARD]', 'yellow', attrs=['bold'])}",
+        f"{colored('[4]', 'red', attrs=['bold'])} Crack with Combinator        {colored('[ADVANCED]', 'red', attrs=['bold'])}",
+    ]
+    print("\n   " + "\n   ".join(options))
+
+    print(colored("-"*83, 'cyan')) 
+
+    print(f"{colored('   [0]', 'magenta', attrs=['bold'])} Clear Hashcat Potfile        {colored('[UTILITY]', 'magenta', attrs=['bold'])}")
+
+    print(colored("\n" + "="*83, 'magenta'))
+    print(f"   {colored('Press X to switch to Windows' if default_os == 'Linux' else 'Press X to switch to Linux', 'magenta', attrs=['bold'])}.")
+    print(colored("="*83, 'magenta'))
 
     user_option = input(colored("\nEnter option (0-4, X to switch OS, Q to quit): ", 'cyan', attrs=['bold'])).strip().lower()
 
