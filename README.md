@@ -83,12 +83,13 @@ A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a s
    ```bash
    python hashCrack.py
    ```
-> [!IMPORTANT]
+> [!TIP]
 > To verify and check for any missing dependencies, execute the `check_dependencies.py` script. Run the following command:
 ```
 python check_dependencies.py
 ```
-If you encounter any issues with installing dependencies, such as permission errors or system-wide installation restrictions, you can either create a virtual environment or install the dependencies as root.
+> [!IMPORTANT]
+> If you encounter any issues with installing dependencies, such as permission errors or system-wide installation restrictions, you can either create a virtual environment or install the dependencies as root.
 
 ### If `pip install -r requirements.txt` fails
 
