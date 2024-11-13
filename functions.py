@@ -152,12 +152,15 @@ def execute_windows_scripts():
         for script in os.listdir(windows_scripts_dir):
             script_path = os.path.join(windows_scripts_dir, script)
             if os.path.isfile(script_path):
-                print(f"Executing Windows script: {script}")
+                print(f"[+] Executing Windows script: {script}","green")
                 os.system(f"python {script_path}")
     else:
-        print(colored(f"Windows scripts directory not found: '{windows_scripts_dir}'", 'red'))
+        print(colored(f"[!] Error: Windows scripts directory not found: '{windows_scripts_dir}'", "red"))
 
 import os
+
+import os
+import shutil
 
 def save_logs(session, wordlist_path=None, wordlist=None, mask_path=None, mask=None, rule_path=None, rule=None):
     log_dir = f"logs/{session}"
@@ -191,16 +194,25 @@ def save_logs(session, wordlist_path=None, wordlist=None, mask_path=None, mask=N
         except FileNotFoundError:
             f.write("\nHash: N/A")
 
-        plaintext_path = f"logs/{session}/plaintext.txt"
+        original_plaintext_path = "plaintext.txt"
+        plaintext_path = os.path.join(log_dir, "plaintext.txt")
+        
+        if os.path.exists(original_plaintext_path):
+            shutil.move(original_plaintext_path, plaintext_path)
+            print(f"Moved plaintext.txt to {plaintext_path}")
+        else:
+            print(colored("[!] Error: plaintext.txt not found in the root directory.","red"))
+
         if os.path.exists(plaintext_path):
             with open(plaintext_path, 'r') as plaintext_file:
-                plaintext = plaintext_file.read()
+                plaintext = plaintext_file.read().strip()
         else:
             plaintext = "N/A"
 
         f.write(f"Plaintext: {plaintext}")
 
     print(f"Status saved to {status_file_path}")
+
 
 
 def list_sessions(default_restorepath):
