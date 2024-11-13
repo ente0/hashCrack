@@ -1,8 +1,9 @@
 # hashCrack: A Hashcat Wrapper
 
 <p align="center">
-    <img src="https://github.com/user-attachments/assets/0d2e940a-9e5d-4314-9607-c5a5188e69eb" alt="2024-11-13 19-56-22" />
+  <video src="https://github.com/user-attachments/assets/ea69ed0f-e870-4a32-90cd-6a3972eb71cb" />
 </p>
+
 
 ## Description
 
