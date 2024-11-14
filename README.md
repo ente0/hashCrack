@@ -3,7 +3,7 @@
 </p>
 
 
-# hashCrack: A Python Hashcat Wrapper
+# hashCrack
 
 ## Description
 
