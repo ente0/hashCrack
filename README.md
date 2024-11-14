@@ -1,9 +1,6 @@
+
+
 # hashCrack: A Python Hashcat Wrapper
-
-<p align="center">
-  <video src="https://github.com/user-attachments/assets/ea69ed0f-e870-4a32-90cd-6a3972eb71cb" />
-</p>
-
 
 ## Description
 
@@ -83,6 +80,10 @@ A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a s
    ```bash
    python hashCrack.py
    ```
+<p align="center">
+  <video src="https://github.com/user-attachments/assets/f985787b-3ef6-49e9-a39f-2c6e8526cd78" />
+</p>
+
 > [!TIP]
 > To verify and check for any missing dependencies, execute the `check_dependencies.py` script. Run the following command:
 ```
