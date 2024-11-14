@@ -164,15 +164,16 @@ hashCrack supports the following attack modes:
 ---
 
 ## Menu Options
-
 The main menu provides easy access to various cracking methods:
-| Option | Description                | Script |
-|--------|----------------------------|--------|
-| 1      | Crack with Wordlist        | Executes crack-wordlist script |
-| 2      | Crack with Rules           | Executes crack-rule script     |
-| 3      | Crack with Brute-Force     | Executes crack-bruteforce script |
-| 4      | Crack with Combinator      | Executes crack-combo script     |
-| Q      | Quit                       | Saves settings and logs, then exits |
+| Option | Description                | Script                          |
+|--------|----------------------------|---------------------------------|
+| 1      | Crack with Wordlist        | Executes `crack-wordlist` script |
+| 2      | Crack with Rules           | Executes `crack-rule` script     |
+| 3      | Crack with Brute-Force     | Executes `crack-bruteforce` script |
+| 4      | Crack with Combinator      | Executes `crack-combo` script     |
+| 0      | Clear Hashcat Potfile      | Deletes the potfile to clear previous hash results |
+| X      | Switch Current OS Menu     | Updates the menu and script settings based on the current OS |
+| Q      | Quit                       | Saves settings, logs, and exits |
 
 ### Example Commands
 ```bash
