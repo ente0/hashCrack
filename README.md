@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/dff0eb51-072c-4e3a-b63b-c246c2942dc8" />
+  <img src="https://github.com/user-attachments/assets/7b511ecc-4458-4921-9e74-7b90d56a9df6" />
 </p>
 
 # hashCrack
