@@ -1,6 +1,7 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/7b511ecc-4458-4921-9e74-7b90d56a9df6" />
+  <img src="https://github.com/user-attachments/assets/70df8f42-8198-4461-906c-32dce9e81f7d" />
 </p>
+
 
 # hashCrack
 
