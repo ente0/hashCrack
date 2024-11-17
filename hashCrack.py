@@ -11,7 +11,7 @@ default_os = "Linux"
 
 while True:
     clear_screen()
-    user_option, default_os = show_menu2(default_os)
+    user_option, default_os = show_menu1(default_os)
 
     if user_option in ['1', '2', '3', '4']:
         handle_option(user_option, default_os)
