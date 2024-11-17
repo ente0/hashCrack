@@ -184,7 +184,7 @@ hashcat -a 3 -m 0 example0.hash ?a?a?a?a?a?a                  # Brute-Force
 hashcat -a 1 -m 0 example0.hash example.dict example.dict     # Combination
 hashcat -a 9 -m 500 example500.hash 1word.dict -r best64.rule # Association
 ```
-
+---
 ## Troubleshooting Hashcat Issues
 
 If you encounter errors when running Hashcat, you can follow these steps to troubleshoot:
