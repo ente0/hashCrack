@@ -195,31 +195,6 @@ The main hashCrack script consists of:
 
 ---
 
-## Useful Wordlist Manipulation Commands
-
-Here are some bash commands for common wordlist operations:
-- **Remove duplicates**:
-  ```bash
-  awk '!(count[$0]++)' old.txt > new.txt
-  ```
-- **Sort by length**:
-  ```bash
-  awk '{print length, $0}' old.txt | sort -n | cut -d " " -f2- > new.txt
-  ```
-- **Sort alphabetically**:
-  ```bash
-  sort old.txt | uniq > new.txt
-  ```
-- **Merge multiple files**:
-  ```bash
-  cat file1.txt file2.txt > combined.txt
-  ```
-- **Remove blank lines**:
-  ```bash
-  egrep -v "^[[:space:]]*$" old.txt > new.txt
-  ```
-
----
 
 ## Help
 For more resources, consider the following repositories:
