@@ -5,6 +5,7 @@ import tempfile
 import time
 from datetime import datetime
 from termcolor import colored
+import argparse
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 from functions import (
@@ -13,19 +14,18 @@ from functions import (
 
 parameters = define_windows_parameters()
 
-def run_hashcat(session, hashmode, mask, workload, status_timer, min_length, max_length, hashcat_path, device):
+def run_hashcat(session, hashmode, mask, workload, status_timer, min_length, max_length, hash_file, hashcat_path, device):
     temp_output = tempfile.mktemp()
 
     hashcat_command = [
         f"{hashcat_path}/hashcat.exe",
-        "hashcat", 
-        f"--session={session}", 
-        "-m", hashmode, 
-        "hash.txt", 
-        "-a", "3", 
-        "-w", workload, 
-        "--outfile-format=2", 
-        "-o", "plaintext.txt", 
+        f"--session={session}",
+        "-m", hashmode,
+        hash_file,
+        "-a", "3",
+        "-w", workload,
+        "--outfile-format=2",
+        "-o", "plaintext.txt",
         f"\"{mask}\"",
         "-d", device
     ]
@@ -60,6 +60,12 @@ def run_hashcat(session, hashmode, mask, workload, status_timer, min_length, max
     os.remove(temp_output)
 
 def main():
+    parser = argparse.ArgumentParser(description="A tool for cracking hashes using Hashcat.")
+    parser.add_argument("hash_file", help="Path to the file containing the hash to crack")
+    args = parser.parse_args()
+
+    global hash_file
+    hash_file = args.hash_file
     list_sessions(parameters["default_restorepath"])
     
     restore_file_input = input(colored("[+] ","green") + f"Restore? (Enter restore file name or leave empty): ")
@@ -85,6 +91,13 @@ def main():
     hashcat_path_input = input(colored("[+] ","green") + f"Enter Hashcat Path (default '{parameters['default_hashcat']}'): ")
     hashcat_path = hashcat_path_input or parameters["default_hashcat"]
 
+    hash_file_input = input(colored("[+] ","green") + f"Enter the path of the hash file: ")
+    hash_file = hash_file_input
+
+    if not os.path.isfile(hash_file):
+        print(colored(f"[!] Error: The file {hash_file} does not exist.", "red"))
+        return
+
     hashmode_input = input(colored("[+] ","green") + f"Enter hash attack mode (default '{parameters['default_hashmode']}'): ")
     hashmode = hashmode_input or parameters["default_hashmode"]
 
@@ -96,9 +109,9 @@ def main():
 
     print(colored("[+] Running Hashcat command...", "blue"))
     print(colored(f"[*] Restore >>", "magenta") + f" {hashcat_path}/{session}")
-    print(colored(f"[*] Command >>", "magenta") + f" {hashcat_path}/hashcat.exe --session={session} --increment --increment-min={min_length} --increment-max={max_length} -m {hashmode} hash.txt -a 3 -w {workload} --outfile-format=2 -o plaintext.txt \"{mask}\" -d {device}")
+    print(colored(f"[*] Command >>", "magenta") + f" {hashcat_path}/hashcat.exe --session={session} --increment --increment-min={min_length} --increment-max={max_length} -m {hashmode} {hash_file} -a 3 -w {workload} --outfile-format=2 -o plaintext.txt \"{mask}\" -d {device}")
 
-    run_hashcat(session, hashmode, mask, workload, status_timer, min_length, max_length, device)
+    run_hashcat(session, hashmode, mask, workload, status_timer, min_length, max_length, hash_file, hashcat_path, device)
 
 if __name__ == "__main__":
     main()

@@ -5,6 +5,7 @@ import tempfile
 import time
 from datetime import datetime
 from termcolor import colored
+import argparse
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 from functions import (
@@ -13,14 +14,14 @@ from functions import (
 
 parameters = define_windows_parameters()
 
-def run_hashcat(session, hashmode, wordlist_path, wordlist, workload, status_timer, hashcat_path, device):
+def run_hashcat(session, hashmode, wordlist_path, wordlist, workload, status_timer, hashcat_path, device, hash_file):
     temp_output = tempfile.mktemp()
 
     hashcat_command = [
         f"{hashcat_path}/hashcat.exe",
         f"--session={session}",
         "-m", hashmode,
-        "hash.txt",
+        hash_file,
         "-a", "0",
         "-w", workload,
         "--outfile-format=2",
@@ -54,9 +55,14 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, workload, status_tim
 
     os.remove(temp_output)
 
-
-
 def main():
+    parser = argparse.ArgumentParser(description="A tool for cracking hashes using Hashcat.")
+    parser.add_argument("hash_file", help="Path to the file containing the hash to crack")
+    args = parser.parse_args()
+
+    global hash_file
+    hash_file = args.hash_file
+    
     list_sessions(parameters["default_restorepath"])
     
     restore_file_input = input(colored("[+] ","green") + f"Restore? (Enter restore file name or leave empty): ")
@@ -102,9 +108,9 @@ def main():
 
     print(colored("[+] Running Hashcat command...", "blue"))
     print(colored(f"[*] Restore >>", "magenta") + f" {parameters['default_hashcat']}/{session}")
-    print(colored(f"[*] Command >>", "magenta") + f" {hashcat_path}/hashcat.exe --session={session} -m {hashmode} hash.txt -a 0 -w {workload} --outfile-format=2 -o plaintext.txt {wordlist_path}/{wordlist} -d {device}")
+    print(colored(f"[*] Command >>", "magenta") + f" {hashcat_path}/hashcat.exe --session={session} -m {hashmode} {hash_file} -a 0 -w {workload} --outfile-format=2 -o plaintext.txt {wordlist_path}/{wordlist} -d {device}")
 
-    run_hashcat(session, hashmode, wordlist_path, wordlist, workload, status_timer, hashcat_path, device)
+    run_hashcat(session, hashmode, wordlist_path, wordlist, workload, status_timer, hashcat_path, device, hash_file)
 
 if __name__ == "__main__":
     main()

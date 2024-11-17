@@ -168,7 +168,7 @@ def animate_text(text, delay):
         print(text[:i], end="", flush=True)
         time.sleep(delay)
 
-def handle_option(option, default_os):
+def handle_option(option, default_os, hash_file):
     animate_text("...", 0.1)
     
     script_map = {
@@ -184,11 +184,11 @@ def handle_option(option, default_os):
     if script_name:
         script_path = f"scripts/{script_type}/{script_name}"
         print(f"{colored(f'{script_path} is Executing', 'green')}")
-        
+
         if default_os == "Linux":
-            os.system(f"python3 {script_path}")
+            os.system(f"python3 {script_path} {hash_file}")
         else:
-            os.system(f"python {script_path}")
+            os.system(f"python {script_path} {hash_file}")
 
         input("Press Enter to return to the menu...")
 

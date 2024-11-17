@@ -5,6 +5,7 @@ import tempfile
 import time
 from datetime import datetime
 from termcolor import colored
+import argparse
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 from functions import (
@@ -13,14 +14,14 @@ from functions import (
 
 parameters = define_default_parameters()
 
-def run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, workload, status_timer, device, mask=""):
+def run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, workload, status_timer, device, hash_file):
     temp_output = tempfile.mktemp()
 
     hashcat_command = [
         "hashcat", 
         f"--session={session}", 
         "-m", hashmode, 
-        "hash.txt", 
+        hash_file,  # No user input needed for hash file
         "-a", "0", 
         "-w", workload, 
         "--outfile-format=2", 
@@ -57,20 +58,31 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, wor
     os.remove(temp_output)
 
 def main():
+    parser = argparse.ArgumentParser(description="A tool for cracking hashes using Hashcat.")
+    parser.add_argument("hash_file", help="Path to the file containing the hash to crack")
+    args = parser.parse_args()
+
+    global hash_file
+    hash_file = args.hash_file
+
+    if not os.path.isfile(hash_file):
+        print(colored(f"[!] The specified file '{hash_file}' does not exist.", "red"))
+        sys.exit(1)
+
     list_sessions(parameters["default_restorepath"])
     
-    restore_file_input = input(colored("[+] ","green") + f"Restore? (Enter restore file name or leave empty): ")
+    restore_file_input = input(colored("[+] ", "green") + f"Restore? (Enter restore file name or leave empty): ")
     restore_file = restore_file_input or parameters["default_restorepath"]
     
     restore_session(restore_file, parameters["default_restorepath"])
 
-    session_input = input(colored("[+] ","green") + f"Enter session name (default '{parameters['default_session']}'): ")
+    session_input = input(colored("[+] ", "green") + f"Enter session name (default '{parameters['default_session']}'): ")
     session = session_input or parameters["default_session"]
 
-    wordlist_path_input = input(colored("[+] ","green") + f"Enter Wordlists Path (default '{parameters['default_wordlists']}'): ")
+    wordlist_path_input = input(colored("[+] ", "green") + f"Enter Wordlists Path (default '{parameters['default_wordlists']}'): ")
     wordlist_path = wordlist_path_input or parameters["default_wordlists"]
 
-    print(colored("[+] ","green") + f"Available Wordlists in {wordlist_path}: ")
+    print(colored("[+] ", "green") + f"Available Wordlists in {wordlist_path}: ")
     try:
         wordlist_files = os.listdir(wordlist_path)
         if not wordlist_files:
@@ -82,13 +94,13 @@ def main():
         print(colored(f"[!] Error: The directory {wordlist_path} does not exist.", "red"))
         return
 
-    wordlist_input = input(colored("[+] ","green") + f"Enter Wordlist (default '{parameters['default_wordlist']}'): ")
+    wordlist_input = input(colored("[+] ", "green") + f"Enter Wordlist (default '{parameters['default_wordlist']}'): ")
     wordlist = wordlist_input or parameters["default_wordlist"]
 
-    rule_path_input = input(colored("[+] ","green") + f"Enter Rules Path (default '{parameters['default_rules']}'): ")
+    rule_path_input = input(colored("[+] ", "green") + f"Enter Rules Path (default '{parameters['default_rules']}'): ")
     rule_path = rule_path_input or parameters["default_rules"]
 
-    print(colored("[+] ","green") + f"Available Rules in {rule_path}: ")
+    print(colored("[+] ", "green") + f"Available Rules in {rule_path}: ")
     try:
         rule_files = os.listdir(rule_path)
         if not rule_files:
@@ -100,16 +112,16 @@ def main():
         print(colored(f"[!] Error: The directory {rule_path} does not exist.", "red"))
         return
 
-    rule_input = input(colored("[+] ","green") + f"Enter Rule (default '{parameters['default_rule']}'): ")
+    rule_input = input(colored("[+] ", "green") + f"Enter Rule (default '{parameters['default_rule']}'): ")
     rule = rule_input or parameters["default_rule"]
 
-    status_timer_input = input(colored("[+] ","green") + f"Use status timer? (default '{parameters['default_status_timer']}') [y/n]: ")
+    status_timer_input = input(colored("[+] ", "green") + f"Use status timer? (default '{parameters['default_status_timer']}') [y/n]: ")
     status_timer = status_timer_input or parameters["default_status_timer"]
 
-    hashmode_input = input(colored("[+] ","green") + f"Enter hash attack mode (default '{parameters['default_hashmode']}'): ")
+    hashmode_input = input(colored("[+] ", "green") + f"Enter hash attack mode (default '{parameters['default_hashmode']}'): ")
     hashmode = hashmode_input or parameters["default_hashmode"]
 
-    workload_input = input(colored("[+] ","green") + f"Enter workload (default '{parameters['default_workload']}') [1-4]: ")
+    workload_input = input(colored("[+] ", "green") + f"Enter workload (default '{parameters['default_workload']}') [1-4]: ")
     workload = workload_input or parameters["default_workload"]
 
     device_input = input(colored("[+] ", "green") + f"Enter device (default '{parameters['default_device']}'): ")
@@ -117,9 +129,9 @@ def main():
 
     print(colored("[+] Running Hashcat command...", "blue"))
     print(colored(f"[*] Restore >>", "magenta") + f" {parameters['default_restorepath']}/{session}")
-    print(colored(f"[*] Command >>", "magenta") + f" hashcat --session={session} -m {hashmode} hash.txt -a 0 -w {workload} --outfile-format=2 -o plaintext.txt {wordlist_path}/{wordlist} -r {rule_path}/{rule} -d {device}")
+    print(colored(f"[*] Command >>", "magenta") + f" hashcat --session={session} -m {hashmode} {hash_file} -a 0 -w {workload} --outfile-format=2 -o plaintext.txt {wordlist_path}/{wordlist} -r {rule_path}/{rule} -d {device}")
 
-    run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, workload, status_timer, device)
+    run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, workload, status_timer, device, hash_file)
 
 if __name__ == "__main__":
     main()

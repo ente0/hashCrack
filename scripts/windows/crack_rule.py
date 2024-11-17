@@ -5,6 +5,7 @@ import tempfile
 import time
 from datetime import datetime
 from termcolor import colored
+import argparse
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 from functions import (
@@ -12,15 +13,14 @@ from functions import (
 )
 parameters = define_windows_parameters()
 
-def run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, workload, status_timer, hashcat_path, device):
+def run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, workload, status_timer, hashcat_path, device, hash_file):
     temp_output = tempfile.mktemp()
 
     hashcat_command = [
         f"{hashcat_path}/hashcat.exe",
-        "hashcat", 
         f"--session={session}", 
         "-m", hashmode, 
-        "hash.txt", 
+        hash_file,
         "-a", "0", 
         "-w", workload, 
         "--outfile-format=2", 
@@ -56,6 +56,13 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, wor
     os.remove(temp_output)
 
 def main():
+    parser = argparse.ArgumentParser(description="A tool for cracking hashes using Hashcat.")
+    parser.add_argument("hash_file", help="Path to the file containing the hash to crack")
+    args = parser.parse_args()
+
+    global hash_file
+    hash_file = args.hash_file
+
     list_sessions(parameters["default_restorepath"])
     
     restore_file_input = input(colored("[+] ","green") + f"Restore? (Enter restore file name or leave empty): ")
@@ -84,7 +91,7 @@ def main():
     wordlist_input = input(colored("[+] ","green") + f"Enter Wordlist (default '{parameters['default_wordlist']}'): ")
     wordlist = wordlist_input or parameters["default_wordlist"]
 
-    rule_path_input = input(colored(("[+] ","green") + f"Enter Rules Path (default '{parameters['default_rules']}'): "))
+    rule_path_input = input(colored("[+] ","green") + f"Enter Rules Path (default '{parameters['default_rules']}'): ")
     rule_path = rule_path_input or parameters["default_rules"]
 
     print(colored("[+] ","green") + f"Available Rules in {rule_path}: ")
@@ -119,9 +126,9 @@ def main():
 
     print(colored("[+] Running Hashcat command...", "blue"))
     print(colored(f"[*] Restore >>", "magenta") + f" {hashcat_path}/{session}")
-    print(colored(f"[*] Command >>", "magenta") + f" {hashcat_path}/hashcat.exe --session={session} -m {hashmode} hash.txt -a 0 -w {workload} --outfile-format=2 -o plaintext.txt {wordlist_path}/{wordlist} -r {rule_path}/{rule} -d {device}")
+    print(colored(f"[*] Command >>", "magenta") + f" {hashcat_path}/hashcat.exe --session={session} -m {hashmode} {hash_file} -a 0 -w {workload} --outfile-format=2 -o plaintext.txt {wordlist_path}/{wordlist} -r {rule_path}/{rule} -d {device}")
 
-    run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, workload, status_timer, hashcat_path, device)
+    run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, workload, status_timer, hashcat_path, device, hash_file)
 
 if __name__ == "__main__":
     main()
