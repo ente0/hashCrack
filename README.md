@@ -87,6 +87,25 @@ A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a s
 ```
 python check_dependencies.py
 ```
+
+### Alternative Installation via pip
+
+If you prefer a simpler installation method, you can install `hashCrack` via pip:
+
+1. **Install hashCrack with pip**:
+   You can install `hashCrack` directly from the Python Package Index (PyPI) using the following command:
+   ```bash
+   pip install hashcrack
+   ```
+
+2. **Running hashCrack**:
+   After installation, you can easily run `hashCrack` by specifying the hash file you want to crack:
+   ```bash
+   hashcrack yourhashfile.txt
+   ```
+
+This approach eliminates the need to clone the repository, making it a quick and efficient way to get started.
+
 > [!IMPORTANT]
 > If you encounter any issues with installing dependencies, such as permission errors or system-wide installation restrictions, you can either create a virtual environment or install the dependencies as root.
 
