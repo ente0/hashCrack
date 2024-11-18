@@ -48,54 +48,12 @@ A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a s
 
 > [!TIP]
 > Recommended wordlists, rules, and masks can be found in repositories like [SecLists](https://github.com/danielmiessler/SecLists) and [wpa2-wordlists](https://github.com/kennyn510/wpa2-wordlists.git). It’s advised to keep these resources in `hashCrack` under `wordlists`, `rules`, and `masks` folders for better compatibility.
-
----
-
-### Cloning and Running hashCrack
-1. **Clone the repository**:
-   ```bash
-   git clone --depth 1 https://github.com/ente0v1/hashCrack.git
-   cd hashCrack
-   ```
-2. **Download default wordlists and rules**:
-   ```bash
-   git clone https://github.com/ente0v1/hashcat-defaults
-   git lfs install
-   git pull
-   cd ..
-   cp -rf hashcat-defaults/* .
-   sudo rm -r hashcat-defaults
-   ```
-3. **Install Python dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. **Place the hash**:
-   ```bash
-   mv hash.txt hashCrack
-   ```
-5. **Run hashCrack**:
-   ```bash
-   python hashCrack.py
-   ```
-<p align="center">
-  <video src="https://github.com/user-attachments/assets/f985787b-3ef6-49e9-a39f-2c6e8526cd78" />
-</p>
-
-> [!TIP]
-> To verify and check for any missing dependencies, execute the `check_dependencies.py` script. Run the following command:
-```
-python check_dependencies.py
-```
-
-### Alternative Installation via pip
-
-If you prefer a simpler installation method, you can install `hashCrack` via pip:
-
+   
+### Installation via pip
 1. **Install hashCrack with pip**:
    You can install `hashCrack` directly from the Python Package Index (PyPI) using the following command:
    ```bash
-   pip install hashcrack
+   pip install hashcrack-tool
    ```
 
 2. **Running hashCrack**:
@@ -103,59 +61,19 @@ If you prefer a simpler installation method, you can install `hashCrack` via pip
    ```bash
    hashcrack yourhashfile.txt
    ```
-
-This approach eliminates the need to clone the repository, making it a quick and efficient way to get started.
-
-> [!IMPORTANT]
-> If you encounter any issues with installing dependencies, such as permission errors or system-wide installation restrictions, you can either create a virtual environment or install the dependencies as root.
-
-### If `pip install -r requirements.txt` fails
-
-Creating a Python virtual environment is optional but recommended if you run into issues with installing dependencies system-wide. Here's how you can set up a virtual environment:
-
-1. **Install Python and pip** (if you haven't already):
-
-   - On Arch Linux:
-     ```
-     sudo pacman -S python python-pip
-     ```
-
-   - On Debian/Ubuntu-based distributions:
-     ```
-     sudo apt install python3 python3-pip
-     ```
-
-   - On Fedora:
-     ```
-     sudo dnf install python3 python3-pip
-     ```
-
-   - On Windows, Python and pip can be installed from the official [Python website](https://www.python.org/downloads/).
-
-2. **Create and activate a virtual environment**:
-   - Run the following commands to create a virtual environment named `venv`:
-     ```
-     python -m venv venv
-     ```
-
-   - **Activate the virtual environment**:
-     - On Linux:
-       ```
-       source venv/bin/activate
-       ```
-
-     - On Windows:
-       ```
-       .\venv\Scripts\activate
-       ```
-
-3. **Install dependencies**:
-   After activating the virtual environment, install the required Python packages using `pip`:
-    ```
-    pip install -r requirements.txt
-    ```
-
----
+   
+3. **(Optional) Download default wordlists and rules**:
+   ```bash
+   git clone https://github.com/ente0v1/hashcat-defaults
+   git lfs install
+   git pull
+   cd ..
+   cp -rf hashcat-defaults/* .
+   sudo rm -r hashcat-defaults
+   
+<p align="center">
+  <video src="https://github.com/user-attachments/assets/f985787b-3ef6-49e9-a39f-2c6e8526cd78" />
+</p>
 
 ## Usage Overview
 
