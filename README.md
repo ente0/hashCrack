@@ -59,7 +59,7 @@ A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a s
 2. **Running hashCrack**:
    After installation, you can easily run `hashCrack` by specifying the hash file you want to crack:
    ```bash
-   hashcrack yourhashfile.txt
+   hashcrack hash
    ```
    
 3. **(Optional) Download default wordlists and rules**:
