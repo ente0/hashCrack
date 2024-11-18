@@ -3,6 +3,8 @@ import sys
 import time
 import random
 import subprocess
+import shutil
+import argparse
 from datetime import datetime
 from termcolor import colored
 
@@ -26,7 +28,7 @@ def define_default_parameters():
         "default_min_length": "8",
         "default_max_length": "16",
         "default_hashmode": "22000",
-        "default_device": "2"
+        "default_device": "1"
     }
 
 def define_windows_parameters():
@@ -46,7 +48,7 @@ def define_windows_parameters():
         "default_min_length": "8",
         "default_max_length": "16",
         "default_hashmode": "22000",
-        "default_device": "2"
+        "default_device": "1"
     }
 
 def clear_screen():
@@ -211,13 +213,9 @@ def execute_windows_scripts():
     else:
         print(colored(f"[!] Error: Windows scripts directory not found: '{windows_scripts_dir}'", "red"))
 
-import os
-
-import os
-import shutil
-
 def save_logs(session, wordlist_path=None, wordlist=None, mask_path=None, mask=None, rule_path=None, rule=None):
-    log_dir = f"logs/{session}"
+    home_dir = os.path.expanduser("~")
+    log_dir = os.path.join(home_dir, "hashCrack", "logs", session)
     os.makedirs(log_dir, exist_ok=True)
 
     status_file_path = os.path.join(log_dir, "status.txt")
@@ -244,7 +242,7 @@ def save_logs(session, wordlist_path=None, wordlist=None, mask_path=None, mask=N
 
         try:
             with open("hash.txt", "r") as hash_file:
-                f.write(f"\nHash: {hash_file.read()}")
+                f.write(f"\nHash: {hash_file.read().strip()}")
         except FileNotFoundError:
             f.write("\nHash: N/A")
 
@@ -255,7 +253,7 @@ def save_logs(session, wordlist_path=None, wordlist=None, mask_path=None, mask=N
             shutil.move(original_plaintext_path, plaintext_path)
             print(f"Moved plaintext.txt to {plaintext_path}")
         else:
-            print(colored("[!] Error: plaintext.txt not found in the root directory.","red"))
+            print("[!] Error: plaintext.txt not found in the root directory.")
 
         if os.path.exists(plaintext_path):
             with open(plaintext_path, 'r') as plaintext_file:
@@ -263,11 +261,18 @@ def save_logs(session, wordlist_path=None, wordlist=None, mask_path=None, mask=N
         else:
             plaintext = "N/A"
 
-        f.write(f"Plaintext: {plaintext}")
+        f.write(f"\nPlaintext: {plaintext}")
 
     print(f"Status saved to {status_file_path}")
 
+    if plaintext_path and os.path.exists(plaintext_path):
+        with open(plaintext_path, "r") as plaintext_file:
+            print(colored("\n[*] Plaintext Output:","blue"))
+            print(plaintext_file.read().strip())
 
+    print(colored("\n[*] Status File Content:","blue"))
+    with open(status_file_path, "r") as status_file:
+        print(status_file.read().strip())
 
 def list_sessions(default_restorepath):
     try:
@@ -299,7 +304,12 @@ def restore_session(restore_file_input, default_restorepath):
     print(colored(f"[+] Executing: {cmd}", "blue"))
     os.system(cmd)
 
-
+def define_hashfile():
+    parser = argparse.ArgumentParser(description="A tool for cracking hashes using Hashcat.")
+    parser.add_argument("hash_file", help="Path to the file containing the hash to crack")
+    args = parser.parse_args()
+    
+    return args.hash_file
 
 
 

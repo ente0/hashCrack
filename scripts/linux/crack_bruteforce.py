@@ -3,13 +3,13 @@ import sys
 import subprocess
 import tempfile
 import time
-from datetime import datetime
-from termcolor import colored
 import argparse
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
-from functions import (
-    list_sessions, save_logs, restore_session, define_default_parameters
+from datetime import datetime
+from termcolor import colored
+
+from hashCrack.functions import (
+    list_sessions, save_logs, restore_session, define_default_parameters, define_hashfile
 )
 
 parameters = define_default_parameters()
@@ -61,17 +61,8 @@ def run_hashcat(session, hashmode, mask, workload, status_timer, min_length, max
     os.remove(temp_output)
 
 def main():
-    parser = argparse.ArgumentParser(description="A tool for cracking hashes using Hashcat.")
-    parser.add_argument("hash_file", help="Path to the file containing the hash to crack")
-    args = parser.parse_args()
-
-    global hash_file
-    hash_file = args.hash_file
-
-    if not os.path.isfile(hash_file):
-        print(colored(f"[!] The specified file '{hash_file}' does not exist.", "red"))
-        sys.exit(1)
-
+    hash_file= define_hashfile()
+    
     list_sessions(parameters["default_restorepath"])
     
     restore_file_input = input(colored("[+] ", "green") + f"Restore? (Enter restore file name or leave empty): ")

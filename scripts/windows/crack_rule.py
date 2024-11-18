@@ -3,14 +3,15 @@ import sys
 import subprocess
 import tempfile
 import time
-from datetime import datetime
-from termcolor import colored
 import argparse
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
-from functions import (
-    list_sessions, save_logs, restore_session, define_windows_parameters
+from datetime import datetime
+from termcolor import colored
+
+from hashCrack.functions import (
+    list_sessions, save_logs, restore_session, define_windows_parameters, define_hashfile
 )
+
 parameters = define_windows_parameters()
 
 def run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, workload, status_timer, hashcat_path, device, hash_file):
@@ -56,12 +57,7 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, rule_path, rule, wor
     os.remove(temp_output)
 
 def main():
-    parser = argparse.ArgumentParser(description="A tool for cracking hashes using Hashcat.")
-    parser.add_argument("hash_file", help="Path to the file containing the hash to crack")
-    args = parser.parse_args()
-
-    global hash_file
-    hash_file = args.hash_file
+    hash_file = define_hashfile()
 
     list_sessions(parameters["default_restorepath"])
     
