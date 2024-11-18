@@ -28,15 +28,15 @@ A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a s
 **Distribution-specific Commands**:
 - **Debian/Ubuntu**:
   ```bash
-  sudo apt update && sudo apt install hashcat aircrack-ng hcxtools hcxdumptool python3 python3-pip git
+  sudo apt update && sudo apt install hashcat python3 python3-pip
   ```
 - **Fedora**:
   ```bash
-  sudo dnf install hashcat aircrack-ng hcxtools hcxdumptool python3 python3-pip git
+  sudo dnf install hashcat python3 python3-pip
   ```
 - **Arch Linux/Manjaro**:
   ```bash
-  sudo pacman -S hashcat aircrack-ng hcxtools hcxdumptool python python-pip git
+  sudo pacman -S hashcat python python-pip
   ```
 
 #### Windows:
