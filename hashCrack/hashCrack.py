@@ -2,7 +2,6 @@ import os
 import time
 import sys
 import argparse
-import config
 from hashCrack.functions import (
     define_default_parameters, define_windows_parameters, clear_screen, show_menu1, show_menu2, handle_option, define_hashfile
 )
