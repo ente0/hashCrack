@@ -289,7 +289,7 @@ def restore_session(restore_file_input, default_restorepath):
     print(colored(f"[+] Restoring session >> {restore_file}", 'blue'))
 
     cmd = f"hashcat --session={session} --restore"
-    print(colored(f"[+] Executing: {cmd}", "blue"))
+    print(colored(f"[*] Executing: {cmd}", "blue"))
     os.system(cmd)
 
 def define_hashfile():
