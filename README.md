@@ -72,7 +72,7 @@ A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a s
    sudo rm -r hashcat-defaults
    
 <p align="center">
-  <video src="https://github.com/user-attachments/assets/f985787b-3ef6-49e9-a39f-2c6e8526cd78" />
+  <video src="https://github.com/user-attachments/assets/e27de3bd-ad19-40a5-8741-8b12faeaa9aa" />
 </p>
 
 ## Usage Overview
