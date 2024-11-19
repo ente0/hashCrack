@@ -30,7 +30,7 @@ def main():
             if user_option == '0':
                 if default_os == 'Linux':
                     clean_hashcat_cache()
-                    print(colored("[+] Hashcat cache cleared on Linux.", 'green'))
+                    print(colored("[+] Hashcat potfile cleared on Linux.", 'green'))
                 elif default_os == 'Windows':
                     os.system("del %userprofile%\\hashcat\\hashcat.potfile")
                     print(colored("[+] Hashcat potfile cleared on Windows.", 'green'))
