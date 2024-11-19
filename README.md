@@ -78,6 +78,9 @@ hashCrack is a Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/),
 > [!IMPORTANT]
 > The cracking results will be stored in `~/.hashCrack/logs`, specifically in `status.txt`.
 
+## Latest Releases
+For the latest release versions of hashCrack, visit the [hashCrack Releases](https://github.com/ente0v1/hashCrack/releases) page.
+
 ## Attack Modes
 hashCrack supports the following attack modes:
 | # | Mode                 | Description                                                                                   |
