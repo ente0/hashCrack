@@ -153,6 +153,7 @@ The main hashCrack script consists of:
 
 ## Help
 For more resources, consider the following repositories:
+- [hashcat-defaults](https://github.com/ente0v1/hashcat-defaults)
 - [wpa2-wordlists](https://github.com/kennyn510/wpa2-wordlists.git)
 - [paroleitaliane](https://github.com/napolux/paroleitaliane)
 - [SecLists](https://github.com/danielmiessler/SecLists)
