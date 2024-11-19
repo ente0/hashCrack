@@ -74,21 +74,10 @@ A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a s
 <p align="center">
   <video src="https://github.com/user-attachments/assets/7c09f4c1-007d-464b-a241-753d6e6cb25c" />
 </p>
+> [!IMPORTANT]
+> The cracking results will be stored in `~/.hashCrack/logs`, specifically in `status.txt`.
 
-## Usage Overview
-
-### Capturing WPA2 Hashes
-To capture WPA2 hashes, follow [this guide on the 4-way handshake](https://notes.networklessons.com/security-wpa-4-way-handshake) and see this [video](https://www.youtube.com/watch?v=WfYxrLaqlN8) to see how it actually works. Capture scripts are provided in the `scripts` folder.
-
-### Cracking the Hash
-1. Rename the hash file to `hash.txt` and place it in the `hashCrack` directory.
-2. Start cracking with:
-   ```bash
-   python hashCrack.py
-   ```
-3. The cracking results will be stored in `logs`, specifically in `status.txt`.
-
-### Attack Modes
+## Attack Modes
 hashCrack supports the following attack modes:
 | # | Mode                 | Description                                                                                   |
 |---|-----------------------|-----------------------------------------------------------------------------------------------|
@@ -98,8 +87,6 @@ hashCrack supports the following attack modes:
 | 6 | Hybrid Wordlist + Mask | Uses a wordlist combined with a mask to generate variations                                 |
 | 7 | Hybrid Mask + Wordlist | Uses a mask combined with a wordlist for generating password candidates                     |
 | 9 | Association          | For specific hash types where known data is combined with brute-force attempts                |
-
----
 
 ## Menu Options
 The main menu provides easy access to various cracking methods:
@@ -140,8 +127,6 @@ If you encounter errors when running Hashcat, you can follow these steps to trou
    ```
    This command will list the available devices. Ensure that the correct devices are listed for use in cracking.
 
-
-
 3. **Check for Errors in Hashcat**:
    If the cracking process fails or Hashcat doesn't seem to recognize your devices, running the above tests should help identify potential problems with your system configuration, such as missing or incompatible drivers.
 
@@ -171,4 +156,5 @@ For more resources, consider the following repositories:
 - [SecLists](https://github.com/danielmiessler/SecLists)
 - [hashcat-rules](https://github.com/Unic0rn28/hashcat-rules)
 
+To capture WPA2 hashes, follow [this guide on the 4-way handshake](https://notes.networklessons.com/security-wpa-4-way-handshake) and see this [video](https://www.youtube.com/watch?v=WfYxrLaqlN8) to see how it actually works.
 For more details on Hashcat’s attack modes and usage, consult the [Hashcat Wiki](https://hashcat.net/wiki/), [Radiotap Introduction](https://www.radiotap.org/), or [Aircrack-ng Guide](https://wiki.aircrack-ng.org/doku.php?id=airodump-ng).
