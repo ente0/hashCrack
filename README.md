@@ -55,7 +55,8 @@ A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a s
    ```bash
    pip install hashcrack-tool
    ```
-2. **(Optional) Download default wordlists and rules**:
+>[!TIP]
+> **(Optional) Download default wordlists and rules**:
    ```bash
    git clone https://github.com/ente0v1/hashcat-defaults
    git lfs install
@@ -63,8 +64,8 @@ A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a s
    cd ..
    cp -rf hashcat-defaults/* .
    sudo rm -r hashcat-defaults
-
-3. **Running hashCrack**:
+   ```
+2. **Running hashCrack**:
    After installation, you can run `hashCrack` by specifying the hash file you want to crack:
    ```bash
    hashcrack hash
