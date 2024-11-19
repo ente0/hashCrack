@@ -9,13 +9,14 @@ from datetime import datetime
 from termcolor import colored
 
 from hashCrack.functions import (
-    list_sessions, save_logs, restore_session, define_default_parameters, define_hashfile
+    list_sessions, save_logs, restore_session, define_default_parameters, define_hashfile, define_logs
 )
 
 parameters = define_default_parameters()
 
 def run_hashcat(session, hashmode, mask, workload, status_timer, min_length, max_length, device, hash_file):
     temp_output = tempfile.mktemp()
+    plaintext_path = define_logs(session)
 
     hashcat_command = [
         "hashcat",
@@ -25,9 +26,10 @@ def run_hashcat(session, hashmode, mask, workload, status_timer, min_length, max
         "-a", "3",
         "-w", workload,
         "--outfile-format=2",
-        "-o", "plaintext.txt",
+        "-o", plaintext_path,
         f"\"{mask}\"",
-        "-d", device
+        "-d", device,
+        "--potfile-disable"
     ]
     
     if status_timer.lower() == "y":
@@ -94,9 +96,11 @@ def main():
     device_input = input(colored("[+] ", "green") + f"Enter device (default '{parameters['default_device']}'): ")
     device = device_input or parameters["default_device"]
 
+    plaintext_path, status_file_path, log_dir = define_logs(session)
+
     print(colored("[+] Running Hashcat command...", "blue"))
     print(colored(f"[*] Restore >>", "magenta") + f" {parameters['default_restorepath']}/{session}")
-    print(colored(f"[*] Command >>", "magenta") + f" hashcat --session={session} --increment --increment-min={min_length} --increment-max={max_length} -m {hashmode} {hash_file} -a 3 -w {workload} --outfile-format=2 -o plaintext.txt \"{mask}\" -d {device}")
+    print(colored(f"[*] Command >>", "magenta") + f" hashcat --session={session} --increment --increment-min={min_length} --increment-max={max_length} -m {hashmode} {hash_file} -a 3 -w {workload} --outfile-format=2 -o {plaintext_path} \"{mask}\" -d {device} --potfile-disable")
     
     run_hashcat(session, hashmode, mask, workload, status_timer, min_length, max_length, device, hash_file)
 

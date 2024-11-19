@@ -400,3 +400,16 @@ FodyWeavers.xsd
 # Ignore PyPI
 pypi.rc
 pyproject.toml
+
+# Python virtual environments
+venv/
+env/
+ENV/
+.env/
+.venv/
+
+# Python package build files
+build/
+dist/
+*.egg-info/
+*.egg

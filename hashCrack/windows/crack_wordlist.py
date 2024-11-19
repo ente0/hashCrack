@@ -3,42 +3,43 @@ import sys
 import subprocess
 import tempfile
 import time
+import argparse
 
 from datetime import datetime
-import argparse
 from termcolor import colored
 
 from hashCrack.functions import (
-    list_sessions, save_logs, restore_session, define_default_parameters, define_hashfile
+    list_sessions, save_logs, restore_session, define_windows_parameters, define_hashfile, define_logs
 )
 
-parameters = define_default_parameters()
+parameters = define_windows_parameters()
 
-def run_hashcat(session, hashmode, wordlist_path, wordlist, workload, status_timer, device, hash_file, mask="", rule=""):
+def run_hashcat(session, hashmode, wordlist_path, wordlist, workload, status_timer, hashcat_path, device, hash_file):
     temp_output = tempfile.mktemp()
+    plaintext_path = define_logs(session)
 
     hashcat_command = [
-        "hashcat",
+        f"{hashcat_path}/hashcat.exe",
         f"--session={session}",
         "-m", hashmode,
         hash_file,
         "-a", "0",
         "-w", workload,
         "--outfile-format=2",
-        "-o", "plaintext.txt",
+        "-o", plaintext_path,
         f"{wordlist_path}/{wordlist}",
         "-d", device,
+        "--potfile-disable"
     ]
 
     if status_timer.lower() == "y":
-        hashcat_command.append("--status")
-        hashcat_command.append("--status-timer=2")
+        hashcat_command.extend(["--status", "--status-timer=2"])
 
     with open(temp_output, 'w') as output_file:
         try:
             subprocess.run(hashcat_command, check=True, stdout=output_file, stderr=subprocess.STDOUT)
         except subprocess.CalledProcessError:
-            print(colored("[!] Error while executing hashcat.", "red"))
+            print(colored("Error while executing hashcat.", "red"))
             return
 
     with open(temp_output, 'r') as file:
@@ -51,13 +52,14 @@ def run_hashcat(session, hashmode, wordlist_path, wordlist, workload, status_tim
         time.sleep(2)
         save_logs(session, wordlist_path, wordlist)
     else:
-        print(colored("[+] Hashcat did not find the plaintext.", "red"))
+        print(colored("[!] Hashcat did not find the plaintext.", "red"))
         time.sleep(2)
 
     os.remove(temp_output)
 
 def main():
     hash_file = define_hashfile()
+
     list_sessions(parameters["default_restorepath"])
     
     restore_file_input = input(colored("[+] ","green") + f"Restore? (Enter restore file name or leave empty): ")
@@ -89,6 +91,9 @@ def main():
     status_timer_input = input(colored("[+] ","green") + f"Use status timer? (default '{parameters['default_status_timer']}') [y/n]: ")
     status_timer = status_timer_input or parameters["default_status_timer"]
 
+    hashcat_path_input = input(colored("[+] ","green") + f"Enter Hashcat Path (default '{parameters['default_hashcat']}'): ")
+    hashcat_path = hashcat_path_input or parameters["default_hashcat"]
+
     hashmode_input = input(colored("[+] ","green") + f"Enter hash attack mode (default '{parameters['default_hashmode']}'): ")
     hashmode = hashmode_input or parameters["default_hashmode"]
 
@@ -98,11 +103,13 @@ def main():
     device_input = input(colored("[+] ", "green") + f"Enter device (default '{parameters['default_device']}'): ")
     device = device_input or parameters["default_device"]
 
-    print(colored("[+] Running Hashcat command...", "blue"))
-    print(colored(f"[*] Restore >>", "magenta") + f" {parameters['default_restorepath']}/{session}")
-    print(colored(f"[*] Command >>", "magenta") + f" hashcat --session={session} -m {hashmode} {hash_file} -a 0 -w {workload} --outfile-format=2 -o plaintext.txt {wordlist_path}/{wordlist} -d {device}")
+    plaintext_path, status_file_path, log_dir = define_logs(session)
 
-    run_hashcat(session, hashmode, wordlist_path, wordlist, workload, status_timer, device, hash_file)
+    print(colored("[+] Running Hashcat command...", "blue"))
+    print(colored(f"[*] Restore >>", "magenta") + f" {parameters['default_hashcat']}/{session}")
+    print(colored(f"[*] Command >>", "magenta") + f" {hashcat_path}/hashcat.exe --session={session} -m {hashmode} {hash_file} -a 0 -w {workload} --outfile-format=2 -o {plaintext_path} {wordlist_path}/{wordlist} -d {device} --potfile-disable")
+
+    run_hashcat(session, hashmode, wordlist_path, wordlist, workload, status_timer, hashcat_path, device, hash_file)
 
 if __name__ == "__main__":
     main()
