@@ -78,12 +78,9 @@ def define_rule():
 
 def define_session():
     list_sessions(parameters["default_restorepath"])
+    restore_file_input = input(colored("[+] ", "green") + "Restore? (Enter restore file name or leave empty): ")
+    restore_session(restore_file_input, parameters["default_restorepath"])
     
-    restore_file_input = input(colored("[+] ","green") + f"Restore? (Enter restore file name or leave empty): ")
-    restore_file = restore_file_input or parameters["default_restorepath"]
-    
-    restore_session(restore_file, parameters["default_restorepath"])
-
     session_input = input(colored("[+] ","green") + f"Enter session name (default '{parameters['default_session']}'): ")
     session = session_input or parameters["default_session"]
     new_session_name = get_unique_session_name(session)
@@ -146,7 +143,7 @@ def define_mask():
             print(colored("[!] Error: No mask entered. Using default mask.", "red"))
             mask = parameters["default_mask"]
     print(f"Mask: {colored(f'{mask_path}/{mask}','blue')}")
-    return mask_path, mask
+    return use_mask_file, mask_path, mask
 
 def define_length():
     min_length_input = input(colored("[+] ","green") + f"Enter Minimum Length (default '{parameters['default_min_length']}'): ")

@@ -147,7 +147,7 @@ def define_mask():
             mask = parameters["default_mask"]
     
     print(f"Mask: {colored(f'{mask_path}/{mask}','blue')}")
-    return mask_path, mask
+    return use_mask_file, mask_path, mask
 
 def define_length():
     min_length_input = input(colored("[+] ","green") + f"Enter Minimum Length (default '{parameters['default_min_length']}'): ")

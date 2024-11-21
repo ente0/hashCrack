@@ -67,7 +67,7 @@ def run_hashcat(session, hashmode, mask, workload, status_timer, min_length, max
 def main():
     hash_file = define_hashfile()
     session = define_session()
-    mask_path, mask = define_mask()
+    use_mask_file, mask_path, mask = define_mask()
     hashmode = define_hashmode()
     status_timer = define_status()
     min_length, max_length = define_length()
@@ -75,7 +75,7 @@ def main():
     device = define_device()
     plaintext_path, status_file_path, log_dir = define_logs(session)
 
-    print(colored("[+] Running Hashcat command...", "blue"))
+    print(colored("\n[+] Running Hashcat command...", "blue"))
     print(colored(f"[*] Restore >>", "magenta") + f" {parameters['default_restorepath']}/{session}")
     print(colored(f"[*] Command >>", "magenta") + f" hashcat --session={session} --increment --increment-min={min_length} --increment-max={max_length} -m {hashmode} {hash_file} -a 3 -w {workload} --outfile-format=2 -o {plaintext_path} \"{mask}\" -d {device} --potfile-disable")
 

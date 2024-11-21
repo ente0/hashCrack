@@ -275,12 +275,14 @@ def list_sessions(default_restorepath):
         print(colored(f"[!] Error: The directory {default_restorepath} does not exist.", "red"))
 
 def restore_session(restore_file_input, default_restorepath):
-    if not restore_file_input:
-        list_sessions(default_restorepath)
-        restore_file_input = input(colored(f"[+] Restore? (Enter restore file name or leave empty): ", "green"))
-    
-    restore_file = os.path.join(default_restorepath, f"{restore_file_input}")
-     
+    restore_file = restore_file_input.strip() or default_restorepath
+
+    if restore_file.strip() == default_restorepath and not os.path.isfile(restore_file):
+        return
+
+    if not os.path.isabs(restore_file):
+        restore_file = os.path.join(default_restorepath, restore_file)
+
     if not os.path.isfile(restore_file):
         print(colored(f"[!] Error: Restore file '{restore_file}' not found.", 'red'))
         return
@@ -291,6 +293,7 @@ def restore_session(restore_file_input, default_restorepath):
     cmd = f"hashcat --session={session} --restore"
     print(colored(f"[*] Executing: {cmd}", "blue"))
     os.system(cmd)
+
 
 def define_hashfile():
     parser = argparse.ArgumentParser(description="A tool for cracking hashes using Hashcat.")

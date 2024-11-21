@@ -70,9 +70,9 @@ def main():
     device = define_device()
     plaintext_path, status_file_path, log_dir = define_logs(session)
 
-    print(colored("[+] Running Hashcat command...", "blue"))
+    print(colored("\n[+] Running Hashcat command...", "blue"))
     print(colored(f"[*] Restore >>", "magenta") + f" {parameters['default_restorepath']}/{session}")
-    print(colored(f"[*] Command >>", "magenta") + f" hashcat --session={session} -m {hashmode} {hash_file} -a 0 -w {workload} --outfile-format=2 -o+ {plaintext_path} {wordlist_path}/{wordlist} -d {device} --potfile-disable")
+    print(colored(f"[*] Command >>", "magenta") + f" hashcat --session={session} -m {hashmode} {hash_file} -a 0 -w {workload} --outfile-format=2 -o {plaintext_path} {wordlist_path}/{wordlist} -d {device} --potfile-disable")
 
     run_hashcat(session, hashmode, wordlist_path, wordlist, workload, status_timer, device, hash_file)
 

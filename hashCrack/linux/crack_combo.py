@@ -128,15 +128,14 @@ def main():
     hash_file = define_hashfile()
     session = define_session()
     wordlist_path, wordlist = define_wordlist()
-    mask_path, mask = define_mask()
+    use_mask_file, mask_path, mask = define_mask()
     status_timer = define_status()
     min_length, max_length = define_length()
-    hashcat_path = define_hashcat()
     hashmode = define_hashmode()
     workload = define_workload()
     device = define_device()
 
-    print(colored("[+] Running Hashcat command...", "blue"))
+    print(colored("\n[+] Running Hashcat command...", "blue"))
 
     execute_hashcat(session, hashmode, wordlist_path, wordlist, mask, min_length, max_length, workload, status_timer, device, use_mask_file, hash_file, mask_path=None)
 
