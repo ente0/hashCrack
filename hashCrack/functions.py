@@ -340,10 +340,19 @@ def verify_hash_crackable(hash_file):
         print(colored(f"[!] Error verifying hash: {e}", 'red'))
         return False
 
-def get_unique_session_name(session_name, log_path=".hashCrack/logs"):
-    counter = 1
-    unique_name = session_name
-    while os.path.exists(os.path.join(log_path, unique_name)):
-        unique_name = f"{session_name}_{counter}"
+def get_unique_session_name(session_name, log_path="~/.hashCrack/logs/"):
+    expanded_path = os.path.expanduser(log_path)
+    
+    counter = 0
+    while True:
+        if counter == 0:
+            unique_name = session_name
+        else:
+            unique_name = f"{session_name}_{counter}"
+            
+        full_path = os.path.join(expanded_path, unique_name)
+            
+        if not os.path.isdir(full_path):
+            return unique_name
+            
         counter += 1
-    return unique_name

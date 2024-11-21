@@ -11,7 +11,7 @@ from datetime import datetime
 from termcolor import colored
 
 from hashCrack.functions import (
-    list_sessions, save_logs, restore_session, define_default_parameters, define_hashfile, define_logs, get_unique_session_name
+    list_sessions, restore_session, define_default_parameters, get_unique_session_name
 )
 
 parameters = define_default_parameters()
@@ -25,11 +25,11 @@ def define_wordlist():
     try:
         if not os.path.exists(wordlist_path):
             print(colored(f"[!] Error: The directory {wordlist_path} does not exist.", "red"))
-            return None, None  # Returning None if the directory doesn't exist
+            return None, None 
         
         for root, dirs, files in os.walk(wordlist_path):
             level = root.replace(wordlist_path, '').count(os.sep)
-            indent = ' ' * 4 * level  # Indentation based on the depth
+            indent = ' ' * 4 * level  
             
             print(f"{indent}{colored('[*]', 'yellow')} {os.path.basename(root)}")
             
@@ -42,6 +42,7 @@ def define_wordlist():
 
     wordlist_input = input(colored("[+] ", "green") + f"Enter Wordlist (default '{parameters['default_wordlist']}'): ")
     wordlist = wordlist_input or parameters["default_wordlist"] 
+    print(f"Wordlist: {colored(f'{wordlist_path}/{wordlist}', 'blue')}")
     return wordlist_path, wordlist
 
 def define_rule():
@@ -72,7 +73,7 @@ def define_rule():
 
     rule_input = input(colored("[+] ", "green") + f"Enter Rule (default '{parameters['default_rule']}'): ")
     rule = rule_input or parameters["default_rule"]
-    print(colored(f"[+] Selected rule: {rule}", "green"))
+    print(f"Rule: {colored(f'{rule}','blue')}")
     return rule_path, rule
 
 def define_session():
@@ -90,27 +91,31 @@ def define_session():
         print(colored(f"[!] Session name '{session}' already exists. Assigning new session name: '{new_session_name}'", 'red'))
 
     session = new_session_name
-    print(f"Session name: {session}")
+    print(f"Session name: {colored(f'{session}','blue')}")
     return session
 
 def define_status():
     status_timer_input = input(colored("[+] ","green") + f"Use status timer? (default '{parameters['default_status_timer']}') [y/n]: ")
     status_timer = status_timer_input or parameters["default_status_timer"]
+    print(f"Status timer: {colored(f'{status_timer}', 'blue')}")
     return status_timer
 
 def define_hashmode():
     hashmode_input = input(colored("[+] ","green") + f"Enter hash attack mode (default '{parameters['default_hashmode']}'): ")
     hashmode = hashmode_input or parameters["default_hashmode"]
+    print(f"Hashmode: {colored(f'{hashmode}','blue')}")
     return hashmode
 
 def define_workload():
     workload_input = input(colored("[+] ","green") + f"Enter workload (default '{parameters['default_workload']}') [1-4]: ")
     workload = workload_input or parameters["default_workload"]
+    print(f"Workload: {colored(f'{workload}','blue')}")
     return workload
 
 def define_device():
     device_input = input(colored("[+] ", "green") + f"Enter device (default '{parameters['default_device']}'): ")
     device = device_input or parameters["default_device"]
+    print(f"OpenCL device: {colored(f'{device}','blue')}")
     return device
 
 def define_mask():
@@ -140,7 +145,7 @@ def define_mask():
         if not mask:
             print(colored("[!] Error: No mask entered. Using default mask.", "red"))
             mask = parameters["default_mask"]
-
+    print(f"Mask: {colored(f'{mask_path}/{mask}','blue')}")
     return mask_path, mask
 
 def define_length():
@@ -149,4 +154,6 @@ def define_length():
 
     max_length_input = input(colored("[+] ","green") + f"Enter Maximum Length (default '{parameters['default_max_length']}'): ")
     max_length = max_length_input or parameters["default_max_length"]
+    print(f"Minimum length: {colored(f'{min_length}','blue')}")
+    print(f"Maximum length: {colored(f'{max_length}','blue')}")
     return min_length, max_length
