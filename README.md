@@ -63,7 +63,7 @@ A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a s
 
    
 <p align="center">
-  <video src="https://github.com/user-attachments/assets/7c09f4c1-007d-464b-a241-753d6e6cb25c" />
+  <video src="https://github.com/user-attachments/assets/bcfc0ecd-6cde-436d-87df-4fb2ed1d90d0" />
 </p>
     
 >[!TIP]
