@@ -9,9 +9,11 @@ from datetime import datetime
 from termcolor import colored
 
 from hashCrack.functions import (
-    list_sessions, save_logs, restore_session, define_windows_parameters, define_hashfile, define_logs
+    save_logs, define_windows_parameters, define_hashfile, define_logs
 )
-
+from hashCrack.linux_inputs import (
+    define_mask, define_length, define_session, define_status, define_hashmode, define_workload, define_device, define_hashcat
+)
 parameters = define_windows_parameters()
 
 def run_hashcat(session, hashmode, mask, workload, status_timer, min_length, max_length, hash_file, hashcat_path, device):
@@ -63,47 +65,15 @@ def run_hashcat(session, hashmode, mask, workload, status_timer, min_length, max
 
 def main():
     hash_file = define_hashfile()
-    list_sessions(parameters["default_restorepath"])
-    
-    restore_file_input = input(colored("[+] ","green") + f"Restore? (Enter restore file name or leave empty): ")
-    restore_file = restore_file_input or parameters["default_restorepath"]
-    
-    restore_session(restore_file, parameters["default_restorepath"])
-
-    session_input = input(colored("[+] ","green") + f"Enter session name (default '{parameters['default_session']}'): ")
-    session = session_input or parameters["default_session"]
-
-    mask_input = input(colored("[+] ","green") + f"Enter Mask (default '{parameters['default_mask']}'): ")
-    mask = mask_input or parameters["default_mask"]
-
-    status_timer_input = input(colored("[+] ","green") + f"Use status timer? (default '{parameters['default_status_timer']}') [y/n]: ")
-    status_timer = status_timer_input or parameters["default_status_timer"]
-
-    min_length_input = input(colored("[+] ","green") + f"Enter Minimum Length (default '{parameters['default_min_length']}'): ")
-    min_length = min_length_input or parameters["default_min_length"]
-
-    max_length_input = input(colored("[+] ","green") + f"Enter Maximum Length (default '{parameters['default_max_length']}'): ")
-    max_length = max_length_input or parameters["default_max_length"]
-
-    hashcat_path_input = input(colored("[+] ","green") + f"Enter Hashcat Path (default '{parameters['default_hashcat']}'): ")
-    hashcat_path = hashcat_path_input or parameters["default_hashcat"]
-
-    hash_file_input = input(colored("[+] ","green") + f"Enter the path of the hash file: ")
-    hash_file = hash_file_input
-
-    if not os.path.isfile(hash_file):
-        print(colored(f"[!] Error: The file {hash_file} does not exist.", "red"))
-        return
-
-    hashmode_input = input(colored("[+] ","green") + f"Enter hash attack mode (default '{parameters['default_hashmode']}'): ")
-    hashmode = hashmode_input or parameters["default_hashmode"]
-
-    workload_input = input(colored("[+] ","green") + f"Enter workload (default '{parameters['default_workload']}') [1-4]: ")
-    workload = workload_input or parameters["default_workload"]
-
-    device_input = input(colored("[+] ", "green") + f"Enter device (default '{parameters['default_device']}'): ")
-    device = device_input or parameters["default_device"]
-
+    session = define_session()
+    mask_path, mask = define_mask()
+    hashmode = define_hashmode()
+    hashcat_path = define_hashcat()
+    status_timer = define_status()
+    min_length, max_length = define_length()
+    hashcat_path = define_hashcat()
+    workload = define_workload()
+    device = define_device()
     plaintext_path, status_file_path, log_dir = define_logs(session)
 
     print(colored("[+] Running Hashcat command...", "blue"))
