@@ -79,6 +79,8 @@ A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a s
 > [!IMPORTANT]
 > The cracking results will be stored in `~/.hashCrack/logs`, specifically in `status.txt`.
 
+> [!WARNING]
+> Before starting a new cracking session (denoted as session "x"), ensure that the status file in the .hashCrack/logs/x folder does not exist or is empty. This is important to prevent conflicts if you run a second session of cracking using the same session name. For example, if a plaintext password "a" is generated in the first session, and a second session with the same name is started, the final output might contain passwords from both sessions, which can cause confusion. 
 ## Latest Releases
 For the latest release versions of hashCrack, visit the [hashCrack Releases](https://github.com/ente0v1/hashCrack/releases) page.
 
