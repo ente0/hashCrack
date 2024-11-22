@@ -77,7 +77,7 @@ A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a s
    sudo rm -r hashcat-defaults
    ```
 > [!IMPORTANT]
-> The cracking results will be stored in `~/.hashCrack/logs`, specifically in `status.txt`.
+> The cracking results will be stored in `~/.hashCrack/logs/session`, specifically in `status.txt`.
 
 ## Latest Releases
 For the latest release versions of hashCrack, visit the [hashCrack Releases](https://github.com/ente0v1/hashCrack/releases) page.
