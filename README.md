@@ -3,10 +3,14 @@
 </p>
 
 <p align="center">
-  ![Language: Python](https://img.shields.io/badge/language-python-green)
-  ![Dependencies](https://img.shields.io/badge/dependencies-python--pip--hashcat--termcolor-green)
-  [![PyPI Version](https://img.shields.io/badge/pypi-v1.4.3-blue)](https://github.com/ente0/hashCrack/releases)
-  [![License](https://img.shields.io/github/license/ente0/hashCrack)](https://github.com/ente0/hashCrack/blob/main/LICENSE)
+  <img src="https://img.shields.io/badge/language-python-green" alt="Language: Python">
+  <img src="https://img.shields.io/badge/dependencies-python--pip--hashcat--termcolor-green" alt="Dependencies">
+  <a href="https://github.com/ente0/hashCrack/releases">
+    <img src="https://img.shields.io/badge/pypi-v1.4.3-blue" alt="PyPI Version">
+  </a>
+  <a href="https://github.com/ente0/hashCrack/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/ente0/hashCrack" alt="License">
+  </a>
 </p>
 
 
