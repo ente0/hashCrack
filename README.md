@@ -2,11 +2,10 @@
   <img src="https://github.com/user-attachments/assets/283f9b80-bd00-4303-a35b-ed1823d6ea4d"/>
 </p>
 
-<p align="center">
+
 ![GitHub License](https://img.shields.io/github/license/ente0v1/hashCrack)
 ![dependencies](https://img.shields.io/badge/language-python-green)
  ![version](https://img.shields.io/badge/pypi-v1.4.3-blue)
-</p>
 
 A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a simplified interface for password cracking tasks. hashCrack enables you to use different attack methods—wordlists, rules, brute-force, and hybrid attacks—through a guided menu interface. 
 > [!CAUTION]
