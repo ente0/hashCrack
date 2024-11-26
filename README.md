@@ -4,7 +4,7 @@
 
 <p align="center">
    <a href="LICENSE">
-    <img src="https://img.shields.io/github/license/ente0/hashCrack" alt="License">
+    <img src="https://img.shields.io/github/license/ente0/hashCrack">
   </a>
   <img src="https://img.shields.io/badge/language-python-green" alt="Language: Python">
   
