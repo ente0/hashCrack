@@ -4,7 +4,7 @@
 
 <p align="center">
    <a href="LICENSE">
-    <img src="https://img.shields.io/github/license/ente0/hashCrack">
+    
   </a>
   <img src="https://img.shields.io/badge/language-python-green" alt="Language: Python">
   
@@ -18,7 +18,7 @@
 
 
 ---
-A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a simplified interface for password cracking tasks. hashCrack enables you to use different attack methods—wordlists, rules, brute-force, and hybrid attacks—through a guided menu interface. 
+A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a simplified interface for password cracking tasks. hashCrack enables you to use different attack methods—wordlists, rules, brute-force, and hybrid attacks—through a guided menu interface.  <img src="https://img.shields.io/github/license/ente0/hashCrack">
 > [!CAUTION]
 > This tool is provided "as-is," without any express or implied warranties. The author assumes no responsibility for any damages, losses, or consequences arising from the use of this tool. It is specifically designed for penetration testing purposes, and should only be used in legal and authorized environments, such as with explicit permission from the system owner. Unauthorized use or misuse of this tool, in violation of applicable laws, is strictly prohibited. Users are strongly advised to comply with all relevant local, national, and international laws and obtain proper authorization before performing any security assessments.
 
