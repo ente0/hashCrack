@@ -10,7 +10,6 @@
   <a href="https://github.com/ente0/hashCrack/releases">
     <img src="https://img.shields.io/badge/pypi-v1.4.3-blue">
   </a>
-  <img src="https://img.shields.io/badge/pypi-v1.4.3-blue">
 </p>
 
 ---
