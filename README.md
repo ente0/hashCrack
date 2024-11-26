@@ -69,7 +69,7 @@ A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a s
 >[!TIP]
 > **(Optional) Download default wordlists and rules**:
    ```bash
-   git clone https://github.com/ente0v1/hashcat-defaults
+   git clone https://github.com/ente0/hashcat-defaults
    git lfs install
    git pull
    cd ..
