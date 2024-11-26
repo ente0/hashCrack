@@ -2,9 +2,18 @@
   <img src="https://github.com/user-attachments/assets/283f9b80-bd00-4303-a35b-ed1823d6ea4d"/>
 </p>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/language-python-green">
+  <a href="LICENSE.md">
+    <img src="https://img.shields.io/github/license/ente0/hashCrack">
+  </a>
+  <a href="https://github.com/ente0/hashCrack/releases">
+    <img src="https://img.shields.io/badge/pypi-v1.4.3-blue">
+  </a>
+</p>
 
-![GitHub License](https://img.shields.io/github/license/ente0v1/hashCrack)
-![dependencies](https://img.shields.io/badge/language-python-green)
+![GitHub License](
+![dependencies]()
  ![version](https://img.shields.io/badge/pypi-v1.4.3-blue)
 ---
 A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a simplified interface for password cracking tasks. hashCrack enables you to use different attack methods—wordlists, rules, brute-force, and hybrid attacks—through a guided menu interface. 
