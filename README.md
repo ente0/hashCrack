@@ -31,15 +31,15 @@ A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a s
 **Distribution-specific Commands**:
 - **Debian/Ubuntu**:
   ```bash
-  sudo apt update && sudo apt install hashcat python3 python3-pip
+  sudo apt update && sudo apt install hashcat python3 python3-pip python-termcolor
   ```
 - **Fedora**:
   ```bash
-  sudo dnf install hashcat python3 python3-pip
+  sudo dnf install hashcat python3 python3-pip python-termcolor
   ```
 - **Arch Linux/Manjaro**:
   ```bash
-  sudo pacman -S hashcat python python-pip
+  sudo pacman -S hashcat python python-pip python-termcolor
   ```
 
 #### Windows:
