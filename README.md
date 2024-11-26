@@ -8,7 +8,7 @@
   <a href="https://github.com/ente0/hashCrack/releases">
     <img src="https://img.shields.io/badge/pypi-v1.4.3-blue">
   </a>
-  <a href="LICENSE">
+  <a href="[LICENSE](https://github.com/ente0/hashCrack/blob/main/LICENSE)">
     <img src="https://img.shields.io/github/license/ente0/hashCrack">
   </a>
 </p>
