@@ -3,6 +3,9 @@
 </p>
 
 <p align="center">
+   <a href="LICENSE">
+    <img src="https://img.shields.io/github/license/ente0/hashCrack" alt="License">
+  </a>
   <img src="https://img.shields.io/badge/language-python-green" alt="Language: Python">
   
   <img src="https://img.shields.io/badge/dependencies-python--pip--hashcat--termcolor-green" alt="Dependencies">
@@ -10,10 +13,7 @@
   <a href="https://github.com/ente0/hashCrack/releases">
     <img src="https://img.shields.io/badge/pypi-v1.4.3-blue" alt="PyPI Version">
   </a>
-  
-  <a href="LICENSE">
-    <img src="https://img.shields.io/github/license/ente0/hashCrack" alt="License">
-  </a>
+
 </p>
 
 
