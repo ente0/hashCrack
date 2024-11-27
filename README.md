@@ -11,12 +11,12 @@
   <a href="https://github.com/ente0/hashCrack/releases">
     <img src="https://img.shields.io/badge/pypi-v1.4.3-blue" alt="PyPI Version">
   </a>
-</p>
-
----
 
 # hashCrack: Hashcat made easy
 
+</p>
+
+---
 
 A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a simplified interface for password cracking tasks. hashCrack enables you to use different attack methods—wordlists, rules, brute-force, and hybrid attacks—through a guided menu interface. 
 > [!CAUTION]
