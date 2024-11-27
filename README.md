@@ -1,5 +1,5 @@
 
-<div allign="center">
+<div align="center">
 
 
 # hashCrack
