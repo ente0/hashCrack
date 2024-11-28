@@ -66,7 +66,7 @@
   - **Optional**: For a Linux-like environment, set up [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/install)
 
 > [!TIP]
-> Recommended wordlists, rules, and masks can be found in repositories like [SecLists](https://github.com/danielmiessler/SecLists) and [wpa2-wordlists](https://github.com/kennyn510/wpa2-wordlists.git). It’s advised to keep these resources in `hashCrack` under `wordlists`, `rules`, and `masks` folders for better compatibility.
+> Recommended wordlists, rules, and masks can be found in repositories like [SecLists](https://github.com/danielmiessler/SecLists) and [wpa2-wordlists](https://github.com/kennyn510/wpa2-wordlists.git).
    
 ### Installation via pip
 1. **Install hashCrack with pip**:
