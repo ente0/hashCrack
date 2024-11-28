@@ -20,7 +20,7 @@
 
 # hashCrack: Hashcat made easy
 
-**A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a simplified menu interface for password cracking tasks.**
+###**A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a simplified menu interface for password cracking tasks.**
 
 </div>
 
