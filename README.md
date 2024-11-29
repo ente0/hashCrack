@@ -170,7 +170,7 @@ The main hashCrack script consists of:
 2. **User Prompts**: Gathers inputs from the user such as wordlist location, session names, and attack type.
 3. **Command Construction**: Constructs the Hashcat command based on user inputs and specified attack mode.
 4. **Execution**: Runs the cracking session with or without status timers.
-5. **Logging**: Saves session logs the results for future reference.
+5. **Logging**: Saves session results for future reference.
 
 ---
 
