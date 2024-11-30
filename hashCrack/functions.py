@@ -161,7 +161,6 @@ def handle_option(option, default_os, hash_file):
     print("...", flush=True)
 
     if option.lower() == "q":
-        print("Exiting...")
         print(colored("Done! Exiting...", 'yellow'))
         sys.exit(0)
 
