@@ -67,7 +67,7 @@ def show_menu1(default_os):
 888  888 888  888      X88 888  888 Y88b  d88P 888    888  888 Y88b.    888 "88b
 888  888 "Y888888  88888P' 888  888  "Y8888P"  888    "Y888888  "Y8888P 888  888
        
-       For more information, visit: https://github.com/ente0v1/hashCrack
+       For more information, visit: https://github.com/ente0/hashCrack
     """
     print(colored(ascii_art, 'cyan'))
     print(colored("="*80, 'cyan'))
@@ -103,7 +103,7 @@ dP                         dP       MM"'""'"YMM                            dP
 dP    dP `88888P8 `88888P' dP    dP MM.     .dM dP       `88888P8 `88888P' dP   `YP
                                     MMMMMMMMMMM  
          
-         For more information, visit: https://github.com/ente0v1/hashCrack
+         For more information, visit: https://github.com/ente0/hashCrack
     """
     print(colored(ascii_art, 'cyan'))
     print(colored("="*83, 'cyan'))
