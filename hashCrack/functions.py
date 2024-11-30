@@ -11,7 +11,7 @@ from datetime import datetime
 from termcolor import colored
 
 default_scripts = os.path.expanduser("~/hashCrack")
-default_windows_scripts = f"/c/Users/{os.getenv('USER')}/source/repos/ente0v1/hashCrack/scripts/windows"
+default_windows_scripts = f"/c/Users/{os.getenv('USER')}/source/repos/ente0/hashCrack/scripts/windows"
 
 def define_default_parameters():
     return {
