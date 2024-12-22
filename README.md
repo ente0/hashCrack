@@ -17,7 +17,7 @@
 
 <div align="center">
   
-# hashCrack: Hashcat made easy
+# hashCrack: Hashcat made Easy
 
 ### **A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a simplified menu interface for password cracking tasks. This tool enables users to conduct various attack types through an intuitive, menu-driven interface.**
 
