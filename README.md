@@ -19,7 +19,7 @@
   
 # hashCrack: Hashcat made easy
 
-### **A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a simplified menu interface for password cracking tasks. This tool enables users to conduct various attack types—including wordlist, rule-based, brute-force, and hybrid attacks—through an intuitive, menu-driven interface.**
+### **A Python-based wrapper for [Hashcat](https://hashcat.net/hashcat/), offering a simplified menu interface for password cracking tasks. This tool enables users to conduct various attack types through an intuitive, menu-driven interface.**
 
 </div>
 
