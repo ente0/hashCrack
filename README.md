@@ -11,7 +11,7 @@
   <img src="https://img.shields.io/badge/dependencies-python--pip--hashcat--termcolor-green" alt="Dependencies">
   
   <a href="https://github.com/ente0/hashCrack/releases">
-    <img src="https://img.shields.io/badge/build-v1.4.3-blue" alt="PyPI Version">
+    <img src="https://img.shields.io/badge/release-v1.4.3-blue" alt="PyPI Version">
   </a>
 </p>
 
