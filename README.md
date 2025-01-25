@@ -89,7 +89,6 @@
 > **(Optional) Download default wordlists and rules**:
    ```bash
    git clone https://github.com/ente0/hashcat-defaults
-   cd ..
    cp -rf hashcat-defaults/* .
    rm -r hashcat-defaults
    ```
