@@ -152,16 +152,19 @@ def animate_text(text, delay):
 
 def get_package_script_path(script_name: str, os_type: str) -> Path:
     try:
-        with resources.files(f'hashCrack.{os_type.lower()}') as p:
-            script_path = p / script_name
-            if not script_path.exists():
-                raise FileNotFoundError(f"Script {script_name} not found in package")
-            return script_path
+        package_path = resources.files(f'hashCrack.{os_type.lower()}') / script_name
+        
+        if not package_path.exists():
+            raise FileNotFoundError(f"Script {script_name} not found in package")
+        
+        return package_path
     except (ImportError, AttributeError):
         import pkg_resources
         package_path = pkg_resources.resource_filename('hashCrack', f'{os_type.lower()}/{script_name}')
+        
         if not os.path.exists(package_path):
             raise FileNotFoundError(f"Script {script_name} not found in package")
+        
         return Path(package_path)
 
 def handle_option(option, default_os, hash_file):
