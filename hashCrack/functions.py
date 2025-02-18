@@ -56,7 +56,12 @@ def define_windows_parameters():
 def clear_screen():
     os.system("cls" if os.name == "nt" else "clear")
 
+
 def show_menu1(default_os):
+    terminal_width = shutil.get_terminal_size().columns
+    separator = "=" * terminal_width
+    dash_separator = "-" * terminal_width
+
     ascii_art = """
 888                        888       .d8888b.                           888     
 888                        888      d88P  Y88b                          888     
@@ -70,28 +75,30 @@ def show_menu1(default_os):
        For more information, visit: https://github.com/ente0/hashCrack
     """
     print(colored(ascii_art, 'cyan'))
-    print(colored("="*80, 'cyan'))
+    print(colored(separator, 'cyan'))
     print(colored(f"   Welcome to hashCrack! - Menu Options for {default_os}", 'cyan', attrs=['bold']))
-    print(colored("="*80, 'cyan'))
+    print(colored(separator, 'cyan'))
+
     options = [
-        f"{colored('[1]', 'blue', attrs=['bold'])} Crack with Wordlist          {colored('                                      [EASY]', 'blue', attrs=['bold'])}",
-        f"{colored('[2]', 'green', attrs=['bold'])} Crack with Association       {colored('                                    [MEDIUM]', 'green', attrs=['bold'])}",
-        f"{colored('[3]', 'yellow', attrs=['bold'])} Crack with Brute-Force       {colored('                                      [HARD]', 'yellow', attrs=['bold'])}",
-        f"{colored('[4]', 'red', attrs=['bold'])} Crack with Combinator        {colored('                                  [ADVANCED]', 'red', attrs=['bold'])}",
+        f"{colored('[1]', 'blue', attrs=['bold'])} Crack with Wordlist          {colored('[EASY]', 'blue', attrs=['bold'])}",
+        f"{colored('[2]', 'green', attrs=['bold'])} Crack with Association       {colored('[MEDIUM]', 'green', attrs=['bold'])}",
+        f"{colored('[3]', 'yellow', attrs=['bold'])} Crack with Brute-Force       {colored('[HARD]', 'yellow', attrs=['bold'])}",
+        f"{colored('[4]', 'red', attrs=['bold'])} Crack with Combinator        {colored('[ADVANCED]', 'red', attrs=['bold'])}",
     ]
     print("\n   " + "\n   ".join(options))
 
-    print(colored("-"*80, 'cyan')) 
+    print(colored(dash_separator, 'cyan')) 
 
-    print(f"{colored('   [0]', 'magenta', attrs=['bold'])} Clear Hashcat Potfile        {colored('                                   [UTILITY]', 'magenta', attrs=['bold'])}")
+    print(f"{colored('   [0]', 'magenta', attrs=['bold'])} Clear Hashcat Potfile        {colored('[UTILITY]', 'magenta', attrs=['bold'])}")
 
-    print(colored("\n" + "="*80, 'magenta'))
+    print(colored("\n" + separator, 'magenta'))
     print(f"   {colored('Press X to switch to Windows' if default_os == 'Linux' else 'Press X to switch to Linux', 'magenta', attrs=['bold'])}.")
-    print(colored("="*80, 'magenta'))
+    print(colored(separator, 'magenta'))
 
     user_option = input(colored("\nEnter option (0-4, X to switch OS, Q to quit): ", 'cyan', attrs=['bold'])).strip().lower()
 
     return user_option
+
 
 def show_menu2(default_os):
     ascii_art = r"""
