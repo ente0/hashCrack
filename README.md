@@ -76,7 +76,7 @@
    ```
 
 > [!IMPORTANT]
-> Make sure that ~/.local/bin is in the PATH variable
+> Make sure that ~/.local/bin is in the PATH variable.
 
 2. **Running hashCrack**:
    After installation, you can run `hashCrack` by specifying the hash file you want to crack (run`source venv/bin/activate` before executing):
