@@ -47,15 +47,15 @@
 **Distribution-specific Commands**:
 - **Debian/Ubuntu**:
   ```bash
-  sudo apt update && sudo apt install hashcat python3 python3-pip python-termcolor
+  sudo apt update && sudo apt install hashcat python3 python3-pip python3-termcolor pipx
   ```
 - **Fedora**:
   ```bash
-  sudo dnf install hashcat python3 python3-pip python-termcolor
+  sudo dnf install hashcat python3 python3-pip python3-termcolor python3-pipx
   ```
 - **Arch Linux/Manjaro**:
   ```bash
-  sudo pacman -S hashcat python python-pip python-termcolor
+  sudo pacman -S hashcat python python-pip python-termcolor python-pipx
   ```
 
 #### Windows:
@@ -72,9 +72,7 @@
 1. **Install hashCrack with pip**:
    You can install `hashCrack` directly from the Python Package Index (PyPI) using the following command:
    ```bash
-   python -m venv venv
-   source venv/bin/activate
-   pip install --no-deps hashcrack-tool termcolor
+   pipx install hashcrack-tool
    ```
 2. **Running hashCrack**:
    After installation, you can run `hashCrack` by specifying the hash file you want to crack (run`source venv/bin/activate` before executing):
