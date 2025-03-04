@@ -65,15 +65,16 @@ def show_menu(default_os):
 
     ascii_art = """
 
- ▄  █ ██      ▄▄▄▄▄    ▄  █ ▄█▄    █▄▄▄▄ ██   ▄█▄    █  █▀ 
-█   █ █ █    █     ▀▄ █   █ █▀ ▀▄  █  ▄▀ █ █  █▀ ▀▄  █▄█   
-██▀▀█ █▄▄█ ▄  ▀▀▀▀▄   ██▀▀█ █   ▀  █▀▀▌  █▄▄█ █   ▀  █▀▄   
-█   █ █  █  ▀▄▄▄▄▀    █   █ █▄  ▄▀ █  █  █  █ █▄  ▄▀ █  █  
-   █     █               █  ▀███▀    █      █ ▀███▀    █   
-  ▀     █               ▀           ▀      █          ▀    
-       ▀                                  ▀             
+
+              ▄  █ ██      ▄▄▄▄▄    ▄  █ ▄█▄    █▄▄▄▄ ██   ▄█▄    █  █▀
+              █   █ █ █    █     ▀▄ █   █ █▀ ▀▄  █  ▄▀ █ █  █▀ ▀▄  █▄█  
+              ██▀▀█ █▄▄█ ▄  ▀▀▀▀▄   ██▀▀█ █   ▀  █▀▀▌  █▄▄█ █   ▀  █▀▄  
+              █   █ █  █  ▀▄▄▄▄▀    █   █ █▄  ▄▀ █  █  █  █ █▄  ▄▀ █  █ 
+                 █     █               █  ▀███▀    █      █ ▀███▀    █  
+                ▀     █               ▀           ▀      █          ▀   
+                     ▀                                  ▀               
              
-For more information, visit: https://github.com/ente0/hashCrack
+            For more information, visit: https://github.com/ente0/hashCrack
     """
     print(colored(ascii_art, 'cyan'))
     print(colored(separator, 'cyan'))
@@ -273,7 +274,17 @@ def define_hashfile():
     parser = argparse.ArgumentParser(description="A tool for cracking hashes using Hashcat.")
     parser.add_argument("hash_file", help="Path to the file containing the hash to crack")
     args = parser.parse_args()
-    
+
+    if not os.path.isfile(args.hash_file):
+        print(colored(f"[!] Error: The file '{args.hash_file}' does not exist.", 'red'))
+        time.sleep(2)
+        sys.exit(1)
+
+    if os.stat(args.hash_file).st_size == 0:
+        print(colored(f"[!] Error: The file '{args.hash_file}' is empty.", 'red'))
+        time.sleep(2)
+        sys.exit(1)
+
     return args.hash_file
 
 def clean_hashcat_cache():

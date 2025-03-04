@@ -8,6 +8,8 @@ import argparse
 from datetime import datetime
 from termcolor import colored
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+
 from hashCrack.functions import (
     save_logs, define_default_parameters, define_hashfile, define_logs
 )

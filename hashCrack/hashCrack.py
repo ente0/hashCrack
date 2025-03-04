@@ -38,10 +38,16 @@ def main():
                 continue 
 
             hash_file = define_hashfile()
+
             if not os.path.isfile(hash_file):
                 print(colored(f"[!] Error: The file '{hash_file}' does not exist.", 'red'))
                 time.sleep(2)
                 continue
+
+            if os.stat(hash_file).st_size == 0:
+                print(colored(f"[!] Error: The file '{hash_file}' is empty.", 'red'))
+                time.sleep(2)
+                continue 
                 
             if user_option in ['1', '2', '3', '4']:
                 if not verify_hash_crackable(hash_file):
