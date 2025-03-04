@@ -58,7 +58,7 @@ def clear_screen():
     os.system("cls" if os.name == "nt" else "clear")
 
 
-def show_menu1(default_os):
+def show_menu(default_os):
     terminal_width = shutil.get_terminal_size().columns
     separator = "=" * terminal_width
     dash_separator = "-" * terminal_width

@@ -5,7 +5,7 @@ import subprocess
 from termcolor import colored
 from hashCrack.functions import (
     define_default_parameters, define_windows_parameters, clear_screen, 
-    show_menu1, show_menu2, handle_option, define_hashfile, verify_hash_crackable, clean_hashcat_cache
+    show_menu, handle_option, define_hashfile, verify_hash_crackable, clean_hashcat_cache
 )
 
 def main():
@@ -18,7 +18,7 @@ def main():
         try:
             clear_screen()
 
-            user_option = show_menu1(default_os)
+            user_option = show_menu(default_os)
             
             if user_option == 'x':
                 default_os = "Linux" if default_os == "Windows" else "Windows"
