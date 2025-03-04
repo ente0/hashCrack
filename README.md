@@ -74,7 +74,7 @@
    ```bash
    python -m venv venv
    source venv/bin/activate
-   pip install --no-deps hashcrack-tool
+   pip install --no-deps hashcrack-tool termcolor
    ```
 2. **Running hashCrack**:
    After installation, you can run `hashCrack` by specifying the hash file you want to crack (run`source venv/bin/activate` before executing):
