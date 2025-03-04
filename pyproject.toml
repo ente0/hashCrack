@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hashcrack-tool"
+version = "1.4.14"
+description = "A tool for cracking any hash supported by Hashcat"
+authors = [
+    {name = "ente0"},
+    {email = "enteo.dev@protonmail.com"}
+]
+license = { file = "LICENSE" }
+requires-python = ">=3.6"
+keywords = ["hash cracking", "password cracking", "hashcat"]
+dependencies = [
+    "termcolor",
+    "importlib-resources; python_version < '3.9'"
+]
+
+[project.entry-points."console_scripts"]
+hashcrack = "hashCrack.hashCrack:main"
+
+[tool.setuptools]
+packages = [
+    "hashCrack",
+    "hashCrack.linux",
+    "hashCrack.windows"
+]
+
+[tool.setuptools.package-data]
+hashCrack = [
+    "linux/*.py",
+    "windows/*.py"
+]
+
+[project.urls]
+Homepage = "https://github.com/ente0/hashCrack"
+Issues = "https://github.com/ente0/hashCrack/issues"

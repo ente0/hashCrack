@@ -398,10 +398,6 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-# Ignore PyPI
-pypi.rc
-pyproject.toml
-
 # Python virtual environments
 venv/
 env/
