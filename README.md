@@ -79,7 +79,11 @@
    ```bash
    hashcrack hashfile
    ```
-
+3. **Upgrading hashCrack**:
+   If you want to upgrade to the latest version just execute:
+   ```bash
+   pipx upgrade hashcrack-tool
+   ```
    
 <p align="center">
   <video src="https://github.com/user-attachments/assets/bcfc0ecd-6cde-436d-87df-4fb2ed1d90d0" />
