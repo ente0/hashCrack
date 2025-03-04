@@ -45,7 +45,7 @@
   - **Optional**: For WPA2 cracking, additional tools like [aircrack-ng](https://www.aircrack-ng.org/), [hcxtools](https://github.com/zkryss/hcxtools), and [hcxdumptool](https://github.com/fg8/hcxdumptool) are recommended.
   
 **Distribution-specific Commands**:
-- **Debian/Ubuntu**:
+- **Kali/Debian/Ubuntu**:
   ```bash
   sudo apt update && sudo apt install hashcat python3 python3-pip python3-termcolor pipx
   ```
