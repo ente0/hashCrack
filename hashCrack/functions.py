@@ -64,16 +64,16 @@ def show_menu1(default_os):
     dash_separator = "-" * terminal_width
 
     ascii_art = """
-888                        888       .d8888b.                           888     
-888                        888      d88P  Y88b                          888     
-888                        888      888    888                          888     
-88888b.   8888b.  .d8888b  88888b.  888        888d888 8888b.   .d8888b 888  888
-888 "88b     "88b 88K      888 "88b 888        888P"      "88b d88P"    888 .88P
-888  888 .d888888 "Y8888b. 888  888 888    888 888    .d888888 888      888888K 
-888  888 888  888      X88 888  888 Y88b  d88P 888    888  888 Y88b.    888 "88b
-888  888 "Y888888  88888P' 888  888  "Y8888P"  888    "Y888888  "Y8888P 888  888
-       
-       For more information, visit: https://github.com/ente0/hashCrack
+
+ ▄  █ ██      ▄▄▄▄▄    ▄  █ ▄█▄    █▄▄▄▄ ██   ▄█▄    █  █▀ 
+█   █ █ █    █     ▀▄ █   █ █▀ ▀▄  █  ▄▀ █ █  █▀ ▀▄  █▄█   
+██▀▀█ █▄▄█ ▄  ▀▀▀▀▄   ██▀▀█ █   ▀  █▀▀▌  █▄▄█ █   ▀  █▀▄   
+█   █ █  █  ▀▄▄▄▄▀    █   █ █▄  ▄▀ █  █  █  █ █▄  ▄▀ █  █  
+   █     █               █  ▀███▀    █      █ ▀███▀    █   
+  ▀     █               ▀           ▀      █          ▀    
+       ▀                                  ▀             
+             
+For more information, visit: https://github.com/ente0/hashCrack
     """
     print(colored(ascii_art, 'cyan'))
     print(colored(separator, 'cyan'))
@@ -85,48 +85,6 @@ def show_menu1(default_os):
         f"{colored('[2]', 'cyan', attrs=['bold'])} Crack with Association       {colored('[MEDIUM]', 'green', attrs=['bold'])}",
         f"{colored('[3]', 'cyan', attrs=['bold'])} Crack with Brute-Force       {colored('[HARD]', 'yellow', attrs=['bold'])}",
         f"{colored('[4]', 'cyan', attrs=['bold'])} Crack with Combinator        {colored('[ADVANCED]', 'red', attrs=['bold'])}",
-    ]
-    print("\n   " + "\n   ".join(options))
-
-    print(colored(dash_separator, 'cyan')) 
-
-    print(f"{colored('   [0]', 'magenta', attrs=['bold'])} Clear Hashcat Potfile        {colored('[UTILITY]', 'magenta', attrs=['bold'])}")
-
-    print(colored("\n" + separator, 'magenta'))
-    print(f"   {colored('Press X to switch to Windows' if default_os == 'Linux' else 'Press X to switch to Linux', 'magenta', attrs=['bold'])}.")
-    print(colored(separator, 'magenta'))
-
-    user_option = input(colored("\nEnter option (0-4, X to switch OS, Q to quit): ", 'cyan', attrs=['bold'])).strip().lower()
-
-    return user_option
-
-
-def show_menu2(default_os):
-    terminal_width = shutil.get_terminal_size().columns
-    separator = "=" * terminal_width
-    dash_separator = "-" * terminal_width
-
-    ascii_art = r"""
-dP                         dP       MM"'""'"YMM                            dP      
-88                         88       M' .mmm. `M                            88      
-88d888b. .d8888b. .d8888b. 88d888b. M  MMMMMooM 88d888b. .d8888b. .d8888b. 88  .dP 
-88'  `88 88'  `88 Y8ooooo. 88'  `88 M  MMMMMMMM 88'  `88 88'  `88 88'  `"" 88888"  
-88    88 88.  .88       88 88    88 M. `MMM' .M 88       88.  .88 88.  ... 88  `8b.
-dP    dP `88888P8 `88888P' dP    dP MM.     .dM dP       `88888P8 `88888P' dP   `YP
-                                    MMMMMMMMMMM  
-         
-         For more information, visit: https://github.com/ente0/hashCrack
-    """
-    print(colored(ascii_art, 'cyan'))
-    print(colored(separator, 'cyan'))
-    print(colored(f"   Welcome to hashCrack! - Menu Options for {default_os}", 'cyan', attrs=['bold']))
-    print(colored(separator, 'cyan'))
-
-    options = [
-        f"{colored('[1]', 'blue', attrs=['bold'])} Crack with Wordlist          {colored('[EASY]', 'blue', attrs=['bold'])}",
-        f"{colored('[2]', 'green', attrs=['bold'])} Crack with Association       {colored('[MEDIUM]', 'green', attrs=['bold'])}",
-        f"{colored('[3]', 'yellow', attrs=['bold'])} Crack with Brute-Force       {colored('[HARD]', 'yellow', attrs=['bold'])}",
-        f"{colored('[4]', 'red', attrs=['bold'])} Crack with Combinator        {colored('[ADVANCED]', 'red', attrs=['bold'])}",
     ]
     print("\n   " + "\n   ".join(options))
 
