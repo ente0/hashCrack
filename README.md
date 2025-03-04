@@ -91,8 +91,6 @@
 > **(Optional) Download default wordlists and rules**:
    ```bash
    git clone https://github.com/ente0/hashcat-defaults
-   cp -rf hashcat-defaults/* .
-   rm -r hashcat-defaults
    ```
 > [!IMPORTANT]
 > The cracking results will be stored in `~/.hashCrack/logs/session`, specifically in `status.txt`.
