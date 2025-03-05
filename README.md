@@ -57,7 +57,7 @@ hashCrack is a sophisticated Python-based wrapper for Hashcat, designed to simpl
 > [!WARNING]
 > Windows support is not fully tested. Strong recommendation to use WSL or a Linux environment for optimal performance.
 
-## 🔧 Installation
+## 🔧 Dependencies Installation
 
 ### Linux Installation
 ```bash
@@ -75,12 +75,6 @@ sudo pacman -S hashcat python python-pip python-termcolor python-pipx
 1. Install [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/install)
 2. Follow Linux installation instructions within WSL
 
-### pip Installation
-```bash
-pipx install hashcrack-tool
-```
-
-(... contenuto precedente README ...)
 
 ## 📦 Installation & Usage
 
