@@ -108,6 +108,7 @@ git clone https://github.com/ente0/hashcat-defaults
 <p align="center">
   <video src="https://github.com/user-attachments/assets/bcfc0ecd-6cde-436d-87df-4fb2ed1d90d0" />
 </p>
+    
 > [!TIP]
 > Cracking results are automatically stored in `~/.hashCrack/logs/session/status.txt`
 
