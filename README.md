@@ -160,14 +160,14 @@ hashcat -a 1 -m 0 example0.hash example.dict example.dict
 - [Hashcat Wiki](https://hashcat.net/wiki/)
 - [Radiotap Introduction](https://www.radiotap.org/)
 - [Aircrack-ng Guide](https://wiki.aircrack-ng.org/doku.php?id=airodump-ng)
+
+## 📝 License
+Licensed under the project's original license. See LICENSE file for details.
+
 ## 🤝 Support and Contributions
 
 - 🐛 [Report Issues](https://github.com/ente0/hashCrack/issues)
 - 📧 Contact: [enteo.dev@protonmail.com](mailto:enteo.dev@protonmail.com)
-
-## 📝 License
-
-Licensed under the project's original license. See LICENSE file for details.
 
 > [!TIP]
 > Always use these resources and tools responsibly and ethically. Respect legal and privacy boundaries.
