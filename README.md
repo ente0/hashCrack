@@ -12,11 +12,10 @@
 <div align="center">
   
 # hashCrack: Hashcat made Easy
+### **A sophisticated Python-based wrapper for Hashcat. The tool provides a streamlined approach to various attack modes, making advanced password recovery more accessible.**
+
 </div>
 
-## 🔒 Overview
-
-hashCrack is a sophisticated Python-based wrapper for Hashcat, designed to simplify password cracking through an intuitive, menu-driven interface. The tool provides a streamlined approach to various attack modes, making advanced password recovery more accessible.
 
 > [!CAUTION]
 > This tool is strictly for authorized security testing and educational purposes. Always obtain explicit permission before conducting any network assessments.
