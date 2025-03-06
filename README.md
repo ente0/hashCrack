@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/acdddcac-41ad-4c89-a9b9-34a4d7a1f814" alt="HashCrack Logo"/>
+  <img src="https://github.com/user-attachments/assets/3ca5c7d3-5599-4fea-9426-f1dd90f6daea"/>
 </p>
 
 <p align="center">
