@@ -410,3 +410,7 @@ build/
 dist/
 *.egg-info/
 *.egg
+
+# Security
+eapol*
+hash*

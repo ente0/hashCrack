@@ -57,48 +57,82 @@ def define_windows_parameters():
 def clear_screen():
     os.system("cls" if os.name == "nt" else "clear")
 
+import shutil
+from termcolor import colored
+
+def print_hashcrack_title():
+    """
+    Print centered hashCrack ASCII art logo in blue color.
+    This function is used by the menu to display the program title.
+    """
+    terminal_width = shutil.get_terminal_size().columns
+    ascii_art = [
+r" ▄  █ ██      ▄▄▄▄▄    ▄  █ ▄█▄    █▄▄▄▄ ██   ▄█▄    █  █▀",
+r"█   █ █ █    █     ▀▄ █   █ █▀ ▀▄  █  ▄▀ █ █  █▀ ▀▄  █▄█  ",
+r"██▀▀█ █▄▄█ ▄  ▀▀▀▀▄   ██▀▀█ █   ▀  █▀▀▌  █▄▄█ █   ▀  █▀▄  ",
+r"█   █ █  █  ▀▄▄▄▄▀    █   █ █▄  ▄▀ █  █  █  █ █▄  ▄▀ █  █ ",
+r"   █     █               █  ▀███▀    █      █ ▀███▀    █  ",
+r"  ▀     █               ▀           ▀      █          ▀   ",
+r"       ▀                                  ▀               ",
+"",
+"For more information, visit: https://github.com/ente0/hashCrack"
+    ]
+    print("\n")
+    for line in ascii_art:
+        padding = (terminal_width - len(line)) // 2 if len(line) < terminal_width else 0
+        print(colored(" " * padding + line, 'blue'))
+    print("\n")
 
 def show_menu(default_os):
+    """
+    Display the main menu for hashCrack with OS-specific options.
+    Difficulty levels are right-aligned at the exact terminal edge.
+    
+    Parameters:
+        default_os (str): Current operating system ('Linux' or 'Windows')
+    
+    Returns:
+        str: User's menu selection
+    """
     terminal_width = shutil.get_terminal_size().columns
     separator = "=" * terminal_width
     dash_separator = "-" * terminal_width
-
-    ascii_art = """
-
-
-              ▄  █ ██      ▄▄▄▄▄    ▄  █ ▄█▄    █▄▄▄▄ ██   ▄█▄    █  █▀
-              █   █ █ █    █     ▀▄ █   █ █▀ ▀▄  █  ▄▀ █ █  █▀ ▀▄  █▄█  
-              ██▀▀█ █▄▄█ ▄  ▀▀▀▀▄   ██▀▀█ █   ▀  █▀▀▌  █▄▄█ █   ▀  █▀▄  
-              █   █ █  █  ▀▄▄▄▄▀    █   █ █▄  ▄▀ █  █  █  █ █▄  ▄▀ █  █ 
-                 █     █               █  ▀███▀    █      █ ▀███▀    █  
-                ▀     █               ▀           ▀      █          ▀   
-                     ▀                                  ▀               
-             
-            For more information, visit: https://github.com/ente0/hashCrack
-    """
-    print(colored(ascii_art, 'cyan'))
+    
+    print_hashcrack_title()
     print(colored(separator, 'cyan'))
-    print(colored(f"   Welcome to hashCrack! - Menu Options for {default_os}", 'cyan', attrs=['bold']))
+    print(colored(f" Welcome to hashCrack! - Menu Options for {default_os}", 'cyan', attrs=['bold']))
     print(colored(separator, 'cyan'))
-
-    options = [
-        f"{colored('[1]', 'cyan', attrs=['bold'])} Crack with Wordlist          {colored('[EASY]', 'blue', attrs=['bold'])}",
-        f"{colored('[2]', 'cyan', attrs=['bold'])} Crack with Association       {colored('[MEDIUM]', 'green', attrs=['bold'])}",
-        f"{colored('[3]', 'cyan', attrs=['bold'])} Crack with Brute-Force       {colored('[HARD]', 'yellow', attrs=['bold'])}",
-        f"{colored('[4]', 'cyan', attrs=['bold'])} Crack with Combinator        {colored('[ADVANCED]', 'red', attrs=['bold'])}",
+    
+    menu_options = [
+        ("Crack with Wordlist", "[EASY]", 'blue'),
+        ("Crack with Association", "[MEDIUM]", 'green'),
+        ("Crack with Brute-Force", "[HARD]", 'yellow'),
+        ("Crack with Combinator", "[ADVANCED]", 'red'),
     ]
-    print("\n   " + "\n   ".join(options))
-
-    print(colored(dash_separator, 'cyan')) 
-
-    print(f"{colored('   [0]', 'magenta', attrs=['bold'])} Clear Hashcat Potfile        {colored('[UTILITY]', 'magenta', attrs=['bold'])}")
-
+    
+    print()
+    for idx, (option_text, difficulty, diff_color) in enumerate(menu_options, 1):
+        option_start = f" {colored(f'[{idx}]', 'cyan', attrs=['bold'])} {option_text}"
+        
+        visible_length = len(f" [{idx}] {option_text}")
+        spaces = terminal_width - visible_length - len(difficulty)
+        
+        print(f"{option_start}{' ' * spaces}{colored(difficulty, diff_color, attrs=['bold'])}")
+    
+    print(colored(dash_separator, 'cyan'))
+    utility_start = f" {colored('[0]', 'magenta', attrs=['bold'])} Clear Hashcat Potfile"
+    utility_tag = "[UTILITY]"
+    
+    visible_utility_length = len(" [0] Clear Hashcat Potfile")
+    utility_spaces = terminal_width - visible_utility_length - len(utility_tag)
+    
+    print(f"{utility_start}{' ' * utility_spaces}{colored(utility_tag, 'magenta', attrs=['bold'])}")
+    
     print(colored("\n" + separator, 'magenta'))
-    print(f"   {colored('Press X to switch to Windows' if default_os == 'Linux' else 'Press X to switch to Linux', 'magenta', attrs=['bold'])}.")
+    print(f" {colored('Press X to switch to Windows' if default_os == 'Linux' else 'Press X to switch to Linux', 'magenta', attrs=['bold'])}.")
     print(colored(separator, 'magenta'))
-
+    
     user_option = input(colored("\nEnter option (0-4, X to switch OS, Q to quit): ", 'cyan', attrs=['bold'])).strip().lower()
-
     return user_option
 
 
@@ -118,7 +152,6 @@ def get_package_script_path(script_name: str, os_type: str) -> Path:
         
         return package_path
     except (ImportError, AttributeError):
-        import pkg_resources
         package_path = pkg_resources.resource_filename('hashCrack', f'{os_type.lower()}/{script_name}')
         
         if not os.path.exists(package_path):
