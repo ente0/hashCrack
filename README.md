@@ -168,5 +168,5 @@ Licensed under the project's original license. See LICENSE file for details.
 - 🐛 [Report Issues](https://github.com/ente0/hashCrack/issues)
 - 📧 Contact: [enteo.dev@protonmail.com](mailto:enteo.dev@protonmail.com)
 
-> [!TIP]
+> [!IMPORTANT]
 > Always use these resources and tools responsibly and ethically. Respect legal and privacy boundaries.
