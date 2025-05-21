@@ -143,15 +143,10 @@ $pkzip$2*1*1*...*$/pkzip$
 
 This format ensures that Hashcat can parse the hash correctly since the "signature" (`$pkzip$`) is correct.
 
-### 🔍 Selecting the Correct Hashcat Mode
+### 📌 Hashcat Modes for ZIP Archives
 
 Hashcat supports different modes for ZIP archives depending on the encryption and structure. Here’s what to use:
 
-Grazie per le informazioni dettagliate! Di seguito trovi la **tabella corretta e aggiornata dei codici modalità Hashcat per gli archivi ZIP**, in base ai *signature hash* `$pkzip2$` e `$zip2$`, coerentemente con la documentazione tecnica.
-
----
-
-### 📌 Hashcat Modes for ZIP Archives
 
 | Hashcat Mode | Format Example                                      | Description                                                    |
 | ------------ | --------------------------------------------------- | -------------------------------------------------------------- |
