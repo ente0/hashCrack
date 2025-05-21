@@ -90,6 +90,8 @@ pipx install hashcrack-tool
 # Run hashCrack with hash file
 hashcrack hashfile
 ```
+> [!IMPORTANT]
+> Check out which is the exact format of your hash in order to input the correct hashmode and preventing errors. These are all the hash examples: [Hashcat Wiki](https://hashcat.net/wiki/doku.php?id=example_hashes).
 
 ### Upgrading
 ```bash
@@ -101,6 +103,71 @@ pipx upgrade hashcrack-tool
 ### Download Default Wordlists
 ```bash
 git clone https://github.com/ente0/hashcat-defaults
+```
+Sure! Here's the **translated explanation in English** and a **cleaned-up instruction** for how to handle `$pkzip$` hashes in Hashcat:
+
+---
+
+### 🔧 How to Clean the Hash Format for Hashcat
+
+If you want to crack a zip file use the following command:
+> ```bash
+> zip2john filename.zip > hash.txt
+> ```
+
+
+If you're using Hashcat with a ZIP archive hash (e.g. `$pkzip$`), make sure to **clean the hash line** correctly before use. Here's what to do:
+
+#### ✅ **Clean the Hash Line**
+
+From your `hash.txt`, **remove**:
+
+* The initial filename prefix (e.g., `backup.zip:`)
+* The trailing file names (after `::`), like:
+
+  ```
+  ::backup.zip:style.css, index.php:backup.zip
+  ```
+
+So, for example, given this original line:
+
+```
+backup.zip:$pkzip$2*1*1*...*$/pkzip$::backup.zip:style.css, index.php:backup.zip
+```
+
+It should be cleaned to:
+
+```
+$pkzip$2*1*1*...*$/pkzip$
+```
+
+This format ensures that Hashcat can parse the hash correctly since the "signature" (`$pkzip$`) is correct.
+
+### 🔍 Selecting the Correct Hashcat Mode
+
+Hashcat supports different modes for ZIP archives depending on the encryption and structure. Here’s what to use:
+
+Grazie per le informazioni dettagliate! Di seguito trovi la **tabella corretta e aggiornata dei codici modalità Hashcat per gli archivi ZIP**, in base ai *signature hash* `$pkzip2$` e `$zip2$`, coerentemente con la documentazione tecnica.
+
+---
+
+### 📌 Hashcat Modes for ZIP Archives
+
+| Hashcat Mode | Format Example                                      | Description                                                    |
+| ------------ | --------------------------------------------------- | -------------------------------------------------------------- |
+| `-m 13600`   | `$zip2$`                                            | WinZip legacy ZipCrypto encryption                             |
+| `-m 17200`   | `$pkzip2$...*$/pkzip2$` (Compressed, single file)   | PKZIP archive, compressed single-file                          |
+| `-m 17210`   | `$pkzip2$...*$/pkzip2$` (Uncompressed, single file) | PKZIP archive, uncompressed single-file                        |
+| `-m 17220`   | `$pkzip2$3*...*$/pkzip2$`                           | PKZIP compressed **multi-file** archive ✅                      |
+| `-m 17225`   | `$pkzip2$3*...*$/pkzip2$`                           | PKZIP **mixed** (compressed & uncompressed) multi-file archive |
+| `-m 17230`   | `$pkzip2$8*...*$/pkzip2$`                           | PKZIP mixed multi-file (checksum-only entries)                 |
+
+
+> 🔸 **Recommendation:**
+> If your ZIP file contains more than one file inside (e.g., `style.css`, `index.php`), use:
+
+```bash
+-m 17220
 ```
 
 ## 🎬 Demo Walkthrough
