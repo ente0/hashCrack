@@ -111,6 +111,63 @@ git clone https://github.com/ente0/hashcat-defaults
 > [!TIP]
 > Cracking results are automatically stored in `~/.hashCrack/logs/session/status.txt`
 
+---
+## Troubleshooting Hashcat Issues
+
+If you encounter errors when running Hashcat, you can follow these steps to troubleshoot:
+
+1. **Test Hashcat Functionality**:
+   First, run a benchmark test to ensure that Hashcat is working properly:
+   ```bash
+   hashcat -b
+   ```
+   This command will perform a benchmark on your system to check Hashcat's overall functionality. If this command works without issues, Hashcat is likely properly installed.
+
+2. **Check Available Devices**:
+   To verify that Hashcat can detect your devices (such as GPUs) for cracking, use the following command:
+   ```bash
+   hashcat -I
+   ```
+   This command will list the available devices. Ensure that the correct devices are listed for use in cracking.
+
+3. **Check for Errors in Hashcat**:
+   If the cracking process fails or Hashcat doesn't seem to recognize your devices, running the above tests should help identify potential problems with your system configuration, such as missing or incompatible drivers.
+
+4. **Permissions**:
+   If you encounter permission issues (especially on Linux), consider running Hashcat with elevated privileges or configuring your user group correctly for GPU access. You can run Hashcat with `sudo` if necessary:
+   ```bash
+   sudo hashcat -b
+   ```
+
+This will perform a system benchmark. If it runs without errors, your Hashcat installation is likely working correctly.
+
+5. **Segmentation Fault or Crashes**:
+
+If you encounter a segmentation fault during execution, like the following error:
+
+```
+Counting lines in backup.zip. Please be patient...
+[1] 633187 segmentation fault (core dumped)  hashcat --session=2025-05-21_2 -m 17220 backup.zip -a 0 -w 3 -o ...
+```
+
+This may be due to a **bug or compatibility issue in newer versions** of Hashcat. In such cases, try downgrading to an earlier stable version, such as **Hashcat 6.1.1**, which has resolved similar issues for others.
+
+You can find relevant discussion and workaround suggestions in this thread:
+🔗 [https://hashcat.net/forum/thread-9467.html](https://hashcat.net/forum/thread-9467.html)
+
+To download Hashcat 6.1.1:
+
+```bash
+wget https://github.com/hashcat/hashcat/releases/download/v6.1.1/hashcat-6.1.1.7z
+sudo apt install p7zip-full
+7z x hashcat-6.1.1.7z
+sudo mv hashcat-6.1.1 /opt/hashcat-6.1.1
+sudo ln -s /opt/hashcat-6.1.1/hashcat.bin /usr/local/bin/hashcat
+sudo rm hashcat-6.1.1.7z
+```
+
+---
+
 ## 🎮 Menu Options
 
 | Option | Description | Function |
