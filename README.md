@@ -256,9 +256,9 @@ hashcat -a 3 -m 0 example0.hash ?a?a?a?a?a?a
 # Combination Attack
 hashcat -a 1 -m 0 example0.hash example.dict example.dict
 ```
-## Hash Modes
+## Supported Hash Modes
 
-| ID | Nome | Categoria |
+| ID | Hash-name | Example |
 |----|------|-----------|
 | 900 | MD4 | Raw Hash |
 | 0 | MD5 | Raw Hash |
