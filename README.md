@@ -159,12 +159,8 @@ Hashcat supports different modes for ZIP archives depending on the encryption an
 | `-m 17230`   | `$pkzip2$8*...*$/pkzip2$`                           | PKZIP mixed multi-file (checksum-only entries)                 |
 
 
-> 🔸 **Recommendation:**
-> If your ZIP file contains more than one file inside (e.g., `style.css`, `index.php`), use:
-
-```bash
--m 17220
-```
+> [!IMPORTANT]
+> If your ZIP file contains more than one file inside (e.g., `style.css`, `index.php`), use: `-m 17220`
 
 ## 🎬 Demo Walkthrough
 <p align="center">
