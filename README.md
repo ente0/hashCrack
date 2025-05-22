@@ -251,10 +251,12 @@ hashcat -a 3 -m 0 example0.hash ?a?a?a?a?a?a
 # Combination Attack
 hashcat -a 1 -m 0 example0.hash example.dict example.dict
 ```
-## Supported Hash Modes
+# Supported Hash Modes
 
-| ID | Hash-name | Example |
-|----|------|-----------|
+## Raw Hashes, salted, checksums and cyphers
+
+| Mode | Description | Category |
+|------|-------------|----------|
 | 900 | MD4 | Raw Hash |
 | 0 | MD5 | Raw Hash |
 | 100 | SHA1 | Raw Hash |
@@ -370,6 +372,11 @@ hashcat -a 1 -m 0 example0.hash example.dict example.dict
 | 12100 | PBKDF2-HMAC-SHA512 | Generic KDF |
 | 8900 | scrypt | Generic KDF |
 | 400 | phpass | Generic KDF |
+
+## Networks
+
+| Mode | Description | Category |
+|------|-------------|----------|
 | 16100 | TACACS+ | Network Protocol |
 | 11400 | SIP digest authentication (MD5) | Network Protocol |
 | 5300 | IKE-PSK MD5 | Network Protocol |
@@ -406,6 +413,11 @@ hashcat -a 1 -m 0 example0.hash example.dict example.dict
 | 27100 | NetNTLMv2 (NT) | Network Protocol |
 | 29100 | Flask Session Cookie ($salt.$salt.$pass) | Network Protocol |
 | 4800 | iSCSI CHAP authentication, MD5(CHAP) | Network Protocol |
+
+## Operating Systems
+
+| Mode | Description | Category |
+|------|-------------|----------|
 | 8500 | RACF | Operating System |
 | 6300 | AIX {smd5} | Operating System |
 | 6700 | AIX {ssha1} | Operating System |
@@ -452,6 +464,11 @@ hashcat -a 1 -m 0 example0.hash example.dict example.dict
 | 29000 | sha1($salt.sha1(utf16le($username).':'.utf16le($pass))) | Operating System |
 | 7400 | sha256crypt $5$, SHA256 (Unix) | Operating System |
 | 1800 | sha512crypt $6$, SHA512 (Unix) | Operating System |
+
+## Database Servers
+
+| Mode | Description | Category |
+|------|-------------|----------|
 | 24600 | SQLCipher | Database Server |
 | 131 | MSSQL (2000) | Database Server |
 | 132 | MSSQL (2005) | Database Server |
@@ -484,6 +501,10 @@ hashcat -a 1 -m 0 example0.hash example.dict example.dict
 | 1421 | hMailServer | FTP, HTTP, SMTP, LDAP Server |
 | 101 | nsldap, SHA-1(Base64), Netscape LDAP SHA | FTP, HTTP, SMTP, LDAP Server |
 | 111 | nsldaps, SSHA-1(Base64), Netscape LDAP SSHA | FTP, HTTP, SMTP, LDAP Server |
+
+## Enterprise Application Software Formats
+| Mode | Description | Category |
+|------|-------------|----------|
 | 7700 | SAP CODVN B (BCODE) | Enterprise Application Software (EAS) |
 | 7701 | SAP CODVN B (BCODE) from RFC_READ_TABLE | Enterprise Application Software (EAS) |
 | 7800 | SAP CODVN F/G (PASSCODE) | Enterprise Application Software (EAS) |
@@ -501,6 +522,11 @@ hashcat -a 1 -m 0 example0.hash example.dict example.dict
 | 20600 | Oracle Transportation Management (SHA256) | Enterprise Application Software (EAS) |
 | 4711 | Huawei sha1(md5($pass).$salt) | Enterprise Application Software (EAS) |
 | 20711 | AuthMe sha256 | Enterprise Application Software (EAS) |
+
+## Full Disk Encryption Formats
+
+| Mode | Description | Category |
+|------|-------------|----------|
 | 22400 | AES Crypt (SHA256) | Full-Disk Encryption (FDE) |
 | 27400 | VMware VMX (PBKDF2-HMAC-SHA1 + AES-256-CBC) | Full-Disk Encryption (FDE) |
 | 14600 | LUKS v1 (legacy) | Full-Disk Encryption (FDE) |
@@ -600,6 +626,173 @@ hashcat -a 1 -m 0 example0.hash example.dict example.dict
 | 29332     | TrueCrypt Whirlpool + XTS 1024 bit                        | Full-Disk Encryption (FDE) |
 | 29333     | TrueCrypt Whirlpool + XTS 1536 bit                        | Full-Disk Encryption (FDE) |
 | 12200     | eCryptfs                                                  | Full-Disk Encryption (FDE) |
+
+## Document Formats
+
+| Mode | Description | Category |
+|------|-------------|----------|
+| 10400 | PDF 1.1 - 1.3 (Acrobat 2 - 4) | Document |
+| 10410 | PDF 1.1 - 1.3 (Acrobat 2 - 4), collider #1 | Document |
+| 10420 | PDF 1.1 - 1.3 (Acrobat 2 - 4), collider #2 | Document |
+| 10500 | PDF 1.4 - 1.6 (Acrobat 5 - 8) | Document |
+| 25400 | PDF 1.4 - 1.6 (Acrobat 5 - 8) - user and owner pass | Document |
+| 10600 | PDF 1.7 Level 3 (Acrobat 9) | Document |
+| 10700 | PDF 1.7 Level 8 (Acrobat 10 - 11) | Document |
+| 9400 | MS Office 2007 | Document |
+| 9500 | MS Office 2010 | Document |
+| 9600 | MS Office 2013 | Document |
+| 25300 | MS Office 2016 - SheetProtection | Document |
+| 9700 | MS Office <= 2003 $0/$1, MD5 + RC4 | Document |
+| 9710 | MS Office <= 2003 $0/$1, MD5 + RC4, collider #1 | Document |
+| 9720 | MS Office <= 2003 $0/$1, MD5 + RC4, collider #2 | Document |
+| 9810 | MS Office <= 2003 $3, SHA1 + RC4, collider #1 | Document |
+| 9820 | MS Office <= 2003 $3, SHA1 + RC4, collider #2 | Document |
+| 9800 | MS Office <= 2003 $3/$4, SHA1 + RC4 | Document |
+| 18400 | Open Document Format (ODF) 1.2 (SHA-256, AES) | Document |
+| 18600 | Open Document Format (ODF) 1.1 (SHA-1, Blowfish) | Document |
+| 16200 | Apple Secure Notes | Document |
+| 23300 | Apple iWork | Document |
+
+## Password Managers
+
+| Mode | Description | Category |
+|------|-------------|----------|
+| 6600 | 1Password, agilekeychain | Password Manager |
+| 8200 | 1Password, cloudkeychain | Password Manager |
+| 9000 | Password Safe v2 | Password Manager |
+| 5200 | Password Safe v3 | Password Manager |
+| 6800 | LastPass + LastPass sniffed | Password Manager |
+| 13400 | KeePass 1 (AES/Twofish) and KeePass 2 (AES) | Password Manager |
+| 29700 | KeePass 1 (AES/Twofish) and KeePass 2 (AES) - keyfile only mode | Password Manager |
+| 23400 | Bitwarden | Password Manager |
+| 16900 | Ansible Vault | Password Manager |
+| 26000 | Mozilla key3.db | Password Manager |
+| 26100 | Mozilla key4.db | Password Manager |
+| 23100 | Apple Keychain | Password Manager |
+
+## Archives
+
+| Mode | Description | Category |
+|------|-------------|----------|
+| 11600 | 7-Zip | Archive |
+| 12500 | RAR3-hp | Archive |
+| 23800 | RAR3-p (Compressed) | Archive |
+| 23700 | RAR3-p (Uncompressed) | Archive |
+| 13000 | RAR5 | Archive |
+| 17220 | PKZIP (Compressed Multi-File) | Archive |
+| 17200 | PKZIP (Compressed) | Archive |
+| 17225 | PKZIP (Mixed Multi-File) | Archive |
+| 17230 | PKZIP (Mixed Multi-File Checksum-Only) | Archive |
+| 17210 | PKZIP (Uncompressed) | Archive |
+| 20500 | PKZIP Master Key | Archive |
+| 20510 | PKZIP Master Key (6 byte optimization) | Archive |
+| 23001 | SecureZIP AES-128 | Archive |
+| 23002 | SecureZIP AES-192 | Archive |
+| 23003 | SecureZIP AES-256 | Archive |
+| 13600 | WinZip | Archive |
+| 18900 | Android Backup | Archive |
+| 24700 | Stuffit5 | Archive |
+| 13200 | AxCrypt 1 | Archive |
+| 13300 | AxCrypt 1 in-memory SHA1 | Archive |
+| 23500 | AxCrypt 2 AES-128 | Archive |
+| 23600 | AxCrypt 2 AES-256 | Archive |
+| 14700 | iTunes backup < 10.0 | Archive |
+| 14800 | iTunes backup >= 10.0 | Archive |
+
+## Forums, CMS, E-Commerce
+
+| Mode | Description | Category |
+|------|-------------|----------|
+| 8400 | WBB3 (Woltlab Burning Board) | Forums, CMS, E-Commerce |
+| 2612 | PHPS | Forums, CMS, E-Commerce |
+| 121 | SMF (Simple Machines Forum) > v1.1 | Forums, CMS, E-Commerce |
+| 3711 | MediaWiki B type | Forums, CMS, E-Commerce |
+| 4521 | Redmine | Forums, CMS, E-Commerce |
+| 24800 | Umbraco HMAC-SHA1 | Forums, CMS, E-Commerce |
+| 11 | Joomla < 2.5.18 | Forums, CMS, E-Commerce |
+| 13900 | OpenCart | Forums, CMS, E-Commerce |
+| 11000 | PrestaShop | Forums, CMS, E-Commerce |
+| 16000 | Tripcode | Forums, CMS, E-Commerce |
+| 7900 | Drupal7 | Forums, CMS, E-Commerce |
+| 4522 | PunBB | Forums, CMS, E-Commerce |
+| 2811 | MyBB 1.2+, IPB2+ (Invision Power Board) | Forums, CMS, E-Commerce |
+| 2611 | vBulletin < v3.8.5 | Forums, CMS, E-Commerce |
+| 2711 | vBulletin >= v3.8.5 | Forums, CMS, E-Commerce |
+| 25600 | bcrypt(md5($pass)) / bcryptmd5 | Forums, CMS, E-Commerce |
+| 25800 | bcrypt(sha1($pass)) / bcryptsha1 | Forums, CMS, E-Commerce |
+| 28400 | bcrypt(sha512($pass)) / bcryptsha512 | Forums, CMS, E-Commerce |
+| 21 | osCommerce, xt:Commerce | Forums, CMS, E-Commerce |
+
+### Frameworks
+
+| Mode | Description | Category |
+|------|-------------|----------|
+| 21600 | Web2py pbkdf2-sha512 | Framework |
+| 10000 | Django (PBKDF2-SHA256) | Framework |
+| 124 | Django (SHA-1) | Framework |
+| 12001 | Atlassian (PBKDF2-HMAC-SHA1) | Framework |
+| 19500 | Ruby on Rails Restful-Authentication | Framework |
+| 27200 | Ruby on Rails Restful Auth (one round, no sitekey) | Framework |
+| 30000 | Python Werkzeug MD5 (HMAC-MD5 (key = $salt)) | Framework |
+| 30120 | Python Werkzeug SHA256 (HMAC-SHA256 (key = $salt)) | Framework |
+| 20200 | Python passlib pbkdf2-sha512 | Framework |
+| 20300 | Python passlib pbkdf2-sha256 | Framework |
+| 20400 | Python passlib pbkdf2-sha1 | Framework |
+
+### Private Keys
+
+| Mode | Description | Category |
+|------|-------------|----------|
+| 24410 | PKCS#8 Private Keys (PBKDF2-HMAC-SHA1 + 3DES/AES) | Private Key |
+| 24420 | PKCS#8 Private Keys (PBKDF2-HMAC-SHA256 + 3DES/AES) | Private Key |
+| 15500 | JKS Java Key Store Private Keys (SHA1) | Private Key |
+| 22911 | RSA/DSA/EC/OpenSSH Private Keys ($0$) | Private Key |
+| 22921 | RSA/DSA/EC/OpenSSH Private Keys ($6$) | Private Key |
+| 22931 | RSA/DSA/EC/OpenSSH Private Keys ($1, $3$) | Private Key |
+| 22941 | RSA/DSA/EC/OpenSSH Private Keys ($4$) | Private Key |
+| 22951 | RSA/DSA/EC/OpenSSH Private Keys ($5$) | Private Key |
+
+## Instant Messaging Services
+
+| Mode | Description | Category |
+|------|-------------|----------|
+| 23200 | XMPP SCRAM PBKDF2-SHA1 | Instant Messaging Service |
+| 28300 | Teamspeak 3 (channel hash) | Instant Messaging Service |
+| 22600 | Telegram Desktop < v2.1.14 (PBKDF2-HMAC-SHA1) | Instant Messaging Service |
+| 24500 | Telegram Desktop >= v2.1.14 (PBKDF2-HMAC-SHA512) | Instant Messaging Service |
+| 22301 | Telegram Mobile App Passcode (SHA256) | Instant Messaging Service |
+| 23 | Skype | Instant Messaging Service |
+
+## Cryptocurrency Wallets
+
+| Mode | Description | Category |
+|------|-------------|----------|
+| 29600 | Terra Station Wallet (AES256-CBC(PBKDF2($pass))) | Cryptocurrency Wallet |
+| 26600 | MetaMask Wallet | Cryptocurrency Wallet |
+| 21000 | BitShares v0.x - sha512(sha512_bin(pass)) | Cryptocurrency Wallet |
+| 28501 | Bitcoin WIF private key (P2PKH), compressed | Cryptocurrency Wallet |
+| 28502 | Bitcoin WIF private key (P2PKH), uncompressed | Cryptocurrency Wallet |
+| 28503 | Bitcoin WIF private key (P2WPKH, Bech32), compressed | Cryptocurrency Wallet |
+| 28504 | Bitcoin WIF private key (P2WPKH, Bech32), uncompressed | Cryptocurrency Wallet |
+| 28505 | Bitcoin WIF private key (P2SH(P2WPKH)), compressed | Cryptocurrency Wallet |
+| 28506 | Bitcoin WIF private key (P2SH(P2WPKH)), uncompressed | Cryptocurrency Wallet |
+| 11300 | Bitcoin/Litecoin wallet.dat | Cryptocurrency Wallet |
+| 16600 | Electrum Wallet (Salt-Type 1-3) | Cryptocurrency Wallet |
+| 21700 | Electrum Wallet (Salt-Type 4) | Cryptocurrency Wallet |
+| 21800 | Electrum Wallet (Salt-Type 5) | Cryptocurrency Wallet |
+| 12700 | Blockchain, My Wallet | Cryptocurrency Wallet |
+| 15200 | Blockchain, My Wallet, V2 | Cryptocurrency Wallet |
+| 18800 | Blockchain, My Wallet, Second Password (SHA256) | Cryptocurrency Wallet |
+| 25500 | Stargazer Stellar Wallet XLM | Cryptocurrency Wallet |
+| 16300 | Ethereum Pre-Sale Wallet, PBKDF2-HMAC-SHA256 | Cryptocurrency Wallet |
+| 15600 | Ethereum Wallet, PBKDF2-HMAC-SHA256 | Cryptocurrency Wallet |
+| 15700 | Ethereum Wallet, SCRYPT | Cryptocurrency Wallet |
+| 22500 | MultiBit Classic .key (MD5) | Cryptocurrency Wallet |
+| 27700 | MultiBit Classic .wallet (scrypt) | Cryptocurrency Wallet |
+| 22700 | MultiBit HD (scrypt) | Cryptocurrency Wallet |
+| 28200 | Exodus Desktop Wallet (scrypt) | Cryptocurrency Wallet |
+
+---
 
 ## 📚 Recommended Resources
 
