@@ -99,14 +99,6 @@ hashcrack hashfile
 pipx upgrade hashcrack-tool
 ```
 
-## 🛠 Optional Setup
-
-### Download Default Wordlists
-```bash
-git clone https://github.com/ente0/hashcat-defaults
-```
-Sure! Here's the **translated explanation in English** and a **cleaned-up instruction** for how to handle `$pkzip$` hashes in Hashcat:
-
 ---
 
 ### 🔧 How to Clean the Hash Format for Hashcat
