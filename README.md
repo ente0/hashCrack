@@ -253,7 +253,7 @@ hashcat -a 1 -m 0 example0.hash example.dict example.dict
 ```
 # Supported Hash Modes
 
-## Raw Hashes, salted, checksums and cyphers
+### Raw Hashes, salted, checksums and cyphers
 
 | Mode | Description | Category |
 |------|-------------|----------|
@@ -373,7 +373,7 @@ hashcat -a 1 -m 0 example0.hash example.dict example.dict
 | 8900 | scrypt | Generic KDF |
 | 400 | phpass | Generic KDF |
 
-## Networks
+### Networks
 
 | Mode | Description | Category |
 |------|-------------|----------|
@@ -414,7 +414,7 @@ hashcat -a 1 -m 0 example0.hash example.dict example.dict
 | 29100 | Flask Session Cookie ($salt.$salt.$pass) | Network Protocol |
 | 4800 | iSCSI CHAP authentication, MD5(CHAP) | Network Protocol |
 
-## Operating Systems
+### Operating Systems
 
 | Mode | Description | Category |
 |------|-------------|----------|
@@ -465,7 +465,7 @@ hashcat -a 1 -m 0 example0.hash example.dict example.dict
 | 7400 | sha256crypt $5$, SHA256 (Unix) | Operating System |
 | 1800 | sha512crypt $6$, SHA512 (Unix) | Operating System |
 
-## Database Servers
+### Database Servers
 
 | Mode | Description | Category |
 |------|-------------|----------|
@@ -502,7 +502,7 @@ hashcat -a 1 -m 0 example0.hash example.dict example.dict
 | 101 | nsldap, SHA-1(Base64), Netscape LDAP SHA | FTP, HTTP, SMTP, LDAP Server |
 | 111 | nsldaps, SSHA-1(Base64), Netscape LDAP SSHA | FTP, HTTP, SMTP, LDAP Server |
 
-## Enterprise Application Software Formats
+### Enterprise Application Software Formats
 | Mode | Description | Category |
 |------|-------------|----------|
 | 7700 | SAP CODVN B (BCODE) | Enterprise Application Software (EAS) |
@@ -523,7 +523,7 @@ hashcat -a 1 -m 0 example0.hash example.dict example.dict
 | 4711 | Huawei sha1(md5($pass).$salt) | Enterprise Application Software (EAS) |
 | 20711 | AuthMe sha256 | Enterprise Application Software (EAS) |
 
-## Full Disk Encryption Formats
+### Full Disk Encryption Formats
 
 | Mode | Description | Category |
 |------|-------------|----------|
@@ -627,7 +627,7 @@ hashcat -a 1 -m 0 example0.hash example.dict example.dict
 | 29333     | TrueCrypt Whirlpool + XTS 1536 bit                        | Full-Disk Encryption (FDE) |
 | 12200     | eCryptfs                                                  | Full-Disk Encryption (FDE) |
 
-## Document Formats
+### Document Formats
 
 | Mode | Description | Category |
 |------|-------------|----------|
@@ -653,7 +653,7 @@ hashcat -a 1 -m 0 example0.hash example.dict example.dict
 | 16200 | Apple Secure Notes | Document |
 | 23300 | Apple iWork | Document |
 
-## Password Managers
+### Password Managers
 
 | Mode | Description | Category |
 |------|-------------|----------|
@@ -670,7 +670,7 @@ hashcat -a 1 -m 0 example0.hash example.dict example.dict
 | 26100 | Mozilla key4.db | Password Manager |
 | 23100 | Apple Keychain | Password Manager |
 
-## Archives
+### Archives
 
 | Mode | Description | Category |
 |------|-------------|----------|
@@ -699,7 +699,7 @@ hashcat -a 1 -m 0 example0.hash example.dict example.dict
 | 14700 | iTunes backup < 10.0 | Archive |
 | 14800 | iTunes backup >= 10.0 | Archive |
 
-## Forums, CMS, E-Commerce
+### Forums, CMS, E-Commerce
 
 | Mode | Description | Category |
 |------|-------------|----------|
@@ -752,7 +752,7 @@ hashcat -a 1 -m 0 example0.hash example.dict example.dict
 | 22941 | RSA/DSA/EC/OpenSSH Private Keys ($4$) | Private Key |
 | 22951 | RSA/DSA/EC/OpenSSH Private Keys ($5$) | Private Key |
 
-## Instant Messaging Services
+### Instant Messaging Services
 
 | Mode | Description | Category |
 |------|-------------|----------|
@@ -763,7 +763,7 @@ hashcat -a 1 -m 0 example0.hash example.dict example.dict
 | 22301 | Telegram Mobile App Passcode (SHA256) | Instant Messaging Service |
 | 23 | Skype | Instant Messaging Service |
 
-## Cryptocurrency Wallets
+### Cryptocurrency Wallets
 
 | Mode | Description | Category |
 |------|-------------|----------|
