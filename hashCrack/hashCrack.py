@@ -4,9 +4,9 @@ import sys
 import subprocess
 import traceback
 from termcolor import colored
-from hashCrack.functions import (
+from functions import (
     define_default_parameters, define_windows_parameters, clear_screen,
-    show_menu, handle_option, define_hashfile, verify_hash_crackable, clean_hashcat_cache
+    show_menu, handle_option, define_hashfile, clean_hashcat_cache
 )
 
 def check_file_exists(file_path):
@@ -68,7 +68,7 @@ def main():
                     print(colored("Goodbye!", 'green'))
                     sys.exit(0)
                 
-                if user_option in ['1', '2', '3', '4']:
+                if user_option in ['1', '2', '3', '4', '5']:
                     try:
                         hash_file = define_hashfile()
                         
@@ -77,11 +77,6 @@ def main():
                         except (FileNotFoundError, ValueError) as e:
                             print(colored(f"[!] Error: {e}", 'red'))
                             time.sleep(2)
-                            continue
-                        
-                        if not verify_hash_crackable(hash_file):
-                            print(colored("[!] Hash might already be cracked or there was an error.", 'yellow'))
-                            input("Press Enter to continue...")
                             continue
                         
                         handle_option(user_option, default_os, hash_file)
