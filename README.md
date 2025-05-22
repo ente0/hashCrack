@@ -80,6 +80,7 @@ sudo pacman -S hashcat python python-pip python-termcolor python-pipx
 ### Install via pip
 ```bash
 pipx install hashcrack-tool
+pipx inject hashcrack-tool setuptools termcolor
 ```
 
 > [!IMPORTANT]
