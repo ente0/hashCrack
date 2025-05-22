@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/github/license/ente0/hashCrack" alt="License">
   <img src="https://img.shields.io/badge/language-python-green" alt="Language: Python">
   <img src="https://img.shields.io/badge/dependencies-hashcat-blue" alt="Dependencies">
-  <img src="https://img.shields.io/badge/release-v1.4.17-green" alt="Version">
+  <img src="https://img.shields.io/badge/release-v1.4.19-green" alt="Version">
 </p>
 
 <div align="center">
