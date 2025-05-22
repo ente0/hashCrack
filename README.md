@@ -61,13 +61,13 @@
 ### Linux Installation
 ```bash
 # Kali/Debian/Ubuntu
-sudo apt update && sudo apt install hashcat python3 python3-pip python3-termcolor pipx
+sudo apt update && sudo apt install hashcat python3 python3-pip python3-termcolor python3-setuptools pipx
 
 # Fedora
-sudo dnf install hashcat python3 python3-pip python3-termcolor python3-pipx
+sudo dnf install hashcat python3 python3-pip python3-termcolor python3-setuptools python3-pipx
 
 # Arch Linux/Manjaro
-sudo pacman -S hashcat python python-pip python-termcolor python-pipx
+sudo pacman -S hashcat python python-pip python-termcolor python-setuptools python-pipx
 ```
 
 ### Windows Installation
