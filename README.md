@@ -236,6 +236,7 @@ If you encounter errors when running Hashcat, you can follow these steps to trou
 | 2 (Mode 9) | Rule-based Crack | Advanced dictionary mutations |
 | 3 (Mode 3) | Brute-Force Crack | Exhaustive password generation |
 | 4 (Mode 6) | Hybrid Crack | Wordlist + mask attack |
+| 5 | View keys | Print found plaintexts |
 | 0 | Clear Potfile | Reset previous cracking results |
 | X | OS Menu Switch | Update OS-specific settings |
 | Q | Quit | Exit the program |
