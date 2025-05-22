@@ -553,7 +553,7 @@ hashcat -a 1 -m 0 example0.hash example.dict example.dict
 | 13782 | VeraCrypt Streebog-512 + XTS 1024 bit + boot-mode (legacy) | Full-Disk Encryption (FDE) |
 | 13783 | VeraCrypt Streebog-512 + XTS 1536 bit + boot-mode (legacy) | Full-Disk Encryption (FDE) |
 | 29471 | VeraCrypt Streebog-512 + XTS 512 bit | Full-Disk Encryption (FDE) |
-| 29472 | VeraCrypt Streebog-512 + XTS 1024 bit | Full-
+| 29472 | VeraCrypt Streebog-512 + XTS 1024 bit | Full-Disk Encryption (FDE) |
 ## 📚 Recommended Resources
 
 #### Wordlists & Dictionaries
