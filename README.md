@@ -202,32 +202,29 @@ If you encounter errors when running Hashcat, you can follow these steps to trou
    sudo hashcat -b
    ```
 
-This will perform a system benchmark. If it runs without errors, your Hashcat installation is likely working correctly.
+   This will perform a system benchmark. If it runs without errors, your Hashcat installation is likely working correctly.
 
 5. **Segmentation Fault or Crashes**:
+   If you encounter a segmentation fault during execution, like the following error:
+   ```
+   Counting lines in backup.zip. Please be patient...
+   [1] 633187 segmentation fault (core dumped)  hashcat --session=2025-05-21_2 -m 17220 backup.zip -a 0 -w 3 -o ...
+   ```
+   This may be due to a **bug or compatibility issue in newer versions** of Hashcat. In such cases, try downgrading to an earlier stable version, such as **Hashcat 6.1.1**, which has resolved similar issues for others.
 
-If you encounter a segmentation fault during execution, like the following error:
+   You can find relevant discussion and workaround suggestions in this thread:
+   🔗 [https://hashcat.net/forum/thread-9467.html](https://hashcat.net/forum/thread-9467.html)
 
-```
-Counting lines in backup.zip. Please be patient...
-[1] 633187 segmentation fault (core dumped)  hashcat --session=2025-05-21_2 -m 17220 backup.zip -a 0 -w 3 -o ...
-```
+   To download Hashcat 6.1.1:
 
-This may be due to a **bug or compatibility issue in newer versions** of Hashcat. In such cases, try downgrading to an earlier stable version, such as **Hashcat 6.1.1**, which has resolved similar issues for others.
-
-You can find relevant discussion and workaround suggestions in this thread:
-🔗 [https://hashcat.net/forum/thread-9467.html](https://hashcat.net/forum/thread-9467.html)
-
-To download Hashcat 6.1.1:
-
-```bash
-wget https://github.com/hashcat/hashcat/releases/download/v6.1.1/hashcat-6.1.1.7z
-sudo apt install p7zip-full
-7z x hashcat-6.1.1.7z
-sudo mv hashcat-6.1.1 /opt/hashcat-6.1.1
-sudo ln -s /opt/hashcat-6.1.1/hashcat.bin /usr/local/bin/hashcat
-sudo rm hashcat-6.1.1.7z
-```
+   ```bash
+   wget https://github.com/hashcat/hashcat/releases/download/v6.1.1/hashcat-6.1.1.7z
+   sudo apt install p7zip-full
+   7z x hashcat-6.1.1.7z
+   sudo mv hashcat-6.1.1 /opt/hashcat-6.1.1
+   sudo ln -s /opt/hashcat-6.1.1/hashcat.bin /usr/local/bin/hashcat
+   sudo rm hashcat-6.1.1.7z
+   ```
 
 ---
 
