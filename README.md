@@ -554,6 +554,53 @@ hashcat -a 1 -m 0 example0.hash example.dict example.dict
 | 13783 | VeraCrypt Streebog-512 + XTS 1536 bit + boot-mode (legacy) | Full-Disk Encryption (FDE) |
 | 29471 | VeraCrypt Streebog-512 + XTS 512 bit | Full-Disk Encryption (FDE) |
 | 29472 | VeraCrypt Streebog-512 + XTS 1024 bit | Full-Disk Encryption (FDE) |
+| 29473     | VeraCrypt Streebog-512 + XTS 1536 bit                     | Full-Disk Encryption (FDE) |
+| 29481     | VeraCrypt Streebog-512 + XTS 512 bit + boot-mode          | Full-Disk Encryption (FDE) |
+| 29482     | VeraCrypt Streebog-512 + XTS 1024 bit + boot-mode         | Full-Disk Encryption (FDE) |
+| 29483     | VeraCrypt Streebog-512 + XTS 1536 bit + boot-mode         | Full-Disk Encryption (FDE) |
+| 13731     | VeraCrypt Whirlpool + XTS 512 bit (legacy)                | Full-Disk Encryption (FDE) |
+| 13732     | VeraCrypt Whirlpool + XTS 1024 bit (legacy)               | Full-Disk Encryption (FDE) |
+| 13733     | VeraCrypt Whirlpool + XTS 1536 bit (legacy)               | Full-Disk Encryption (FDE) |
+| 29431     | VeraCrypt Whirlpool + XTS 512 bit                         | Full-Disk Encryption (FDE) |
+| 29432     | VeraCrypt Whirlpool + XTS 1024 bit                        | Full-Disk Encryption (FDE) |
+| 29433     | VeraCrypt Whirlpool + XTS 1536 bit                        | Full-Disk Encryption (FDE) |
+| 23900     | BestCrypt v3 Volume Encryption                            | Full-Disk Encryption (FDE) |
+| 16700     | FileVault 2                                               | Full-Disk Encryption (FDE) |
+| 27500     | VirtualBox (PBKDF2-HMAC-SHA256 & AES-128-XTS)             | Full-Disk Encryption (FDE) |
+| 27600     | VirtualBox (PBKDF2-HMAC-SHA256 & AES-256-XTS)             | Full-Disk Encryption (FDE) |
+| 20011     | DiskCryptor SHA512 + XTS 512 bit                          | Full-Disk Encryption (FDE) |
+| 20012     | DiskCryptor SHA512 + XTS 1024 bit                         | Full-Disk Encryption (FDE) |
+| 20013     | DiskCryptor SHA512 + XTS 1536 bit                         | Full-Disk Encryption (FDE) |
+| 22100     | BitLocker                                                 | Full-Disk Encryption (FDE) |
+| 12900     | Android FDE (Samsung DEK)                                 | Full-Disk Encryption (FDE) |
+|  8800     | Android FDE <= 4.3                                        | Full-Disk Encryption (FDE) |
+| 18300     | Apple File System (APFS)                                  | Full-Disk Encryption (FDE) |
+|  6211     | TrueCrypt RIPEMD160 + XTS 512 bit (legacy)                | Full-Disk Encryption (FDE) |
+|  6212     | TrueCrypt RIPEMD160 + XTS 1024 bit (legacy)               | Full-Disk Encryption (FDE) |
+|  6213     | TrueCrypt RIPEMD160 + XTS 1536 bit (legacy)               | Full-Disk Encryption (FDE) |
+|  6241     | TrueCrypt RIPEMD160 + XTS 512 bit + boot-mode (legacy)    | Full-Disk Encryption (FDE) |
+|  6242     | TrueCrypt RIPEMD160 + XTS 1024 bit + boot-mode (legacy)   | Full-Disk Encryption (FDE) |
+|  6243     | TrueCrypt RIPEMD160 + XTS 1536 bit + boot-mode (legacy)   | Full-Disk Encryption (FDE) |
+| 29311     | TrueCrypt RIPEMD160 + XTS 512 bit                         | Full-Disk Encryption (FDE) |
+| 29312     | TrueCrypt RIPEMD160 + XTS 1024 bit                        | Full-Disk Encryption (FDE) |
+| 29313     | TrueCrypt RIPEMD160 + XTS 1536 bit                        | Full-Disk Encryption (FDE) |
+| 29341     | TrueCrypt RIPEMD160 + XTS 512 bit + boot-mode             | Full-Disk Encryption (FDE) |
+| 29342     | TrueCrypt RIPEMD160 + XTS 1024 bit + boot-mode            | Full-Disk Encryption (FDE) |
+| 29343     | TrueCrypt RIPEMD160 + XTS 1536 bit + boot-mode            | Full-Disk Encryption (FDE) |
+|  6221     | TrueCrypt SHA512 + XTS 512 bit (legacy)                   | Full-Disk Encryption (FDE) |
+|  6222     | TrueCrypt SHA512 + XTS 1024 bit (legacy)                  | Full-Disk Encryption (FDE) |
+|  6223     | TrueCrypt SHA512 + XTS 1536 bit (legacy)                  | Full-Disk Encryption (FDE) |
+| 29321     | TrueCrypt SHA512 + XTS 512 bit                            | Full-Disk Encryption (FDE) |
+| 29322     | TrueCrypt SHA512 + XTS 1024 bit                           | Full-Disk Encryption (FDE) |
+| 29323     | TrueCrypt SHA512 + XTS 1536 bit                           | Full-Disk Encryption (FDE) |
+|  6231     | TrueCrypt Whirlpool + XTS 512 bit (legacy)                | Full-Disk Encryption (FDE) |
+|  6232     | TrueCrypt Whirlpool + XTS 1024 bit (legacy)               | Full-Disk Encryption (FDE) |
+|  6233     | TrueCrypt Whirlpool + XTS 1536 bit (legacy)               | Full-Disk Encryption (FDE) |
+| 29331     | TrueCrypt Whirlpool + XTS 512 bit                         | Full-Disk Encryption (FDE) |
+| 29332     | TrueCrypt Whirlpool + XTS 1024 bit                        | Full-Disk Encryption (FDE) |
+| 29333     | TrueCrypt Whirlpool + XTS 1536 bit                        | Full-Disk Encryption (FDE) |
+| 12200     | eCryptfs                                                  | Full-Disk Encryption (FDE) |
+
 ## 📚 Recommended Resources
 
 #### Wordlists & Dictionaries
