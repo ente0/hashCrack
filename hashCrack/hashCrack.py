@@ -4,7 +4,7 @@ import sys
 import subprocess
 import traceback
 from termcolor import colored
-from functions import (
+from hashCrack.functions import (
     define_default_parameters, define_windows_parameters, clear_screen,
     show_menu, handle_option, define_hashfile, clean_hashcat_cache
 )
