@@ -171,7 +171,7 @@ def display_plaintext_status():
         separator = "=" * terminal_width
         
         print(colored(separator, 'green'))
-        print(colored(" Found Plaintexts:", 'green', attrs=['bold']))
+        print(colored(" Plaintexts:", 'green', attrs=['bold']))
         print(colored(separator, 'green'))
         
         for idx, found in enumerate(found_plaintexts, 1):
@@ -361,7 +361,7 @@ def show_menu(default_os):
     print(colored(f" Welcome to hashCrack! - Menu Options for {default_os}", 'cyan', attrs=['bold']))
     
     if found_plaintexts:
-        print(colored(" [✓] Found Plaintexts:", 'green', attrs=['bold']))
+        print(colored(" [✓] Plaintexts:", 'green', attrs=['bold']))
         for found in found_plaintexts:
             print(colored(f"  → {found['plaintext']} ", 'yellow', attrs=['bold']) + 
                   colored(f"(Session: {found['session']})", 'green'))
