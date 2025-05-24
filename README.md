@@ -245,7 +245,7 @@ hashcat -a 1 -m 0 example0.hash example.dict example.dict
 ```
 # Supported Hash Modes
 
-### Raw Hashes, salted, checksums and cyphers
+### Raw Hashes, salted, checksums and ciphers
 
 | Mode | Description | Category |
 |------|-------------|----------|
