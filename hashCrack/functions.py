@@ -57,8 +57,6 @@ def define_windows_parameters():
 def clear_screen():
     os.system("cls" if os.name == "nt" else "clear")
 
-
-
 def print_hashcrack_title():
     """
     Print centered hashCrack ASCII art logo in blue color.
@@ -154,29 +152,6 @@ def monitor_plaintext_status(default_os="Linux"):
             print("\033]0;hashCrack - No plaintexts found\007", end="", flush=True)
         
         return []
-
-def display_plaintext_status():
-    """
-    Display a summary of found plaintexts in the terminal.
-    This function calls monitor_plaintext_status() and prints the results.
-    """
-    found_plaintexts = monitor_plaintext_status()
-    
-    if found_plaintexts:
-        terminal_width = shutil.get_terminal_size().columns
-        separator = "=" * terminal_width
-        
-        print(colored(separator, 'green'))
-        print(colored(" Plaintexts:", 'green', attrs=['bold']))
-        print(colored(separator, 'green'))
-        
-        for idx, found in enumerate(found_plaintexts, 1):
-            print(colored(f" [{idx}] Plaintext:", 'cyan', attrs=['bold']), colored(found['plaintext'], 'yellow'))
-            print(colored(f"     Session:", 'cyan'), found['session'])
-            print(colored(f"     Path:", 'cyan'), found['path'])
-            print()
-    else:
-        print(colored("\n No plaintexts found in status files.", 'yellow'))
 
 def print_hashcrack_title():
     """
@@ -335,13 +310,14 @@ def display_plaintext_status():
     else:
         print(colored("\n No plaintexts found in status files.", 'yellow'))
 
-def show_menu(default_os):
+def show_menu(default_os, hash_file=None):
     """
     Display the main menu for hashCrack with OS-specific options.
     Difficulty levels are right-aligned at the exact terminal edge.
     
     Parameters:
         default_os (str): Current operating system ('Linux' or 'Windows')
+        hash_file (str): Path to the loaded hash file (optional)
     
     Returns:
         str: User's menu selection
@@ -356,8 +332,30 @@ def show_menu(default_os):
     print(colored(separator, 'cyan'))
     print(colored(f" Welcome to hashCrack! - Menu Options for {default_os}", 'cyan', attrs=['bold']))
     
+    if hash_file and os.path.isfile(hash_file) and os.path.getsize(hash_file) > 0:
+        file_name = os.path.basename(hash_file)
+        file_size = os.path.getsize(hash_file)
+        
+        try:
+            with open(hash_file, 'r') as f:
+                first_line = f.readline().strip()
+                hash_preview = first_line[:20] + "..." if len(first_line) > 20 else first_line
+            print(colored(f" [✓] [HASH FILE] {file_name} loaded ({file_size} bytes) - Preview: {hash_preview}", 'green', attrs=['bold']))
+        except Exception as e:
+            print(colored(f" [✓] [HASH FILE] {file_name} loaded ({file_size} bytes) - Error reading preview: {str(e)}", 'yellow', attrs=['bold']))
+    else:
+        if hash_file:
+            if not os.path.isfile(hash_file):
+                print(colored(f" [✕] [HASH FILE] Error: File '{hash_file}' not found", 'red', attrs=['bold']))
+            elif os.path.getsize(hash_file) == 0:
+                print(colored(f" [✕] [HASH FILE] Error: File '{hash_file}' is empty", 'red', attrs=['bold']))
+            else:
+                print(colored(f" [✕] [HASH FILE] Error: Unknown issue with file '{hash_file}'", 'red', attrs=['bold']))
+        else:
+            print(colored(" [✕] [HASH FILE] No hash file loaded", 'red', attrs=['bold']))
+    
     if found_plaintexts:
-        print(colored(" [✓] Plaintexts:", 'green', attrs=['bold']))
+        print(colored(" [✓] [PLAINTEXTS]:", 'green', attrs=['bold']))
         for found in found_plaintexts:
             print(colored(f"  → {found['plaintext']} ", 'yellow', attrs=['bold']) + 
                   colored(f"(Session: {found['session']})", 'green'))
@@ -369,7 +367,7 @@ def show_menu(default_os):
         ("Crack with Association (wordlist + rule)", "[MEDIUM]", 'green'),
         ("Crack with Brute-Force (mask)", "[HARD]", 'yellow'),
         ("Crack with Combinator (wordlist + mask)", "[ADVANCED]", 'red'),
-        ("Display Plaintext Status","",None)
+        ("Display Plaintext Status", "", None)
     ]
     
     print()
@@ -379,7 +377,10 @@ def show_menu(default_os):
         visible_length = len(f" [{idx}] {option_text}")
         spaces = terminal_width - visible_length - len(difficulty)
         
-        print(f"{option_start}{' ' * spaces}{colored(difficulty, diff_color, attrs=['bold'])}")
+        if diff_color:
+            print(f"{option_start}{' ' * spaces}{colored(difficulty, diff_color, attrs=['bold'])}")
+        else:
+            print(f"{option_start}")
     
     print(colored(dash_separator, 'cyan'))
     
@@ -387,7 +388,7 @@ def show_menu(default_os):
         ("Clear Hashcat Potfile", "[UTILITY]", 'magenta'),
     ]
     
-    for idx, (option_text, tag, color) in enumerate(utility_options):
+    for idx, (option_text, tag, color) in enumerate(utility_options, 6):  # Inizia da 6
         utility_start = f" {colored(f'[{idx}]', color, attrs=['bold'])} {option_text}"
         
         visible_utility_length = len(f" [{idx}] {option_text}")
@@ -399,8 +400,9 @@ def show_menu(default_os):
     print(f" {colored('Press X to switch to Windows' if default_os == 'Linux' else 'Press X to switch to Linux', 'magenta', attrs=['bold'])}.")
     print(colored(separator, 'magenta'))
     
-    user_option = input(colored("\nEnter option (0-5, X to switch OS, Q to quit): ", 'cyan', attrs=['bold'])).strip().lower()
+    user_option = input(colored("\nEnter option (1-6, X to switch OS, Q to quit): ", 'cyan', attrs=['bold'])).strip().lower()
     return user_option
+
 def handle_option(option, default_os, hash_file):
     """
     Unified function to handle menu options for the hashcat cracking tool.
@@ -580,7 +582,6 @@ def restore_session(restore_file_input, default_restorepath):
     cmd = f"hashcat --session={session} --restore"
     print(colored(f"[*] Executing: {cmd}", "blue"))
     os.system(cmd)
-
 
 def define_hashfile():
     parser = argparse.ArgumentParser(description="A tool for cracking hashes using Hashcat.")

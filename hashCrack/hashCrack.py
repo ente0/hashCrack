@@ -42,7 +42,9 @@ def main():
         while True:
             try:
                 clear_screen()
-                user_option = show_menu(default_os)
+                hash_file = define_hashfile()
+
+                user_option = show_menu(default_os,hash_file)
                 
                 if user_option == 'x':
                     default_os = "Linux" if default_os == "Windows" else "Windows"
@@ -69,9 +71,7 @@ def main():
                     sys.exit(0)
                 
                 if user_option in ['1', '2', '3', '4', '5']:
-                    try:
-                        hash_file = define_hashfile()
-                        
+                    try:                        
                         try:
                             check_file_exists(hash_file)
                         except (FileNotFoundError, ValueError) as e:
