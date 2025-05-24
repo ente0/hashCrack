@@ -156,7 +156,7 @@ Hashcat supports different modes for ZIP archives depending on the encryption an
 
 ## 🎬 Demo Walkthrough
 <p align="center">
-  <video src="https://github.com/user-attachments/assets/bcfc0ecd-6cde-436d-87df-4fb2ed1d90d0" />
+  <video src="https://github.com/user-attachments/assets/3cbfb116-7801-41bb-b0ab-6edcaa4a4fe6" />
 </p>
     
 > [!TIP]
