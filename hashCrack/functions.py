@@ -1,13 +1,10 @@
 import os
 import sys
 import time
-import random
 import subprocess
 import shutil
 import argparse
-import termcolor
 from importlib import resources
-import glob
 from pathlib import Path
 import pkg_resources 
 from pathlib import Path
@@ -60,8 +57,7 @@ def define_windows_parameters():
 def clear_screen():
     os.system("cls" if os.name == "nt" else "clear")
 
-import shutil
-from termcolor import colored
+
 
 def print_hashcrack_title():
     """
@@ -405,17 +401,21 @@ def show_menu(default_os):
     
     user_option = input(colored("\nEnter option (0-5, X to switch OS, Q to quit): ", 'cyan', attrs=['bold'])).strip().lower()
     return user_option
-
 def handle_option(option, default_os, hash_file):
+    """
+    Unified function to handle menu options for the hashcat cracking tool.
+    Supports cleaning cache, displaying status, and executing cracking scripts.
+    """
     script_map = {
         "1": "crack_wordlist.py",
-        "2": "crack_rule.py",
+        "2": "crack_rule.py", 
         "3": "crack_bruteforce.py",
         "4": "crack_combo.py"
     }
+    os.system('cls' if os.name == 'nt' else 'clear')
 
     print("...", flush=True)
-
+    
     if option.lower() == "q":
         print(colored("Done! Exiting...", 'yellow'))
         sys.exit(0)
@@ -427,66 +427,23 @@ def handle_option(option, default_os, hash_file):
             print(colored("[!] Failed to clean hashcat potfile.", 'red'))
         input(colored("\nPress Enter to return to the menu...", 'cyan'))
         return
-    elif option == "1":  # 
+    
+    elif option == "5":
         display_plaintext_status()
         input(colored("\nPress Enter to return to the menu...", 'cyan'))
         return
-
+    
     script_name = script_map.get(option)
     if not script_name:
         print(colored("Invalid option. Please try again.", 'red'))
         return
-
+    
     try:
         script_type = "windows" if default_os == "Windows" else "linux"
         script_path = get_package_script_path(script_name, script_type)
-        
         print(colored(f'Executing {script_path}', 'green'))
-        
         python_cmd = "python3" if default_os == "Linux" else "python"
         os.system(f'{python_cmd} "{script_path}" "{hash_file}"')
-    
-    except FileNotFoundError as e:
-        print(colored(f"Error: {e}", 'red'))
-    except Exception as e:
-        print(colored(f"Unexpected error: {e}", 'red'))
-    
-    input("Press Enter to return to the menu...")
-
-
-def handle_option(option, default_os, hash_file):
-    script_map = {
-        "1": "crack_wordlist.py",
-        "2": "crack_rule.py",
-        "3": "crack_bruteforce.py",
-        "4": "crack_combo.py"
-    }
-
-    print("...", flush=True)
-
-    if option.lower() == "q":
-        print(colored("Done! Exiting...", 'yellow'))
-        sys.exit(0)
-    
-    if option == "5":
-        display_plaintext_status()
-        input(colored("\nPress Enter to return to the menu...", 'cyan'))
-        return
-
-    script_name = script_map.get(option)
-    if not script_name:
-        print(colored("Invalid option. Please try again.", 'red'))
-        return
-
-    try:
-        script_type = "windows" if default_os == "Windows" else "linux"
-        script_path = get_package_script_path(script_name, script_type)
-        
-        print(colored(f'Executing {script_path}', 'green'))
-        
-        python_cmd = "python3" if default_os == "Linux" else "python"
-        os.system(f'{python_cmd} "{script_path}" "{hash_file}"')
-    
     except FileNotFoundError as e:
         print(colored(f"Error: {e}", 'red'))
     except Exception as e:

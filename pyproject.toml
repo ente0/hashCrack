@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hashcrack-tool"
-version = "1.4.20"
+version = "1.4.25"
 description = "A tool for cracking any hash supported by Hashcat"
 authors = [
     {name = "ente0"},
