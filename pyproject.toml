@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+version = "2.0.0"
+description = "Interactive TUI for Hashcat: wordlist, rule, brute-force and combinator attacks with structured JSON logging"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.8"
+keywords = ["hashcat", "hash-cracking", "password-cracking", "security", "tui", "pentesting"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Security",
+]
+dependencies = [
+    "textual>=0.60",
+    "rich>=13.0",
+    "termcolor>=2.0",
+    "importlib-resources; python_version < '3.9'"
+]
+
+# Install with:  pipx install git+https://github.com/ente0/hashCrack
+# or locally:    pipx install .
+[project.scripts]
+hashcrack = "hashCrack.hashCrack:main"
+
+[tool.setuptools]
+packages = [
+    "hashCrack",
+    "hashCrack.linux",
+    "hashCrack.windows"
+]
+
+[tool.setuptools.package-data]
+hashCrack = [
+    "linux/*.py",
+    "windows/*.py"
+]
+
+[project.urls]
+Homepage = "https://github.com/ente0/hashCrack"
+Issues = "https://github.com/ente0/hashCrack/issues"

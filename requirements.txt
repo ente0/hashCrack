@@ -1,0 +1,4 @@
+textual>=0.60
+rich>=13.0
+termcolor>=2.0
+importlib-resources; python_version < "3.9"
