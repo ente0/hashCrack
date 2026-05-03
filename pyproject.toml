@@ -3,6 +3,7 @@ requires = ["setuptools>=61", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
+name = "hashCrack"
 version = "2.0.0"
 description = "Interactive TUI for Hashcat: wordlist, rule, brute-force and combinator attacks with structured JSON logging"
 readme = "README.md"
@@ -27,23 +28,14 @@ dependencies = [
     "importlib-resources; python_version < '3.9'"
 ]
 
-# Install with:  pipx install git+https://github.com/ente0/hashCrack
-# or locally:    pipx install .
 [project.scripts]
-hashcrack = "hashCrack.hashCrack:main"
+hashcrack = "hashCrack:main"
 
-[tool.setuptools]
-packages = [
-    "hashCrack",
-    "hashCrack.linux",
-    "hashCrack.windows"
-]
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [tool.setuptools.package-data]
-hashCrack = [
-    "linux/*.py",
-    "windows/*.py"
-]
+hashCrack = ["linux/*.py", "windows/*.py"]
 
 [project.urls]
 Homepage = "https://github.com/ente0/hashCrack"
