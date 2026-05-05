@@ -3,7 +3,6 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/license/ente0/hashCrack" alt="License">
   <img src="https://img.shields.io/badge/python-3.8%2B-blue" alt="Python 3.8+">
   <img src="https://img.shields.io/badge/ui-Textual-magenta" alt="Textual TUI">
   <img src="https://img.shields.io/badge/backend-hashcat-orange" alt="Hashcat">
