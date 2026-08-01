@@ -451,15 +451,16 @@ def animate_text(text, delay):
 
 
 def get_package_script_path(script_name, os_type):
+    package_name = os_type.lower()
     try:
-        package_path = resources.files(f"hashCrack.{os_type.lower()}") / script_name
+        package_path = resources.files(package_name) / script_name
         if not package_path.is_file():
             raise FileNotFoundError(f"Script {script_name} not found in package")
         return package_path
     except (ImportError, AttributeError, TypeError):
         if pkg_resources is None:
             raise FileNotFoundError(f"Cannot locate {script_name}")
-        package_path = pkg_resources.resource_filename("hashCrack", f"{os_type.lower()}/{script_name}")
+        package_path = pkg_resources.resource_filename(package_name, script_name)
         if not os.path.exists(package_path):
             raise FileNotFoundError(f"Script {script_name} not found in package")
         return Path(package_path)

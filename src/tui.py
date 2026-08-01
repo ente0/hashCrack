@@ -22,7 +22,7 @@ from textual.widgets import (
     Button, DataTable, Footer, Header, Input, Label, RichLog, Static, Switch,
 )
 
-from hashCrack.functions import (
+from functions import (
     LOGS_DIR,
     clean_hashcat_cache,
     collect_found_plaintexts,

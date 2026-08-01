@@ -31,11 +31,11 @@ dependencies = [
 [project.scripts]
 hashcrack = "hashCrack:main"
 
+[tool.setuptools]
+py-modules = ["functions", "hashCrack", "linux_inputs", "tui", "windows_inputs"]
+
 [tool.setuptools.packages.find]
 where = ["src"]
-
-[tool.setuptools.package-data]
-hashCrack = ["linux/*.py", "windows/*.py"]
 
 [project.urls]
 Homepage = "https://github.com/ente0/hashCrack"

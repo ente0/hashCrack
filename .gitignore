@@ -414,6 +414,7 @@ dist/
 # Security
 eapol*
 hash*
+!src/hashCrack.py
 !hashCrack/
 !hashCrack/**
 !hashcrack-tool
