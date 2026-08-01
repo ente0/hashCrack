@@ -40,11 +40,11 @@ and full keyboard-driven navigation.
 | Component | Notes |
 |-----------|-------|
 | Python    | `>= 3.8` |
-| pipx      | Recommended installer — `pip install pipx` or `apt install pipx` |
+| pip       | Included with Python; used inside the project's virtual environment |
 | hashcat   | Must be on `PATH` (or reachable via the configured Windows path) |
 | GPU/CPU   | Any device hashcat can target; `--force` bypasses driver warnings when needed |
 
-Python dependencies (see [`requirements.txt`](./requirements.txt), resolved automatically by pipx):
+Python dependencies (see [`requirements.txt`](./requirements.txt), installed with pip inside `.venv`):
 
 | Package | Version | Purpose |
 |---------|---------|---------|
@@ -56,29 +56,46 @@ Python dependencies (see [`requirements.txt`](./requirements.txt), resolved auto
 ## Installation
 
 > [!NOTE]
-> hashcrack is distributed via **pipx only**. It is not published on PyPI.
-> Install pipx first if you don't have it: `pip install --user pipx && pipx ensurepath`
+> hashcrack is not published on PyPI. Install it in a project-local virtual
+> environment; this keeps all Python packages and the `hashcrack` executable
+> isolated from the system Python.
 
 ### From GitHub (recommended)
 
 ```bash
-pipx install git+https://github.com/ente0/hashCrack.git
-```
-
-### From a local checkout
-
-```bash
 git clone https://github.com/ente0/hashCrack.git
 cd hashCrack
-pipx install .
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e .
 ```
 
-To reinstall after pulling new changes:
+On Windows PowerShell, activate the environment with:
+
+```bash
+.venv\Scripts\Activate.ps1
+```
+
+### From an existing local checkout
+
+```bash
+cd hashCrack
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e .
+```
+
+After pulling new changes, install the updated project into the active environment:
 
 ```bash
 git pull
-pipx install --force .
+python -m pip install -e .
 ```
+
+The `hashcrack` command is available only while `.venv` is active. Leave the
+environment when finished with `deactivate`.
 
 ### System packages for `hashcat`
 
@@ -306,14 +323,18 @@ hashcat --session=YYYY-MM-DD --restore
 ```bash
 git clone https://github.com/ente0/hashCrack.git
 cd hashCrack
-pipx install .
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e .
 hashcrack path/to/hash
 ```
 
-After every code change, reinstall in place:
+After every code change, the editable install picks it up immediately. When
+dependencies or project metadata change, refresh the active environment:
 
 ```bash
-pipx install --force .
+python -m pip install -e .
 ```
 
 Layout:

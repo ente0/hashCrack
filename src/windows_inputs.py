@@ -2,7 +2,7 @@
 import os
 from termcolor import colored
 
-from hashCrack.functions import (
+from functions import (
     list_sessions, restore_session, define_windows_parameters, get_unique_session_name
 )
 

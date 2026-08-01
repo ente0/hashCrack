@@ -7,10 +7,10 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")
 
 from rich.console import Console
 
-from hashCrack.functions import (
+from functions import (
     define_windows_parameters, define_logs, run_hashcat, validate_hashfile,
 )
-from hashCrack.windows_inputs import (
+from windows_inputs import (
     define_mask, define_length, define_session, define_status, define_hashmode,
     define_workload, define_device, define_hashcat, define_force,
 )
