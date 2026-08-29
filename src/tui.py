@@ -10,20 +10,8 @@ import os
 import re
 import shlex
 import subprocess
-from pathlib import Path
-
-from rich.text import Text
-from textual import on, work
-from textual.app import App, ComposeResult
-from textual.binding import Binding
-from textual.containers import Container, Grid, Horizontal, VerticalScroll, Vertical
-from textual.screen import ModalScreen, Screen
-from textual.widgets import (
-    Button, DataTable, Footer, Header, Input, Label, RichLog, Static, Switch,
-)
 
 from functions import (
-    LOGS_DIR,
     clean_hashcat_cache,
     collect_found_plaintexts,
     count_sessions,
@@ -31,9 +19,27 @@ from functions import (
     define_logs,
     define_windows_parameters,
     get_potfile_info,
+    private_text_open,
     save_logs,
+    validate_session_name,
 )
-
+from rich.text import Text
+from textual import on, work
+from textual.app import App, ComposeResult
+from textual.binding import Binding
+from textual.containers import Container, Grid, Horizontal, Vertical, VerticalScroll
+from textual.screen import ModalScreen, Screen
+from textual.widgets import (
+    Button,
+    DataTable,
+    Footer,
+    Header,
+    Input,
+    Label,
+    RichLog,
+    Static,
+    Switch,
+)
 
 ASCII_BANNER = (
     " ▄  █ ██      ▄▄▄▄▄    ▄  █ ▄█▄    █▄▄▄▄ ██   ▄█▄    █  █▀\n"
@@ -199,7 +205,7 @@ class RunScreen(Screen):
         _pt, _st, log_dir = define_logs(self.session)
         hashcat_log = os.path.join(log_dir, "hashcat.log")
         try:
-            with open(hashcat_log, "w", encoding="utf-8") as logf:
+            with private_text_open(hashcat_log, "w", encoding="utf-8") as logf:
                 self.proc = subprocess.Popen(
                     self.cmd,
                     stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
@@ -233,7 +239,12 @@ class RunScreen(Screen):
         plaintext = None
         if os.path.exists(plaintext_file) and os.path.getsize(plaintext_file) > 0:
             try:
-                with open(plaintext_file, "r", encoding="utf-8", errors="replace") as f:
+                with private_text_open(
+                    plaintext_file,
+                    "r",
+                    encoding="utf-8",
+                    errors="replace",
+                ) as f:
                     for line in f:
                         line = line.strip()
                         if line:
@@ -360,10 +371,16 @@ class MenuScreen(Screen):
         def _after_form(result):
             if not result:
                 return
-            cmd, save_kwargs = self.app.build_command(attack_type, result)
+            try:
+                cmd, save_kwargs = self.app.build_command(attack_type, result)
+                session = validate_session_name(
+                    result.get("session") or params["default_session"]
+                )
+            except ValueError as exc:
+                self.app.notify(f"Invalid session name: {exc}", severity="error")
+                return
             if cmd is None:
                 return
-            session = result.get("session") or params["default_session"]
             self.app.push_screen(RunScreen(cmd, session, save_kwargs))
 
         self.app.push_screen(
@@ -513,7 +530,7 @@ class HashCrackApp(App):
 
     def build_command(self, attack_type: str, form: dict):
         p = self.get_params()
-        session   = form.get("session")     or p["default_session"]
+        session = validate_session_name(form.get("session") or p["default_session"])
         hashmode  = form.get("hashmode")    or p["default_hashmode"]
         workload  = form.get("workload")    or p["default_workload"]
         device    = form.get("device")      or p["default_device"]
