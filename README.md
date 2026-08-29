@@ -197,6 +197,10 @@ Each run writes to `~/.hashCrack/logs/<session>/`:
 └── command.txt          # exact command used (replay)
 ```
 
+The `.hashCrack` tree and each session directory are kept at mode `0700` on
+POSIX systems. Plaintexts, status metadata, command history and Hashcat logs
+are created or repaired at mode `0600`; symlinked sensitive paths are refused.
+
 ### `status.json` schema
 
 ```json
@@ -317,6 +321,11 @@ Sessions started from hashCrack are created under hashcat's own session dir
 (`~/.local/share/hashcat/sessions` on Linux). The session-name field in each
 form defaults to today's date; if a name is already taken the tool appends an
 auto-incrementing suffix.
+
+Session names use 1–128 ASCII letters, digits, dots, underscores or hyphens.
+Path separators, shell metacharacters, control characters and Windows reserved
+device names are rejected. Restore files must be exact `.restore` files inside
+Hashcat's configured session directory.
 
 To resume a hashcat session manually:
 

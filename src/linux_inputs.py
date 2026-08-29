@@ -1,10 +1,14 @@
 """Interactive prompts for Linux attack scripts."""
 import os
-from termcolor import colored
 
 from functions import (
-    list_sessions, restore_session, define_default_parameters, get_unique_session_name
+    define_default_parameters,
+    get_unique_session_name,
+    list_sessions,
+    restore_session,
+    validate_session_name,
 )
+from termcolor import colored
 
 parameters = define_default_parameters()
 
@@ -55,8 +59,14 @@ def define_session():
     restore_file_input = input(colored("[+] ", "green") + "Restore? (Enter restore file name or leave empty): ")
     restore_session(restore_file_input, parameters["default_restorepath"])
 
-    session_input = input(colored("[+] ", "green") + f"Enter session name (default '{parameters['default_session']}'): ")
-    session = session_input or parameters["default_session"]
+    while True:
+        session_input = input(colored("[+] ", "green") + f"Enter session name (default '{parameters['default_session']}'): ")
+        session = session_input or parameters["default_session"]
+        try:
+            session = validate_session_name(session)
+            break
+        except ValueError as exc:
+            print(colored(f"[!] Invalid session name: {exc}", "red"))
     new_session_name = get_unique_session_name(session)
     if new_session_name != session:
         print(colored(f"[!] Session name '{session}' already exists. Assigning new session name: '{new_session_name}'", "red"))
